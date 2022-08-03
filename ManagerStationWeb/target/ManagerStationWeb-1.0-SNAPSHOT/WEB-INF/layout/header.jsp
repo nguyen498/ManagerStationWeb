@@ -5,13 +5,24 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<header id="header">
+    <div class="container-fluid">
+
+        <div class="logo">
+            <h1><i class="fa-solid fa-bus" style="color: white"></i><a href="index.html">BenXeOnline</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+        </div>
+
+        <button type="button" class="nav-toggle"><i class="fa-solid fa-bars"></i></button>
+        <nav class="nav-menu">
+            <ul>
+                <li class="active"><a href="#header" class="scrollto">Home</a></li>
+                <li><a href="#">Bài viết</a></li>
+                <li><a href="#">Mua vé</a></li>
+                <li><a href="#">Gửi hàng</a></li>
+                <li><a href="#" class="scrollto">Liên hệ</a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header>

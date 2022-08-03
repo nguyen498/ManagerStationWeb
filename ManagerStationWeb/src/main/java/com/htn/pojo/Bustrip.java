@@ -59,6 +59,8 @@ public class Bustrip implements Serializable {
     @ManyToOne(optional = false)
     private Route routeId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
+    private Collection<Post> postCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
     private Collection<Ticket> ticketCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
     private Collection<Goods> goodsCollection;
@@ -114,6 +116,15 @@ public class Bustrip implements Serializable {
 
     public void setRouteId(Route routeId) {
         this.routeId = routeId;
+    }
+
+    @XmlTransient
+    public Collection<Post> getPostCollection() {
+        return postCollection;
+    }
+
+    public void setPostCollection(Collection<Post> postCollection) {
+        this.postCollection = postCollection;
     }
 
     @XmlTransient

@@ -63,6 +63,9 @@ public class Post implements Serializable {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account accountId;
+    @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Bustrip bustripId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "postId")
     private Collection<Comment> commentCollection;
 
@@ -118,6 +121,14 @@ public class Post implements Serializable {
 
     public void setAccountId(Account accountId) {
         this.accountId = accountId;
+    }
+
+    public Bustrip getBustripId() {
+        return bustripId;
+    }
+
+    public void setBustripId(Bustrip bustripId) {
+        this.bustripId = bustripId;
     }
 
     @XmlTransient

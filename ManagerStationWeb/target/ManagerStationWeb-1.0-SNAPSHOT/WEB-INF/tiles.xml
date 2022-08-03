@@ -18,9 +18,4 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/index.jsp" />
     </definition>
-    <definition name="products" extends="baseLayout">
-        <put-attribute name="title" value="Quan ly san pham" />
-        <put-attribute name="content"
-                       value="/WEB-INF/jsp/products.jsp" />
-    </definition>
 </tiles-definitions>
