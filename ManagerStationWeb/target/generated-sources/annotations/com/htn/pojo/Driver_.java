@@ -7,14 +7,13 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-03T13:24:30")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-03T22:27:26")
 @StaticMetamodel(Driver.class)
 public class Driver_ { 
 
     public static volatile SingularAttribute<Driver, Date> birthday;
-    public static volatile SingularAttribute<Driver, String> firstName;
-    public static volatile SingularAttribute<Driver, String> lastName;
     public static volatile SingularAttribute<Driver, String> phone;
+    public static volatile SingularAttribute<Driver, String> name;
     public static volatile SingularAttribute<Driver, Integer> id;
     public static volatile CollectionAttribute<Driver, Bustrip> bustripCollection;
 

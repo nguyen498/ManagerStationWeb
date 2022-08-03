@@ -35,8 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
     @NamedQuery(name = "Customer.findById", query = "SELECT c FROM Customer c WHERE c.id = :id"),
-    @NamedQuery(name = "Customer.findByFirstName", query = "SELECT c FROM Customer c WHERE c.firstName = :firstName"),
-    @NamedQuery(name = "Customer.findByLastName", query = "SELECT c FROM Customer c WHERE c.lastName = :lastName"),
+    @NamedQuery(name = "Customer.findByName", query = "SELECT c FROM Customer c WHERE c.name = :name"),
     @NamedQuery(name = "Customer.findByBirthday", query = "SELECT c FROM Customer c WHERE c.birthday = :birthday"),
     @NamedQuery(name = "Customer.findByPhone", query = "SELECT c FROM Customer c WHERE c.phone = :phone")})
 public class Customer implements Serializable {
@@ -49,14 +48,9 @@ public class Customer implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "first_name")
-    private String firstName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "last_name")
-    private String lastName;
+    @Size(min = 1, max = 255)
+    @Column(name = "name")
+    private String name;
     @Basic(optional = false)
     @NotNull
     @Column(name = "birthday")
@@ -82,10 +76,9 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public Customer(Integer id, String firstName, String lastName, Date birthday, String phone) {
+    public Customer(Integer id, String name, Date birthday, String phone) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.birthday = birthday;
         this.phone = phone;
     }
@@ -98,20 +91,12 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getBirthday() {

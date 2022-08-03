@@ -1,24 +1,23 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <section id="hero">
     <div class="hero-container">
         <h1>Welcome BenXeOnline</h1>
         <h2>Hãy tìm kiếm nơi bạn muốn đến!!!</h2>
 
-        <form action="forms/notify.php" method="post" role="form" class="php-email-form">
+        <c:url value="/" var="action"/>
+        <form action="${action}" class="php-email-form">
             <div class="row">
-                <div class="col-md-3 form-group">
-                    Điiẻm bắt đầu: <input type="text" name="name" class="form-control" id="name" placeholder="Điểm bắt đầu" required>
+                <div class="col-md-4 form-group">
+                    Điiẻm bắt đầu: <input type="text" name="destination" class="form-control" id="destination" placeholder="Điểm bắt đầu">
                 </div>
-                <div class="col-md-3 form-group">
-                    Điểm kết thúc: <input type="text" name="email" class="form-control" id="email" name="email" id="email" placeholder="Điểm kết thúc" required>
+                <div class="col-md-4 form-group">
+                    Điểm kết thúc: <input type="text" name="end" class="form-control" id="end" placeholder="Điểm kết thúc">
                 </div>
-                <div class="col-md-3 form-group">
-                    Nhà xe: <input type="text" name="" class="form-control" id="" placeholder="Nhà xe" required>
-                </div>
-                <div class="col-md-3 form-group1">
-                    Ngày khởi hành:<input type="date" name="date" class="form-control" class="form-control" id="date" placeholder="dd/mm/yyyy" min="" max="2030-12-31" required>
+                <div class="col-md-4 form-group1">
+                    Ngày khởi hành:<input type="date" name="date" class="form-control" class="form-control" id="date" placeholder="dd/mm/yyyy" min="" max="2030-12-31">
                 </div>
             </div>
             <div class="text-center"><button type="submit">Tìm kiếm</button></div>
@@ -31,42 +30,22 @@
         <div class="container">
 
             <div class="row">
+                <c:forEach items="${posts}" var="p">
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="card">
-                        <img src="./resources/img/why-us-1.jpg" class="card-img-top" alt="...">
+                        <img src="${p.image}" class="card-img-top" alt="...">
                         <div class="card-icon">
                             <i class="fa-solid fa-bus"></i>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="">Our Mission</a></h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                            <h5 class="card-title"><a href="">${p.bustripId.routeId.tuyenBD} => ${p.bustripId.routeId.tuyenKT}</a></h5>
+                            <p class="card-text">${p.content}</p>
+                            <p class="card-text">Ngày khởi hành: ${p.bustripId.thoigian}</p>
+                            <p class="card-text">Nhà xe: ${p.bustripId.bus.mabenxe.tennhaxe}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <img src="./resources/img/why-us-2.jpg" class="card-img-top" alt="...">
-                        <div class="card-icon">
-                            <i class="fa-solid fa-bus"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">Our Plan</a></h5>
-                            <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="card">
-                        <img src="./resources/img/why-us-3.jpg" class="card-img-top" alt="...">
-                        <div class="card-icon">
-                            <i class="fa-solid fa-bus"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">Our Vision</a></h5>
-                            <p class="card-text">Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet. </p>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
 
         </div>

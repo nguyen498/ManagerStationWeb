@@ -13,6 +13,7 @@
     <class>com.htn.pojo.Driver</class>
     <class>com.htn.pojo.Account</class>
     <class>com.htn.pojo.Customer</class>
+    <class>com.htn.pojo.Seat</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/busstationdb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

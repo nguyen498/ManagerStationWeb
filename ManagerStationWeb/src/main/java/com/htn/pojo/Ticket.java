@@ -5,8 +5,10 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,11 +18,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -51,6 +55,8 @@ public class Ticket implements Serializable {
     @Column(name = "ngayxuatve")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayxuatve;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tichketId")
+    private Collection<Seat> seatCollection;
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bustrip bustripId;
@@ -93,6 +99,15 @@ public class Ticket implements Serializable {
 
     public void setNgayxuatve(Date ngayxuatve) {
         this.ngayxuatve = ngayxuatve;
+    }
+
+    @XmlTransient
+    public Collection<Seat> getSeatCollection() {
+        return seatCollection;
+    }
+
+    public void setSeatCollection(Collection<Seat> seatCollection) {
+        this.seatCollection = seatCollection;
     }
 
     public Bustrip getBustripId() {

@@ -5,7 +5,9 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,10 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -37,12 +41,13 @@ public class Bus implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "biensoxe")
     private String biensoxe;
-    @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Bustrip bustripId;
+    @OneToMany(mappedBy = "busId")
+    private Collection<Seat> seatCollection;
     @JoinColumn(name = "mabenxe", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Station mabenxe;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bus")
+    private Collection<Bustrip> bustripCollection;
 
     public Bus() {
     }
@@ -59,12 +64,13 @@ public class Bus implements Serializable {
         this.biensoxe = biensoxe;
     }
 
-    public Bustrip getBustripId() {
-        return bustripId;
+    @XmlTransient
+    public Collection<Seat> getSeatCollection() {
+        return seatCollection;
     }
 
-    public void setBustripId(Bustrip bustripId) {
-        this.bustripId = bustripId;
+    public void setSeatCollection(Collection<Seat> seatCollection) {
+        this.seatCollection = seatCollection;
     }
 
     public Station getMabenxe() {
@@ -73,6 +79,15 @@ public class Bus implements Serializable {
 
     public void setMabenxe(Station mabenxe) {
         this.mabenxe = mabenxe;
+    }
+
+    @XmlTransient
+    public Collection<Bustrip> getBustripCollection() {
+        return bustripCollection;
+    }
+
+    public void setBustripCollection(Collection<Bustrip> bustripCollection) {
+        this.bustripCollection = bustripCollection;
     }
 
     @Override

@@ -33,8 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Station.findAll", query = "SELECT s FROM Station s"),
     @NamedQuery(name = "Station.findById", query = "SELECT s FROM Station s WHERE s.id = :id"),
     @NamedQuery(name = "Station.findByTennhaxe", query = "SELECT s FROM Station s WHERE s.tennhaxe = :tennhaxe"),
-    @NamedQuery(name = "Station.findByDiachi", query = "SELECT s FROM Station s WHERE s.diachi = :diachi"),
-    @NamedQuery(name = "Station.findByDienthoai", query = "SELECT s FROM Station s WHERE s.dienthoai = :dienthoai")})
+    @NamedQuery(name = "Station.findByDiachi", query = "SELECT s FROM Station s WHERE s.diachi = :diachi")})
 public class Station implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,11 +52,6 @@ public class Station implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "diachi")
     private String diachi;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "dienthoai")
-    private String dienthoai;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "mabenxe")
     private Collection<Bus> busCollection;
 
@@ -68,11 +62,10 @@ public class Station implements Serializable {
         this.id = id;
     }
 
-    public Station(Integer id, String tennhaxe, String diachi, String dienthoai) {
+    public Station(Integer id, String tennhaxe, String diachi) {
         this.id = id;
         this.tennhaxe = tennhaxe;
         this.diachi = diachi;
-        this.dienthoai = dienthoai;
     }
 
     public Integer getId() {
@@ -97,14 +90,6 @@ public class Station implements Serializable {
 
     public void setDiachi(String diachi) {
         this.diachi = diachi;
-    }
-
-    public String getDienthoai() {
-        return dienthoai;
-    }
-
-    public void setDienthoai(String dienthoai) {
-        this.dienthoai = dienthoai;
     }
 
     @XmlTransient

@@ -63,14 +63,13 @@ public class Account implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "email")
     private String email;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "active")
-    private short active;
+    private Boolean active;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "user_role")
-    private int userRole;
+    private String userRole;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Collection<Post> postCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "acountId")
@@ -86,12 +85,11 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Account(Integer id, String username, String password, String email, short active, int userRole) {
+    public Account(Integer id, String username, String password, String email, String userRole) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.active = active;
         this.userRole = userRole;
     }
 
@@ -127,19 +125,19 @@ public class Account implements Serializable {
         this.email = email;
     }
 
-    public short getActive() {
+    public Boolean getActive() {
         return active;
     }
 
-    public void setActive(short active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
-    public int getUserRole() {
+    public String getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(int userRole) {
+    public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
 

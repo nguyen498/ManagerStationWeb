@@ -18,9 +18,13 @@
             <ul>
                 <li class="active"><a href="#header" class="scrollto">Home</a></li>
                 <li><a href="#">Bài viết</a></li>
+                <li><a href="#">Đăng kí nhà xe</a></li>
+                <li><a href="#">Đăng kí xe</a></li>
                 <li><a href="#">Mua vé</a></li>
                 <li><a href="#">Gửi hàng</a></li>
                 <li><a href="#" class="scrollto">Liên hệ</a></li>
+                <li><a href="#">Đăng nhập</a></li>
+                <li><a href="#">Đăng kí tài khoảng</a></li>
             </ul>
         </nav><!-- .nav-menu -->
 

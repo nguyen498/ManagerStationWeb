@@ -35,8 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Driver.findAll", query = "SELECT d FROM Driver d"),
     @NamedQuery(name = "Driver.findById", query = "SELECT d FROM Driver d WHERE d.id = :id"),
-    @NamedQuery(name = "Driver.findByFirstName", query = "SELECT d FROM Driver d WHERE d.firstName = :firstName"),
-    @NamedQuery(name = "Driver.findByLastName", query = "SELECT d FROM Driver d WHERE d.lastName = :lastName"),
+    @NamedQuery(name = "Driver.findByName", query = "SELECT d FROM Driver d WHERE d.name = :name"),
     @NamedQuery(name = "Driver.findByBirthday", query = "SELECT d FROM Driver d WHERE d.birthday = :birthday"),
     @NamedQuery(name = "Driver.findByPhone", query = "SELECT d FROM Driver d WHERE d.phone = :phone")})
 public class Driver implements Serializable {
@@ -49,14 +48,9 @@ public class Driver implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "first_name")
-    private String firstName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "last_name")
-    private String lastName;
+    @Size(min = 1, max = 255)
+    @Column(name = "name")
+    private String name;
     @Basic(optional = false)
     @NotNull
     @Column(name = "birthday")
@@ -78,10 +72,9 @@ public class Driver implements Serializable {
         this.id = id;
     }
 
-    public Driver(Integer id, String firstName, String lastName, Date birthday, String phone) {
+    public Driver(Integer id, String name, Date birthday, String phone) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.birthday = birthday;
         this.phone = phone;
     }
@@ -94,20 +87,12 @@ public class Driver implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getBirthday() {

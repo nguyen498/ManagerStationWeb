@@ -50,8 +50,9 @@ public class Bustrip implements Serializable {
     @Column(name = "thoigian")
     @Temporal(TemporalType.TIMESTAMP)
     private Date thoigian;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
-    private Collection<Bus> busCollection;
+    @JoinColumn(name = "bus", referencedColumnName = "biensoxe")
+    @ManyToOne(optional = false)
+    private Bus bus;
     @JoinColumn(name = "driver_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Driver driverId;
@@ -93,13 +94,12 @@ public class Bustrip implements Serializable {
         this.thoigian = thoigian;
     }
 
-    @XmlTransient
-    public Collection<Bus> getBusCollection() {
-        return busCollection;
+    public Bus getBus() {
+        return bus;
     }
 
-    public void setBusCollection(Collection<Bus> busCollection) {
-        this.busCollection = busCollection;
+    public void setBus(Bus bus) {
+        this.bus = bus;
     }
 
     public Driver getDriverId() {
