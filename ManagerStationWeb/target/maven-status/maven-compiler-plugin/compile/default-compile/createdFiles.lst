@@ -16,7 +16,9 @@ com\htn\pojo\Driver.class
 com\htn\configs\HibernateConfig.class
 com\htn\pojo\Seat.class
 com\htn\service\impl\PostServiceImp.class
+com\htn\controller\PostController.class
 com\htn\pojo\Customer.class
+com\htn\utils\Utils.class
 com\htn\pojo\Comment_.class
 com\htn\pojo\Bustrip.class
 com\htn\repository\impl\PostRepositoryImp.class
@@ -30,5 +32,6 @@ com\htn\pojo\Station.class
 com\htn\configs\WebAppContextConfigs.class
 com\htn\pojo\Driver_.class
 com\htn\pojo\Goods_.class
+com\htn\controller\RegisterBusController.class
 com\htn\pojo\Route_.class
 com\htn\configs\DispatcherServletInit.class

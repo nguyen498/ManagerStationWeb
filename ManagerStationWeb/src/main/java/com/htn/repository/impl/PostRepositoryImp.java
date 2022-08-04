@@ -6,9 +6,14 @@ package com.htn.repository.impl;
 
 import com.htn.pojo.Post;
 import com.htn.repository.PostRepository;
+import com.htn.utils.Utils;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -58,12 +63,13 @@ public class PostRepositoryImp implements PostRepository{
                 predicates.add(p);
             }
 
-//            String cateId = params.get("cateId");
-//            if (cateId != null) {
-//                Predicate p = b.equal(root.get("categoryId"), Integer.parseInt(cateId));
-//                predicates.add(p);
-//            }
-//
+            String date = params.get("date");
+            if (date != null) {
+                Predicate p = b.like(root.get("bustripId").get("thoigian").as(String.class),
+                        String.format("%%%s%%", date));
+                predicates.add(p);
+            }
+
             q.where(predicates.toArray(new Predicate[]{}));
         }
         

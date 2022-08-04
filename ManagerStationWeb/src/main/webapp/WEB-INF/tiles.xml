@@ -23,4 +23,19 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/post.jsp" />
     </definition>
+    <definition name="register-bus" extends="baseLayout">
+        <put-attribute name="title" value="Đăng kí xe" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/registerbus.jsp" />
+    </definition>
+    <definition name="register-station" extends="baseLayout">
+        <put-attribute name="title" value="Đăng kí nhà xe" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/registerstation.jsp" />
+    </definition>
+    <definition name="register-trip" extends="baseLayout">
+        <put-attribute name="title" value="Đăng kí chuyến xe" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/registertrip.jsp" />
+    </definition>
 </tiles-definitions>

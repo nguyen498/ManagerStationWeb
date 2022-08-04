@@ -4,6 +4,7 @@
     Author     : admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <header id="header">
     <div class="container-fluid">
@@ -16,10 +17,12 @@
         <button type="button" class="nav-toggle"><i class="fa-solid fa-bars"></i></button>
         <nav class="nav-menu">
             <ul>
-                <li class="active"><a href="#header" class="scrollto">Home</a></li>
+                <c:url value="/" var="url" />
+                <li class="active"><a href="${url}" class="scrollto">Home</a></li>
                 <li><a href="#">Bài viết</a></li>
-                <li><a href="#">Đăng kí nhà xe</a></li>
-                <li><a href="#">Đăng kí xe</a></li>
+                <li><a href="${url}register-trip">Đăng kí chuyến xe</a></li>
+                <li><a href="${url}register-station">Đăng kí nhà xe</a></li>
+                <li><a href="${url}register-bus">Đăng kí xe</a></li>
                 <li><a href="#">Mua vé</a></li>
                 <li><a href="#">Gửi hàng</a></li>
                 <li><a href="#" class="scrollto">Liên hệ</a></li>
