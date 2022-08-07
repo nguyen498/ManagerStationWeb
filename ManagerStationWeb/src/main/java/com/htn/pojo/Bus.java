@@ -5,7 +5,7 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,12 +42,12 @@ public class Bus implements Serializable {
     @Column(name = "biensoxe")
     private String biensoxe;
     @OneToMany(mappedBy = "busId")
-    private Collection<Seat> seatCollection;
+    private Set<Seat> seatSet;
     @JoinColumn(name = "mabenxe", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Station mabenxe;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bus")
-    private Collection<Bustrip> bustripCollection;
+    private Set<Bustrip> bustripSet;
 
     public Bus() {
     }
@@ -65,12 +65,12 @@ public class Bus implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Seat> getSeatCollection() {
-        return seatCollection;
+    public Set<Seat> getSeatSet() {
+        return seatSet;
     }
 
-    public void setSeatCollection(Collection<Seat> seatCollection) {
-        this.seatCollection = seatCollection;
+    public void setSeatSet(Set<Seat> seatSet) {
+        this.seatSet = seatSet;
     }
 
     public Station getMabenxe() {
@@ -82,12 +82,12 @@ public class Bus implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Bustrip> getBustripCollection() {
-        return bustripCollection;
+    public Set<Bustrip> getBustripSet() {
+        return bustripSet;
     }
 
-    public void setBustripCollection(Collection<Bustrip> bustripCollection) {
-        this.bustripCollection = bustripCollection;
+    public void setBustripSet(Set<Bustrip> bustripSet) {
+        this.bustripSet = bustripSet;
     }
 
     @Override

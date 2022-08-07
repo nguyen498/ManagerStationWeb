@@ -5,7 +5,7 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -67,7 +67,7 @@ public class Post implements Serializable {
     @ManyToOne(optional = false)
     private Bustrip bustripId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "postId")
-    private Collection<Comment> commentCollection;
+    private Set<Comment> commentSet;
 
     public Post() {
     }
@@ -132,12 +132,12 @@ public class Post implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Comment> getCommentCollection() {
-        return commentCollection;
+    public Set<Comment> getCommentSet() {
+        return commentSet;
     }
 
-    public void setCommentCollection(Collection<Comment> commentCollection) {
-        this.commentCollection = commentCollection;
+    public void setCommentSet(Set<Comment> commentSet) {
+        this.commentSet = commentSet;
     }
 
     @Override

@@ -5,8 +5,8 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -63,7 +63,7 @@ public class Driver implements Serializable {
     @Column(name = "phone")
     private String phone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "driverId")
-    private Collection<Bustrip> bustripCollection;
+    private Set<Bustrip> bustripSet;
 
     public Driver() {
     }
@@ -112,12 +112,12 @@ public class Driver implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Bustrip> getBustripCollection() {
-        return bustripCollection;
+    public Set<Bustrip> getBustripSet() {
+        return bustripSet;
     }
 
-    public void setBustripCollection(Collection<Bustrip> bustripCollection) {
-        this.bustripCollection = bustripCollection;
+    public void setBustripSet(Set<Bustrip> bustripSet) {
+        this.bustripSet = bustripSet;
     }
 
     @Override

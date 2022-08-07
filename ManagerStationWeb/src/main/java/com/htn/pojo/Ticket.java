@@ -5,8 +5,8 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -56,7 +56,7 @@ public class Ticket implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayxuatve;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tichketId")
-    private Collection<Seat> seatCollection;
+    private Set<Seat> seatSet;
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bustrip bustripId;
@@ -102,12 +102,12 @@ public class Ticket implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Seat> getSeatCollection() {
-        return seatCollection;
+    public Set<Seat> getSeatSet() {
+        return seatSet;
     }
 
-    public void setSeatCollection(Collection<Seat> seatCollection) {
-        this.seatCollection = seatCollection;
+    public void setSeatSet(Set<Seat> seatSet) {
+        this.seatSet = seatSet;
     }
 
     public Bustrip getBustripId() {

@@ -5,8 +5,8 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -63,11 +63,11 @@ public class Customer implements Serializable {
     @Column(name = "phone")
     private String phone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Collection<Ticket> ticketCollection;
+    private Set<Ticket> ticketSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Collection<Goods> goodsCollection;
+    private Set<Goods> goodsSet;
     @OneToMany(mappedBy = "customerId")
-    private Collection<Account> accountCollection;
+    private Set<Account> accountSet;
 
     public Customer() {
     }
@@ -116,30 +116,30 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Ticket> getTicketCollection() {
-        return ticketCollection;
+    public Set<Ticket> getTicketSet() {
+        return ticketSet;
     }
 
-    public void setTicketCollection(Collection<Ticket> ticketCollection) {
-        this.ticketCollection = ticketCollection;
-    }
-
-    @XmlTransient
-    public Collection<Goods> getGoodsCollection() {
-        return goodsCollection;
-    }
-
-    public void setGoodsCollection(Collection<Goods> goodsCollection) {
-        this.goodsCollection = goodsCollection;
+    public void setTicketSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
     }
 
     @XmlTransient
-    public Collection<Account> getAccountCollection() {
-        return accountCollection;
+    public Set<Goods> getGoodsSet() {
+        return goodsSet;
     }
 
-    public void setAccountCollection(Collection<Account> accountCollection) {
-        this.accountCollection = accountCollection;
+    public void setGoodsSet(Set<Goods> goodsSet) {
+        this.goodsSet = goodsSet;
+    }
+
+    @XmlTransient
+    public Set<Account> getAccountSet() {
+        return accountSet;
+    }
+
+    public void setAccountSet(Set<Account> accountSet) {
+        this.accountSet = accountSet;
     }
 
     @Override

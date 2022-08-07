@@ -5,7 +5,7 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,7 +53,7 @@ public class Station implements Serializable {
     @Column(name = "diachi")
     private String diachi;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "mabenxe")
-    private Collection<Bus> busCollection;
+    private Set<Bus> busSet;
 
     public Station() {
     }
@@ -93,12 +93,12 @@ public class Station implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Bus> getBusCollection() {
-        return busCollection;
+    public Set<Bus> getBusSet() {
+        return busSet;
     }
 
-    public void setBusCollection(Collection<Bus> busCollection) {
-        this.busCollection = busCollection;
+    public void setBusSet(Set<Bus> busSet) {
+        this.busSet = busSet;
     }
 
     @Override

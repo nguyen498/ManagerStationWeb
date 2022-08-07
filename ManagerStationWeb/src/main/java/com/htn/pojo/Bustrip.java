@@ -5,8 +5,8 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -60,11 +60,11 @@ public class Bustrip implements Serializable {
     @ManyToOne(optional = false)
     private Route routeId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
-    private Collection<Post> postCollection;
+    private Set<Post> postSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
-    private Collection<Ticket> ticketCollection;
+    private Set<Ticket> ticketSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
-    private Collection<Goods> goodsCollection;
+    private Set<Goods> goodsSet;
 
     public Bustrip() {
     }
@@ -119,30 +119,30 @@ public class Bustrip implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Post> getPostCollection() {
-        return postCollection;
+    public Set<Post> getPostSet() {
+        return postSet;
     }
 
-    public void setPostCollection(Collection<Post> postCollection) {
-        this.postCollection = postCollection;
-    }
-
-    @XmlTransient
-    public Collection<Ticket> getTicketCollection() {
-        return ticketCollection;
-    }
-
-    public void setTicketCollection(Collection<Ticket> ticketCollection) {
-        this.ticketCollection = ticketCollection;
+    public void setPostSet(Set<Post> postSet) {
+        this.postSet = postSet;
     }
 
     @XmlTransient
-    public Collection<Goods> getGoodsCollection() {
-        return goodsCollection;
+    public Set<Ticket> getTicketSet() {
+        return ticketSet;
     }
 
-    public void setGoodsCollection(Collection<Goods> goodsCollection) {
-        this.goodsCollection = goodsCollection;
+    public void setTicketSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
+    }
+
+    @XmlTransient
+    public Set<Goods> getGoodsSet() {
+        return goodsSet;
+    }
+
+    public void setGoodsSet(Set<Goods> goodsSet) {
+        this.goodsSet = goodsSet;
     }
 
     @Override
