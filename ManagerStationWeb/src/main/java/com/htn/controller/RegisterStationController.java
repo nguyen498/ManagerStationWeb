@@ -33,14 +33,14 @@ public class RegisterStationController {
     }
     
     @PostMapping("/register-station")
-    public String add (@ModelAttribute(value = "station") @Valid Station s,
+    public String add(@ModelAttribute(value = "station") @Valid Station s,
             BindingResult r){
         if (r.hasErrors()) {
             return "register-station";
         }
         
         if (this.stationService.addStation(s) == true)
-            return "redirect:/";
+            return "redirect:/register-bus";
         
         return "register-station";
     }

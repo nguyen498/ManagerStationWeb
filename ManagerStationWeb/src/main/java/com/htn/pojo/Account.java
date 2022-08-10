@@ -71,7 +71,7 @@ public class Account implements Serializable {
     @Column(name = "user_role")
     private String userRole;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
-    private Set<Post> postSet;
+    private Set<Bustrip> bustripSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "acountId")
     private Set<Comment> commentSet;
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
@@ -142,12 +142,12 @@ public class Account implements Serializable {
     }
 
     @XmlTransient
-    public Set<Post> getPostSet() {
-        return postSet;
+    public Set<Bustrip> getBustripSet() {
+        return bustripSet;
     }
 
-    public void setPostSet(Set<Post> postSet) {
-        this.postSet = postSet;
+    public void setBustripSet(Set<Bustrip> bustripSet) {
+        this.bustripSet = bustripSet;
     }
 
     @XmlTransient

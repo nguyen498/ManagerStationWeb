@@ -5,6 +5,7 @@
 package com.htn.service;
 
 import com.htn.pojo.Station;
+import java.util.List;
 
 /**
  *
@@ -12,4 +13,5 @@ import com.htn.pojo.Station;
  */
 public interface StationService {
     boolean addStation (Station s);
+    List<Station> getStations ();
 }

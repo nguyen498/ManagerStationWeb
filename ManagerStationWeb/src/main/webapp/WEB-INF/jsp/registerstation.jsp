@@ -18,6 +18,7 @@
 <main id="main">
     <div class="container mb-3" style="min-height: 500px">
         <form:form method="post" action="${action}" modelAttribute="station">
+            <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
             <div class="mb-3 mt-5">
                 <label for="name" class="form-label">Tên nhà xe: </label>
                 <form:input class="form-control" style="max-width: 300px" placeholder="Nhập tên nhà xe" path="tennhaxe" id="tennhaxe"/>

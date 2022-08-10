@@ -4,17 +4,17 @@ import com.htn.pojo.Bustrip;
 import com.htn.pojo.Seat;
 import com.htn.pojo.Station;
 import javax.annotation.Generated;
-import javax.persistence.metamodel.CollectionAttribute;
+import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-04T21:59:21")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-10T22:13:57")
 @StaticMetamodel(Bus.class)
 public class Bus_ { 
 
-    public static volatile SingularAttribute<Bus, Station> mabenxe;
     public static volatile SingularAttribute<Bus, String> biensoxe;
-    public static volatile CollectionAttribute<Bus, Seat> seatCollection;
-    public static volatile CollectionAttribute<Bus, Bustrip> bustripCollection;
+    public static volatile SingularAttribute<Bus, Station> manhaxe;
+    public static volatile SetAttribute<Bus, Seat> seatSet;
+    public static volatile SetAttribute<Bus, Bustrip> bustripSet;
 
 }

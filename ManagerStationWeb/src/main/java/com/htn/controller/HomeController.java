@@ -4,13 +4,13 @@
  */
 package com.htn.controller;
 
-import com.htn.service.PostService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.htn.service.BustripService;
 
 /**
  *
@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
     
     @Autowired
-    private PostService postService;
+    private BustripService bustripService;
     
     @RequestMapping("/")
     public String home (Model model,
             @RequestParam Map<String, String> params){
 //        int page = Integer.parseInt(params.getOrDefault("page", "1"));
-        model.addAttribute("posts", this.postService.getPosts(params, 0));
+        model.addAttribute("bustrips", this.bustripService.getBustrips(params, 0));
         return "index";
     }
 }

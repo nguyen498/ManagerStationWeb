@@ -52,9 +52,9 @@ public class Comment implements Serializable {
     @JoinColumn(name = "acount_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Account acountId;
-    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Post postId;
+    private Bustrip bustripId;
 
     public Comment() {
     }
@@ -101,12 +101,12 @@ public class Comment implements Serializable {
         this.acountId = acountId;
     }
 
-    public Post getPostId() {
-        return postId;
+    public Bustrip getBustripId() {
+        return bustripId;
     }
 
-    public void setPostId(Post postId) {
-        this.postId = postId;
+    public void setBustripId(Bustrip bustripId) {
+        this.bustripId = bustripId;
     }
 
     @Override

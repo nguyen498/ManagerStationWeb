@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,6 +24,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -36,7 +38,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Bustrip.findAll", query = "SELECT b FROM Bustrip b"),
     @NamedQuery(name = "Bustrip.findById", query = "SELECT b FROM Bustrip b WHERE b.id = :id"),
-    @NamedQuery(name = "Bustrip.findByThoigian", query = "SELECT b FROM Bustrip b WHERE b.thoigian = :thoigian")})
+    @NamedQuery(name = "Bustrip.findByThoigian", query = "SELECT b FROM Bustrip b WHERE b.thoigian = :thoigian"),
+    @NamedQuery(name = "Bustrip.findByImage", query = "SELECT b FROM Bustrip b WHERE b.image = :image")})
 public class Bustrip implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,6 +53,18 @@ public class Bustrip implements Serializable {
     @Column(name = "thoigian")
     @Temporal(TemporalType.TIMESTAMP)
     private Date thoigian;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "image")
+    private String image;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "content")
+    private String content;
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Account accountId;
     @JoinColumn(name = "bus", referencedColumnName = "biensoxe")
     @ManyToOne(optional = false)
     private Bus bus;
@@ -60,11 +75,11 @@ public class Bustrip implements Serializable {
     @ManyToOne(optional = false)
     private Route routeId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
-    private Set<Post> postSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
     private Set<Ticket> ticketSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
     private Set<Goods> goodsSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
+    private Set<Comment> commentSet;
 
     public Bustrip() {
     }
@@ -73,9 +88,10 @@ public class Bustrip implements Serializable {
         this.id = id;
     }
 
-    public Bustrip(Integer id, Date thoigian) {
+    public Bustrip(Integer id, Date thoigian, String image) {
         this.id = id;
         this.thoigian = thoigian;
+        this.image = image;
     }
 
     public Integer getId() {
@@ -92,6 +108,30 @@ public class Bustrip implements Serializable {
 
     public void setThoigian(Date thoigian) {
         this.thoigian = thoigian;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Account getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Account accountId) {
+        this.accountId = accountId;
     }
 
     public Bus getBus() {
@@ -119,15 +159,6 @@ public class Bustrip implements Serializable {
     }
 
     @XmlTransient
-    public Set<Post> getPostSet() {
-        return postSet;
-    }
-
-    public void setPostSet(Set<Post> postSet) {
-        this.postSet = postSet;
-    }
-
-    @XmlTransient
     public Set<Ticket> getTicketSet() {
         return ticketSet;
     }
@@ -143,6 +174,15 @@ public class Bustrip implements Serializable {
 
     public void setGoodsSet(Set<Goods> goodsSet) {
         this.goodsSet = goodsSet;
+    }
+
+    @XmlTransient
+    public Set<Comment> getCommentSet() {
+        return commentSet;
+    }
+
+    public void setCommentSet(Set<Comment> commentSet) {
+        this.commentSet = commentSet;
     }
 
     @Override

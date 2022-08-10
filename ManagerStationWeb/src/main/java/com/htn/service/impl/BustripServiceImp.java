@@ -4,31 +4,27 @@
  */
 package com.htn.service.impl;
 
-import com.htn.pojo.Station;
-import com.htn.repository.StationRepository;
-import com.htn.service.StationService;
+import com.htn.pojo.Bustrip;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.htn.repository.BustripRepository;
+import com.htn.service.BustripService;
 
 /**
  *
  * @author admin
  */
 @Service
-public class StationServiceImp implements StationService{
+public class BustripServiceImp implements BustripService{
     
     @Autowired
-    private StationRepository stationRepository;
+    private BustripRepository bustripRepository;
 
     @Override
-    public boolean addStation(Station s) {
-        return this.stationRepository.addStation(s);
-    }
-
-    @Override
-    public List<Station> getStations() {
-        return this.stationRepository.getStations();
+    public List<Bustrip> getBustrips(Map<String, String> params, int page) {
+        return this.bustripRepository.getBustrips(params, page);
     }
     
 }

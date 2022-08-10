@@ -4,11 +4,9 @@
  */
 package com.htn.service.impl;
 
-import com.htn.pojo.Post;
-import com.htn.repository.PostRepository;
-import com.htn.service.PostService;
-import java.util.List;
-import java.util.Map;
+import com.htn.pojo.Bus;
+import com.htn.repository.BusRepository;
+import com.htn.service.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +15,14 @@ import org.springframework.stereotype.Service;
  * @author admin
  */
 @Service
-public class PostServiceImp implements PostService{
-    
-    @Autowired
-    private PostRepository postRepository;
+public class BusServiceImp implements BusService{
 
+    @Autowired
+    private BusRepository busRepository;
+    
     @Override
-    public List<Post> getPosts(Map<String, String> params, int page) {
-        return this.postRepository.getPosts(params, page);
+    public boolean addBus(Bus b) {
+        return this.busRepository.addBus(b);
     }
     
 }

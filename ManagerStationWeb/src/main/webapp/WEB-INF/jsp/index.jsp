@@ -30,7 +30,7 @@
         <div class="container">
 
             <div class="row">
-                <c:forEach items="${posts}" var="p">
+                <c:forEach items="${bustrips}" var="p">
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="card">
                         <img src="${p.image}" class="card-img-top" alt="...">
@@ -38,10 +38,10 @@
                             <i class="fa-solid fa-bus"></i>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="">${p.bustripId.routeId.tuyenBD} => ${p.bustripId.routeId.tuyenKT}</a></h5>
+                            <h5 class="card-title"><a href="">${p.routeId.tuyenBD} => ${p.routeId.tuyenKT}</a></h5>
                             <p class="card-text">${p.content}</p>
-                            <p class="card-text">Ngày khởi hành: ${p.bustripId.thoigian}</p>
-                            <p class="card-text">Nhà xe: ${p.bustripId.bus.mabenxe.tennhaxe}</p>
+                            <p class="card-text">Ngày khởi hành: ${p.thoigian}</p>
+                            <p class="card-text">Nhà xe: ${p.bus.manhaxe.tennhaxe}</p>
                         </div>
                     </div>
                 </div>
@@ -65,8 +65,10 @@
         // Năm hiện tại
         var curYear = curDate.getFullYear();
         // Gán vào thẻ HTML
-        if(curMonth < 10 || curDay < 10 ){
-            document.getElementById('date').min = curYear + "-0" + curMonth + "-0" + curDay;
+        if(curMonth < 10){
+            if(curDay < 10)
+                document.getElementById('date').min = curYear + "-0" + curMonth + "-0" + curDay;
+            document.getElementById('date').min = curYear + "-0" + curMonth + "-" + curDay;
         }
         else
             document.getElementById('date').min = curYear + "-" + curMonth + "-" + curDay;

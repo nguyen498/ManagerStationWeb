@@ -4,14 +4,11 @@
  */
 package com.htn.repository;
 
-import java.util.List;
-import java.util.Map;
-import com.htn.pojo.Post;
-
+import com.htn.pojo.Bus;
 /**
  *
  * @author admin
  */
-public interface PostRepository {
-    List<Post> getPosts (Map<String, String> params, int page);
+public interface BusRepository {
+    boolean addBus (Bus b);
 }

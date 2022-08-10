@@ -38,14 +38,15 @@ public class Bus implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 10, message = "{bus.biensoxe.err}")
     @Column(name = "biensoxe")
     private String biensoxe;
     @OneToMany(mappedBy = "busId")
     private Set<Seat> seatSet;
-    @JoinColumn(name = "mabenxe", referencedColumnName = "id")
+    @JoinColumn(name = "manhaxe", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Station mabenxe;
+    @NotNull(message = "{bus.manhaxe.err}")
+    private Station manhaxe;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bus")
     private Set<Bustrip> bustripSet;
 
@@ -73,12 +74,12 @@ public class Bus implements Serializable {
         this.seatSet = seatSet;
     }
 
-    public Station getMabenxe() {
-        return mabenxe;
+    public Station getManhaxe() {
+        return manhaxe;
     }
 
-    public void setMabenxe(Station mabenxe) {
-        this.mabenxe = mabenxe;
+    public void setManhaxe(Station manhaxe) {
+        this.manhaxe = manhaxe;
     }
 
     @XmlTransient
