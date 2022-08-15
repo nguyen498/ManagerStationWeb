@@ -32,8 +32,7 @@ CREATE TABLE `account` (
   `customer_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_idx` (`customer_id`),
-  KEY `id_idx1` (`customer_id`,`id`),
-  CONSTRAINT `customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
+  KEY `id_idx1` (`customer_id`,`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,21 +81,19 @@ DROP TABLE IF EXISTS `bustrip`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bustrip` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `thoigian` datetime NOT NULL,
+  `ngaykhoihanh` date NOT NULL,
+  `thoigian` time DEFAULT NULL,
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `route_id` int NOT NULL,
-  `driver_id` int NOT NULL,
   `bus` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `account_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `route_id_idx` (`route_id`),
-  KEY `driver_id_idx` (`driver_id`),
   KEY `bus_idx` (`bus`),
   KEY `account_id_idx` (`account_id`),
   CONSTRAINT `account_id` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
   CONSTRAINT `buss` FOREIGN KEY (`bus`) REFERENCES `bus` (`biensoxe`),
-  CONSTRAINT `driver_id` FOREIGN KEY (`driver_id`) REFERENCES `driver` (`id`),
   CONSTRAINT `route_id` FOREIGN KEY (`route_id`) REFERENCES `route` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -107,7 +104,7 @@ CREATE TABLE `bustrip` (
 
 LOCK TABLES `bustrip` WRITE;
 /*!40000 ALTER TABLE `bustrip` DISABLE KEYS */;
-INSERT INTO `bustrip` VALUES (4,'2022-08-31 00:00:00','./resources/img/bus-1.jpg','Đây là chuyến xe di chuyển từ Sài Gòn đến Đà Lạt',1,1,'51C-12345',2);
+INSERT INTO `bustrip` VALUES (4,'2022-08-31','08:30:00','./resources/img/bus-1.jpg','Đây là chuyến xe di chuyển từ Sài Gòn đến Đà Lạt',1,'51C-12345',2);
 /*!40000 ALTER TABLE `bustrip` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,32 +165,6 @@ INSERT INTO `customer` VALUES (1,'Hà Trường Nguyên','2001-05-20 00:00:00','
 UNLOCK TABLES;
 
 --
--- Table structure for table `driver`
---
-
-DROP TABLE IF EXISTS `driver`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `driver` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `birthday` datetime NOT NULL,
-  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `driver`
---
-
-LOCK TABLES `driver` WRITE;
-/*!40000 ALTER TABLE `driver` DISABLE KEYS */;
-INSERT INTO `driver` VALUES (1,'Nguyễn Văn A','2001-05-20 00:00:00','0123456789');
-/*!40000 ALTER TABLE `driver` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `goods`
 --
 
@@ -203,7 +174,8 @@ DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods` (
   `id` int NOT NULL AUTO_INCREMENT,
   `tenhang` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `loaihang` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `tennguoinhan` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `diachinhanhang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer_id` int NOT NULL,
   `bustrip_id` int NOT NULL,
   PRIMARY KEY (`id`),
@@ -224,6 +196,36 @@ LOCK TABLES `goods` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `receipt`
+--
+
+DROP TABLE IF EXISTS `receipt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `receipt` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `created_date` datetime NOT NULL,
+  `total` decimal(10,0) NOT NULL,
+  `ticket_id` int NOT NULL,
+  `customer_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `customerId_idx` (`customer_id`),
+  KEY `ticket_id_idx` (`ticket_id`),
+  CONSTRAINT `customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  CONSTRAINT `ticket` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `receipt`
+--
+
+LOCK TABLES `receipt` WRITE;
+/*!40000 ALTER TABLE `receipt` DISABLE KEYS */;
+/*!40000 ALTER TABLE `receipt` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `route`
 --
 
@@ -235,7 +237,7 @@ CREATE TABLE `route` (
   `tuyenBD` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `tuyenKT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +246,7 @@ CREATE TABLE `route` (
 
 LOCK TABLES `route` WRITE;
 /*!40000 ALTER TABLE `route` DISABLE KEYS */;
-INSERT INTO `route` VALUES (1,'Sài Gòn','Đà Lạt'),(2,'Sài Gòn','Đồng Nai');
+INSERT INTO `route` VALUES (1,'Sài Gòn','Đà Lạt'),(2,'Sài Gòn','Đồng Nai'),(3,'SÃ i GÃ²n','Äá»ng Nai');
 /*!40000 ALTER TABLE `route` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,7 +291,7 @@ CREATE TABLE `station` (
   `tennhaxe` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `diachi` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -298,7 +300,7 @@ CREATE TABLE `station` (
 
 LOCK TABLES `station` WRITE;
 /*!40000 ALTER TABLE `station` DISABLE KEYS */;
-INSERT INTO `station` VALUES (1,'Phương Trang','371 Nguyễn Kiệm, Gò Vấp, TPHMC'),(2,'Cúc Phương','371 Nguyễn Kiệm, Gò Vấp, TPHMC'),(3,'Nguyên','371 Nguyễn Kiệm, Gò Vấp, TPHMC'),(5,'Kim Manh Hung','Đồng Nai'),(6,'NguyÃªn','Äá»ng Nai'),(7,'Nguyá»n Kim','TPHCM');
+INSERT INTO `station` VALUES (1,'Phương Trang','371 Nguyễn Kiệm, Gò Vấp, TPHMC'),(2,'Cúc Phương','371 Nguyễn Kiệm, Gò Vấp, TPHMC'),(3,'Nguyên','371 Nguyễn Kiệm, Gò Vấp, TPHMC'),(5,'Kim Manh Hung','Đồng Nai'),(6,' Nguyên','Đồng Nai'),(7,'Nguyễn Kim','TPHCM');
 /*!40000 ALTER TABLE `station` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,9 +319,7 @@ CREATE TABLE `ticket` (
   `bustrip_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `bustrip_id_idx` (`bustrip_id`),
-  KEY `customer_id_idx` (`customer_id`),
-  CONSTRAINT `bustrip` FOREIGN KEY (`bustrip_id`) REFERENCES `bustrip` (`id`),
-  CONSTRAINT `customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
+  CONSTRAINT `bustrip` FOREIGN KEY (`bustrip_id`) REFERENCES `bustrip` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -341,4 +341,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-10 20:19:45
+-- Dump completed on 2022-08-15 13:30:15

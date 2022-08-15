@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password"),
     @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email"),
     @NamedQuery(name = "Account.findByActive", query = "SELECT a FROM Account a WHERE a.active = :active"),
-    @NamedQuery(name = "Account.findByUserRole", query = "SELECT a FROM Account a WHERE a.userRole = :userRole")})
+    @NamedQuery(name = "Account.findByUserRole", query = "SELECT a FROM Account a WHERE a.userRole = :userRole"),
+    @NamedQuery(name = "Account.findByCustomerId", query = "SELECT a FROM Account a WHERE a.customerId = :customerId")})
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -70,13 +69,12 @@ public class Account implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "user_role")
     private String userRole;
+    @Column(name = "customer_id")
+    private Integer customerId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
     private Set<Bustrip> bustripSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "acountId")
     private Set<Comment> commentSet;
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @ManyToOne
-    private Customer customerId;
 
     public Account() {
     }
@@ -141,6 +139,14 @@ public class Account implements Serializable {
         this.userRole = userRole;
     }
 
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
     @XmlTransient
     public Set<Bustrip> getBustripSet() {
         return bustripSet;
@@ -157,14 +163,6 @@ public class Account implements Serializable {
 
     public void setCommentSet(Set<Comment> commentSet) {
         this.commentSet = commentSet;
-    }
-
-    public Customer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
     }
 
     @Override

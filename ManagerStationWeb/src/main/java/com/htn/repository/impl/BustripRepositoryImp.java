@@ -60,7 +60,7 @@ public class BustripRepositoryImp implements BustripRepository{
 
             String date = params.get("date");
             if (date != null) {
-                Predicate p = b.like(root.get("thoigian").as(String.class),
+                Predicate p = b.like(root.get("ngaykhoihanh").as(String.class),
                         String.format("%%%s%%", date));
                 predicates.add(p);
             }

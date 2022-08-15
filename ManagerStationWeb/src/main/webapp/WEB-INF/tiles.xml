@@ -38,4 +38,36 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/registertrip.jsp" />
     </definition>
+    <definition name="register-route" extends="baseLayout">
+        <put-attribute name="title" value="Đăng kí tuyến xe" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/register-route.jsp" />
+    </definition>
+    
+    
+    <definition name="adminLayout"
+                template="/WEB-INF/layout/admin/base.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header"
+                       value="/WEB-INF/layout/admin/header.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer"
+                       value="/WEB-INF/layout/admin/footer.jsp" />
+    </definition>
+    <definition name="admin" extends="adminLayout">
+        <put-attribute name="title" value="Admin Dashboard" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin.jsp" />
+    </definition>
+    <definition name="add" extends="adminLayout">
+        <put-attribute name="title" value="Admin Dashboard" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/add.jsp" />
+    </definition>
+    <definition name="list" extends="adminLayout">
+        <put-attribute name="title" value="Table List" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/list.jsp" />
+    </definition>
+    
 </tiles-definitions>

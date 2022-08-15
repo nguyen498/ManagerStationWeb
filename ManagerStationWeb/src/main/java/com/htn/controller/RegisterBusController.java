@@ -42,10 +42,6 @@ public class RegisterBusController {
             BindingResult r){
         
         if (r.hasErrors()) {
-            System.out.println(r.getFieldError());
-            System.out.println(r.getFieldErrors());
-            System.out.println(r.getFieldErrorCount());
-            System.out.println(r.getErrorCount());
             return "register-bus";
         }
         

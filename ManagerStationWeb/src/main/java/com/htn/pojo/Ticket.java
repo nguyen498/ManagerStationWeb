@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Ticket.findAll", query = "SELECT t FROM Ticket t"),
     @NamedQuery(name = "Ticket.findById", query = "SELECT t FROM Ticket t WHERE t.id = :id"),
     @NamedQuery(name = "Ticket.findByGiave", query = "SELECT t FROM Ticket t WHERE t.giave = :giave"),
-    @NamedQuery(name = "Ticket.findByNgayxuatve", query = "SELECT t FROM Ticket t WHERE t.ngayxuatve = :ngayxuatve")})
+    @NamedQuery(name = "Ticket.findByNgayxuatve", query = "SELECT t FROM Ticket t WHERE t.ngayxuatve = :ngayxuatve"),
+    @NamedQuery(name = "Ticket.findByCustomerId", query = "SELECT t FROM Ticket t WHERE t.customerId = :customerId")})
 public class Ticket implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,14 +56,17 @@ public class Ticket implements Serializable {
     @Column(name = "ngayxuatve")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayxuatve;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "customer_id")
+    private int customerId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tichketId")
     private Set<Seat> seatSet;
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bustrip bustripId;
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Customer customerId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ticketId")
+    private Set<Receipt> receiptSet;
 
     public Ticket() {
     }
@@ -71,10 +75,11 @@ public class Ticket implements Serializable {
         this.id = id;
     }
 
-    public Ticket(Integer id, long giave, Date ngayxuatve) {
+    public Ticket(Integer id, long giave, Date ngayxuatve, int customerId) {
         this.id = id;
         this.giave = giave;
         this.ngayxuatve = ngayxuatve;
+        this.customerId = customerId;
     }
 
     public Integer getId() {
@@ -101,6 +106,14 @@ public class Ticket implements Serializable {
         this.ngayxuatve = ngayxuatve;
     }
 
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
     @XmlTransient
     public Set<Seat> getSeatSet() {
         return seatSet;
@@ -118,12 +131,13 @@ public class Ticket implements Serializable {
         this.bustripId = bustripId;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    @XmlTransient
+    public Set<Receipt> getReceiptSet() {
+        return receiptSet;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setReceiptSet(Set<Receipt> receiptSet) {
+        this.receiptSet = receiptSet;
     }
 
     @Override

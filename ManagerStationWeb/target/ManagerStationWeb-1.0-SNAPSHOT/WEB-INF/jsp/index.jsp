@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%java.text.DateFormat df = new java.text.SimpleDateFormat("dd-MM-yyyy"); %>
+
 <section id="hero">
     <div class="hero-container">
         <h1>Welcome BenXeOnline</h1>
@@ -11,7 +14,7 @@
         <form action="${action}" class="php-email-form">
             <div class="row">
                 <div class="col-md-4 form-group">
-                    Điiẻm bắt đầu: <input type="text" name="destination" class="form-control" id="destination" placeholder="Điểm bắt đầu">
+                    Điểm bắt đầu: <input type="text" name="destination" class="form-control" id="destination" placeholder="Điểm bắt đầu">
                 </div>
                 <div class="col-md-4 form-group">
                     Điểm kết thúc: <input type="text" name="end" class="form-control" id="end" placeholder="Điểm kết thúc">
@@ -40,7 +43,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><a href="">${p.routeId.tuyenBD} => ${p.routeId.tuyenKT}</a></h5>
                             <p class="card-text">${p.content}</p>
-                            <p class="card-text">Ngày khởi hành: ${p.thoigian}</p>
+                            <p class="card-text">Ngày khởi hành: ${p.ngaykhoihanh}</p>
                             <p class="card-text">Nhà xe: ${p.bus.manhaxe.tennhaxe}</p>
                         </div>
                     </div>

@@ -42,7 +42,7 @@
 
             </div>
 
-            <div class="col-lg-5 col-md-7">
+            <div class="col-lg-5 col-md-7" id="Contact">
                 <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Tên" required>

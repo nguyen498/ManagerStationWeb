@@ -63,11 +63,9 @@ public class Customer implements Serializable {
     @Column(name = "phone")
     private String phone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Set<Ticket> ticketSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private Set<Goods> goodsSet;
-    @OneToMany(mappedBy = "customerId")
-    private Set<Account> accountSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    private Set<Receipt> receiptSet;
 
     public Customer() {
     }
@@ -116,15 +114,6 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
-    public Set<Ticket> getTicketSet() {
-        return ticketSet;
-    }
-
-    public void setTicketSet(Set<Ticket> ticketSet) {
-        this.ticketSet = ticketSet;
-    }
-
-    @XmlTransient
     public Set<Goods> getGoodsSet() {
         return goodsSet;
     }
@@ -134,12 +123,12 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
-    public Set<Account> getAccountSet() {
-        return accountSet;
+    public Set<Receipt> getReceiptSet() {
+        return receiptSet;
     }
 
-    public void setAccountSet(Set<Account> accountSet) {
-        this.accountSet = accountSet;
+    public void setReceiptSet(Set<Receipt> receiptSet) {
+        this.receiptSet = receiptSet;
     }
 
     @Override

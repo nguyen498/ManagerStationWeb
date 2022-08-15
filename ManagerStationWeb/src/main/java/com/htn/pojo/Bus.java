@@ -38,14 +38,13 @@ public class Bus implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10, message = "{bus.biensoxe.err}")
+    @Size(min = 1, max = 10)
     @Column(name = "biensoxe")
     private String biensoxe;
     @OneToMany(mappedBy = "busId")
     private Set<Seat> seatSet;
     @JoinColumn(name = "manhaxe", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @NotNull(message = "{bus.manhaxe.err}")
     private Station manhaxe;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bus")
     private Set<Bustrip> bustripSet;

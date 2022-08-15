@@ -16,6 +16,7 @@
     </div>
 </section>
 <main id="main">
+    <h1 class="text-center text-info">Đăng kí nhà xe</h1>
     <div class="container mb-3" style="min-height: 500px">
         <form:form method="post" action="${action}" modelAttribute="station">
             <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>

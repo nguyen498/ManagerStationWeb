@@ -1,0 +1,50 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Aug 9, 2022, 10:52:28 AM
+    Author     : admin
+*/
+
+.current {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+}
+.list {
+    width: fit-content !important;
+}
+input.transparent-input{
+    background-color:rgba(0,0,0,0) !important;
+    border:none !important;
+    color: var(--light) !important;
+    font-size: 20px;
+    padding: 0;
+}
+input.transparent-input::placeholder {
+    color: var(--light) !important;
+}
+#datepicker, #timepicker, .gj-timepicker  {
+    width: 100% ;
+    color: white !important;
+}
+#timepicker [role=right-icon] {
+    top: 8px;
+    font-size: 20px;
+    color: white !important;
+}
+.book-now-form form .form-group {
+    max-width: unset;
+    width: unset;
+}
+@media (min-width: 992px) {
+
+    .col-lg-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333% !important;
+        max-width: 33.333333% !important;
+    }
+}

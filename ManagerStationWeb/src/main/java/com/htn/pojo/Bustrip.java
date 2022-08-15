@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Bustrip.findAll", query = "SELECT b FROM Bustrip b"),
     @NamedQuery(name = "Bustrip.findById", query = "SELECT b FROM Bustrip b WHERE b.id = :id"),
+    @NamedQuery(name = "Bustrip.findByNgaykhoihanh", query = "SELECT b FROM Bustrip b WHERE b.ngaykhoihanh = :ngaykhoihanh"),
     @NamedQuery(name = "Bustrip.findByThoigian", query = "SELECT b FROM Bustrip b WHERE b.thoigian = :thoigian"),
     @NamedQuery(name = "Bustrip.findByImage", query = "SELECT b FROM Bustrip b WHERE b.image = :image")})
 public class Bustrip implements Serializable {
@@ -50,8 +51,11 @@ public class Bustrip implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "ngaykhoihanh")
+    @Temporal(TemporalType.DATE)
+    private Date ngaykhoihanh;
     @Column(name = "thoigian")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIME)
     private Date thoigian;
     @Basic(optional = false)
     @NotNull
@@ -68,9 +72,6 @@ public class Bustrip implements Serializable {
     @JoinColumn(name = "bus", referencedColumnName = "biensoxe")
     @ManyToOne(optional = false)
     private Bus bus;
-    @JoinColumn(name = "driver_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Driver driverId;
     @JoinColumn(name = "route_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Route routeId;
@@ -88,9 +89,9 @@ public class Bustrip implements Serializable {
         this.id = id;
     }
 
-    public Bustrip(Integer id, Date thoigian, String image) {
+    public Bustrip(Integer id, Date ngaykhoihanh, String image) {
         this.id = id;
-        this.thoigian = thoigian;
+        this.ngaykhoihanh = ngaykhoihanh;
         this.image = image;
     }
 
@@ -100,6 +101,14 @@ public class Bustrip implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Date getNgaykhoihanh() {
+        return ngaykhoihanh;
+    }
+
+    public void setNgaykhoihanh(Date ngaykhoihanh) {
+        this.ngaykhoihanh = ngaykhoihanh;
     }
 
     public Date getThoigian() {
@@ -140,14 +149,6 @@ public class Bustrip implements Serializable {
 
     public void setBus(Bus bus) {
         this.bus = bus;
-    }
-
-    public Driver getDriverId() {
-        return driverId;
-    }
-
-    public void setDriverId(Driver driverId) {
-        this.driverId = driverId;
     }
 
     public Route getRouteId() {

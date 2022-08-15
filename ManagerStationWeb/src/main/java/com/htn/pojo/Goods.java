@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Goods.findAll", query = "SELECT g FROM Goods g"),
     @NamedQuery(name = "Goods.findById", query = "SELECT g FROM Goods g WHERE g.id = :id"),
     @NamedQuery(name = "Goods.findByTenhang", query = "SELECT g FROM Goods g WHERE g.tenhang = :tenhang"),
-    @NamedQuery(name = "Goods.findByLoaihang", query = "SELECT g FROM Goods g WHERE g.loaihang = :loaihang")})
+    @NamedQuery(name = "Goods.findByTennguoinhan", query = "SELECT g FROM Goods g WHERE g.tennguoinhan = :tennguoinhan"),
+    @NamedQuery(name = "Goods.findByDiachinhanhang", query = "SELECT g FROM Goods g WHERE g.diachinhanhang = :diachinhanhang")})
 public class Goods implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,9 +48,14 @@ public class Goods implements Serializable {
     private String tenhang;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "loaihang")
-    private String loaihang;
+    @Size(min = 1, max = 100)
+    @Column(name = "tennguoinhan")
+    private String tennguoinhan;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "diachinhanhang")
+    private String diachinhanhang;
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bustrip bustripId;
@@ -64,10 +70,11 @@ public class Goods implements Serializable {
         this.id = id;
     }
 
-    public Goods(Integer id, String tenhang, String loaihang) {
+    public Goods(Integer id, String tenhang, String tennguoinhan, String diachinhanhang) {
         this.id = id;
         this.tenhang = tenhang;
-        this.loaihang = loaihang;
+        this.tennguoinhan = tennguoinhan;
+        this.diachinhanhang = diachinhanhang;
     }
 
     public Integer getId() {
@@ -86,12 +93,20 @@ public class Goods implements Serializable {
         this.tenhang = tenhang;
     }
 
-    public String getLoaihang() {
-        return loaihang;
+    public String getTennguoinhan() {
+        return tennguoinhan;
     }
 
-    public void setLoaihang(String loaihang) {
-        this.loaihang = loaihang;
+    public void setTennguoinhan(String tennguoinhan) {
+        this.tennguoinhan = tennguoinhan;
+    }
+
+    public String getDiachinhanhang() {
+        return diachinhanhang;
+    }
+
+    public void setDiachinhanhang(String diachinhanhang) {
+        this.diachinhanhang = diachinhanhang;
     }
 
     public Bustrip getBustripId() {
