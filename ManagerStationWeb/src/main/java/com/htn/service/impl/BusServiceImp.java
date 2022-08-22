@@ -7,6 +7,7 @@ package com.htn.service.impl;
 import com.htn.pojo.Bus;
 import com.htn.repository.BusRepository;
 import com.htn.service.BusService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,11 @@ public class BusServiceImp implements BusService{
     @Override
     public boolean addBus(Bus b) {
         return this.busRepository.addBus(b);
+    }
+
+    @Override
+    public List<Bus> getBus() {
+        return this.busRepository.getBus();
     }
     
 }

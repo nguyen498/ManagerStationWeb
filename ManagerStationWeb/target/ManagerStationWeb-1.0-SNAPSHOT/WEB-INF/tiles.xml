@@ -4,6 +4,8 @@
 Software Foundation//DTD Tiles Configuration 3.0//EN"
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
+    
+    <!--client pgae-->
     <definition name="baseLayout"
                 template="/WEB-INF/layout/base.jsp">
         <put-attribute name="title" value="" />
@@ -43,8 +45,13 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/register-route.jsp" />
     </definition>
+    <definition name="bustrip-details" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết bến xe" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/bustrip-details.jsp" />
+    </definition>
     
-    
+    <!--admin page -->
     <definition name="adminLayout"
                 template="/WEB-INF/layout/admin/base.jsp">
         <put-attribute name="title" value="" />

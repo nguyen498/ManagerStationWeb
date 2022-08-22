@@ -2,16 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package com.htn.service;
+package com.htn.repository;
 
-import com.htn.pojo.Route;
-import java.util.List;
-
+import com.htn.pojo.User;
 /**
  *
  * @author admin
  */
-public interface RouteService {
-    boolean addRoute (Route s);
-    List<Route> getRoute ();
+public interface UserRepository {
+    User getUserByUsername(String username);
 }

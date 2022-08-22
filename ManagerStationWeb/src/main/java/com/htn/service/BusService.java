@@ -5,6 +5,7 @@
 package com.htn.service;
 
 import com.htn.pojo.Bus;
+import java.util.List;
 
 /**
  *
@@ -12,4 +13,5 @@ import com.htn.pojo.Bus;
  */
 public interface BusService {
     boolean addBus (Bus b);
+    List<Bus> getBus();
 }

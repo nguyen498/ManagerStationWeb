@@ -4,6 +4,8 @@
  */
 package com.htn.repository.impl;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.htn.pojo.Bustrip;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +81,25 @@ public class BustripRepositoryImp implements BustripRepository{
 
         
         return query.getResultList();
+    }
+
+    @Override
+    public Bustrip getBustripById(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        
+        return session.get(Bustrip.class, id);
+    }
+
+    @Override
+    public boolean addBustrip(Bustrip b) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.save(b);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
     
 }

@@ -6,6 +6,11 @@ package com.htn.repository.impl;
 
 import com.htn.pojo.Route;
 import com.htn.repository.RouteRepository;
+import java.util.List;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -33,6 +38,18 @@ public class RouteRepositoryImp implements RouteRepository{
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Route> getRoute() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Route> q = b.createQuery(Route.class);
+        Root root = q.from(Route.class);
+        q.select(root);
+        Query query = session.createQuery(q);
+        
+        return query.getResultList();
     }
     
 }

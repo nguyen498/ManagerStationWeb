@@ -59,9 +59,9 @@ public class Goods implements Serializable {
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bustrip bustripId;
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Customer customerId;
+    private User userId;
 
     public Goods() {
     }
@@ -117,12 +117,12 @@ public class Goods implements Serializable {
         this.bustripId = bustripId;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override

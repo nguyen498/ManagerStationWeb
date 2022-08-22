@@ -25,6 +25,7 @@ com\htn\formatters\StationFormatter.class
 com\htn\repository\BustripRepository.class
 com\htn\service\impl\RouteServiceImp.class
 com\htn\service\StationService.class
+com\htn\formatters\RouteFormatter.class
 com\htn\pojo\Customer_.class
 com\htn\service\impl\BustripServiceImp.class
 com\htn\controller\AdminController.class
@@ -46,6 +47,7 @@ com\htn\pojo\Station.class
 com\htn\configs\WebAppContextConfigs.class
 com\htn\service\impl\StationServiceImp.class
 com\htn\pojo\Goods_.class
+com\htn\configs\SpringSecurity.class
 com\htn\controller\RegisterBusController.class
 com\htn\pojo\Route_.class
 com\htn\configs\DispatcherServletInit.class

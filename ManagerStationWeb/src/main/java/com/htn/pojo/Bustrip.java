@@ -23,10 +23,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -53,22 +56,19 @@ public class Bustrip implements Serializable {
     @NotNull
     @Column(name = "ngaykhoihanh")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngaykhoihanh;
     @Column(name = "thoigian")
     @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern = "HH:mm")
     private Date thoigian;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     @Column(name = "image")
     private String image;
     @Lob
     @Size(max = 2147483647)
     @Column(name = "content")
     private String content;
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Account accountId;
     @JoinColumn(name = "bus", referencedColumnName = "biensoxe")
     @ManyToOne(optional = false)
     private Bus bus;
@@ -81,6 +81,9 @@ public class Bustrip implements Serializable {
     private Set<Goods> goodsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
     private Set<Comment> commentSet;
+    
+    @Transient
+    private MultipartFile file;
 
     public Bustrip() {
     }
@@ -89,10 +92,9 @@ public class Bustrip implements Serializable {
         this.id = id;
     }
 
-    public Bustrip(Integer id, Date ngaykhoihanh, String image) {
+    public Bustrip(Integer id, Date ngaykhoihanh) {
         this.id = id;
         this.ngaykhoihanh = ngaykhoihanh;
-        this.image = image;
     }
 
     public Integer getId() {
@@ -133,14 +135,6 @@ public class Bustrip implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Account getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Account accountId) {
-        this.accountId = accountId;
     }
 
     public Bus getBus() {
@@ -209,6 +203,20 @@ public class Bustrip implements Serializable {
     @Override
     public String toString() {
         return "com.htn.pojo.Bustrip[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
     
 }

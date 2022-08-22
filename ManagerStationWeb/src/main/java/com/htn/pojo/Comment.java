@@ -49,12 +49,12 @@ public class Comment implements Serializable {
     @NotNull
     @Column(name = "like")
     private int like;
-    @JoinColumn(name = "acount_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Account acountId;
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bustrip bustripId;
+    @JoinColumn(name = "acount_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private User acountId;
 
     public Comment() {
     }
@@ -93,20 +93,20 @@ public class Comment implements Serializable {
         this.like = like;
     }
 
-    public Account getAcountId() {
-        return acountId;
-    }
-
-    public void setAcountId(Account acountId) {
-        this.acountId = acountId;
-    }
-
     public Bustrip getBustripId() {
         return bustripId;
     }
 
     public void setBustripId(Bustrip bustripId) {
         this.bustripId = bustripId;
+    }
+
+    public User getAcountId() {
+        return acountId;
+    }
+
+    public void setAcountId(User acountId) {
+        this.acountId = acountId;
     }
 
     @Override

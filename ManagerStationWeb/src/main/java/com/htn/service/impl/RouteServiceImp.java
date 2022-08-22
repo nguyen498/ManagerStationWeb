@@ -7,6 +7,7 @@ package com.htn.service.impl;
 import com.htn.pojo.Route;
 import com.htn.repository.RouteRepository;
 import com.htn.service.RouteService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,11 @@ public class RouteServiceImp implements RouteService{
     @Override
     public boolean addRoute(Route s) {
         return this.routeRepository.addRoute(s);
+    }
+
+    @Override
+    public List<Route> getRoute() {
+        return this.routeRepository.getRoute();
     }
     
 }

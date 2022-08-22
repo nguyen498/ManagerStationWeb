@@ -27,18 +27,19 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author admin
  */
 @Entity
-@Table(name = "account")
+@Table(name = "user")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a"),
-    @NamedQuery(name = "Account.findById", query = "SELECT a FROM Account a WHERE a.id = :id"),
-    @NamedQuery(name = "Account.findByUsername", query = "SELECT a FROM Account a WHERE a.username = :username"),
-    @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password"),
-    @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email"),
-    @NamedQuery(name = "Account.findByActive", query = "SELECT a FROM Account a WHERE a.active = :active"),
-    @NamedQuery(name = "Account.findByUserRole", query = "SELECT a FROM Account a WHERE a.userRole = :userRole"),
-    @NamedQuery(name = "Account.findByCustomerId", query = "SELECT a FROM Account a WHERE a.customerId = :customerId")})
-public class Account implements Serializable {
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+    @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
+    @NamedQuery(name = "User.findByFirstname", query = "SELECT u FROM User u WHERE u.firstname = :firstname"),
+    @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname"),
+    @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
+    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
+    @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
+    @NamedQuery(name = "User.findByActive", query = "SELECT u FROM User u WHERE u.active = :active"),
+    @NamedQuery(name = "User.findByUserRole", query = "SELECT u FROM User u WHERE u.userRole = :userRole")})
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,6 +47,12 @@ public class Account implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Size(max = 50)
+    @Column(name = "firstname")
+    private String firstname;
+    @Size(max = 100)
+    @Column(name = "lastname")
+    private String lastname;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -69,21 +76,21 @@ public class Account implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "user_role")
     private String userRole;
-    @Column(name = "customer_id")
-    private Integer customerId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
-    private Set<Bustrip> bustripSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Set<Goods> goodsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "acountId")
     private Set<Comment> commentSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Set<Receipt> receiptSet;
 
-    public Account() {
+    public User() {
     }
 
-    public Account(Integer id) {
+    public User(Integer id) {
         this.id = id;
     }
 
-    public Account(Integer id, String username, String password, String email, String userRole) {
+    public User(Integer id, String username, String password, String email, String userRole) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -97,6 +104,22 @@ public class Account implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getUsername() {
@@ -139,21 +162,13 @@ public class Account implements Serializable {
         this.userRole = userRole;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
-
     @XmlTransient
-    public Set<Bustrip> getBustripSet() {
-        return bustripSet;
+    public Set<Goods> getGoodsSet() {
+        return goodsSet;
     }
 
-    public void setBustripSet(Set<Bustrip> bustripSet) {
-        this.bustripSet = bustripSet;
+    public void setGoodsSet(Set<Goods> goodsSet) {
+        this.goodsSet = goodsSet;
     }
 
     @XmlTransient
@@ -163,6 +178,15 @@ public class Account implements Serializable {
 
     public void setCommentSet(Set<Comment> commentSet) {
         this.commentSet = commentSet;
+    }
+
+    @XmlTransient
+    public Set<Receipt> getReceiptSet() {
+        return receiptSet;
+    }
+
+    public void setReceiptSet(Set<Receipt> receiptSet) {
+        this.receiptSet = receiptSet;
     }
 
     @Override
@@ -175,10 +199,10 @@ public class Account implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Account)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Account other = (Account) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -187,7 +211,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "com.htn.pojo.Account[ id=" + id + " ]";
+        return "com.htn.pojo.User[ id=" + id + " ]";
     }
     
 }

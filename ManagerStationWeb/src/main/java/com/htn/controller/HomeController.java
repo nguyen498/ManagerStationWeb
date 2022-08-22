@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.htn.service.BustripService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -29,4 +31,14 @@ public class HomeController {
         model.addAttribute("bustrips", this.bustripService.getBustrips(params, 0));
         return "index";
     }
+    
+    @GetMapping("/bustrip/{bustripId}")
+    public String details (Model model, 
+            @PathVariable(value = "bustripId") int id){
+        
+        model.addAttribute("bustrip", this.bustripService.getBustripById(id));
+        
+        return "bustrip-details";
+    }
+    
 }

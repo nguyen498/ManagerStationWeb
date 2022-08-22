@@ -6,6 +6,11 @@ package com.htn.repository.impl;
 
 import com.htn.pojo.Bus;
 import com.htn.repository.BusRepository;
+import java.util.List;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -33,6 +38,18 @@ public class BusRepositoryImp implements BusRepository{
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Bus> getBus() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Bus> q = b.createQuery(Bus.class);
+        Root root = q.from(Bus.class);
+        q.select(root);
+        Query query = session.createQuery(q);
+        
+        return query.getResultList();
     }
     
 }

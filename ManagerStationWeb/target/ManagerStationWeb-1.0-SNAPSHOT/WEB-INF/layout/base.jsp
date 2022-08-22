@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,8 +18,7 @@
         <meta content="" name="keywords">
 
         <!-- Favicons -->
-        <link href="./resources/img/favicon.png" rel="icon">
-        <link href="./resources/img/apple-touch-icon.png" rel="apple-touch-icon">
+        <link href="<c:url value="/img/favicon.png" />" rel="icon">
 
         <!-- Google Fonts -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,7 +30,17 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
         <!-- Template Main CSS File -->
-        <link href="./resources/css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="<c:url value="/css/style.css" />">
+        <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="<c:url value="/css/classy-nav.css" />">
+        <link rel="stylesheet" href="<c:url value="/css/owl.carousel.min.css" />">
+        <link rel="stylesheet" href="<c:url value="/css/animate.css" />">
+        <link rel="stylesheet" href="<c:url value="/css/magnific-popup.css" />">
+        <link rel="stylesheet" href="<c:url value="/css/font-awesome.min.css" />">
+        <link rel="stylesheet" href="<c:url value="/css/nice-select.css" />">
+        <link rel="stylesheet" href="<c:url value="/css/travel-icon.css" />">
+        <link rel="stylesheet" href="<c:url value="/css/mycss.css" />">
+        
 
         <!-- =======================================================
         * Template Name: Siimple - v4.7.0
@@ -47,5 +57,5 @@
         <tiles:insertAttribute name="footer" />
         
     </body>
-    <script src="./resources/js/main.js"></script>
+    <script src="<c:url value="/resources/js/main.js"/>"></script>
 </html>

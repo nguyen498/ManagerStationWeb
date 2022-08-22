@@ -14,4 +14,6 @@ import com.htn.pojo.Bustrip;
  */
 public interface BustripRepository {
     List<Bustrip> getBustrips (Map<String, String> params, int page);
+    Bustrip getBustripById (int id);
+    boolean addBustrip (Bustrip b);
 }

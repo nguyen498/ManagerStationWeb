@@ -46,7 +46,7 @@ public class RegisterBusController {
         }
         
         if (this.busService.addBus(b) == true)
-            return "redirect:/register-trip";
+            return "redirect:/register-route";
     
         return "register-bus";
     }

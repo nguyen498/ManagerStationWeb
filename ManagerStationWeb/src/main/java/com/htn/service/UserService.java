@@ -4,14 +4,12 @@
  */
 package com.htn.service;
 
-import com.htn.pojo.Route;
-import java.util.List;
-
+import com.htn.pojo.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 /**
  *
  * @author admin
  */
-public interface RouteService {
-    boolean addRoute (Route s);
-    List<Route> getRoute ();
+public interface UserService extends UserDetailsService {
+     User getUserByUsername(String username);
 }

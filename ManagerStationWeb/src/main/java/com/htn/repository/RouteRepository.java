@@ -6,6 +6,7 @@ package com.htn.repository;
 
 
 import com.htn.pojo.Route;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.htn.pojo.Route;
  */
 public interface RouteRepository {
     boolean addRoute (Route s);
+    List<Route> getRoute ();
 }

@@ -14,4 +14,6 @@ import java.util.Map;
  */
 public interface BustripService {
     List<Bustrip> getBustrips (Map<String, String> params, int page);
+    Bustrip getBustripById (int id);
+    boolean addBustrip (Bustrip b);
 }

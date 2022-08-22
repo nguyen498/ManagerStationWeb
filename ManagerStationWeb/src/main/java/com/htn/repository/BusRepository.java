@@ -5,10 +5,12 @@
 package com.htn.repository;
 
 import com.htn.pojo.Bus;
+import java.util.List;
 /**
  *
  * @author admin
  */
 public interface BusRepository {
+    List<Bus> getBus();
     boolean addBus (Bus b);
 }

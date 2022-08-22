@@ -51,12 +51,12 @@ public class Receipt implements Serializable {
     @NotNull
     @Column(name = "total")
     private long total;
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Customer customerId;
     @JoinColumn(name = "ticket_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Ticket ticketId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private User userId;
 
     public Receipt() {
     }
@@ -95,20 +95,20 @@ public class Receipt implements Serializable {
         this.total = total;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
-    }
-
     public Ticket getTicketId() {
         return ticketId;
     }
 
     public void setTicketId(Ticket ticketId) {
         this.ticketId = ticketId;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override

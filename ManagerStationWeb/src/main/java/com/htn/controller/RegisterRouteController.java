@@ -21,26 +21,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class RegisterRouteController {
-    
+
     @Autowired
     private RouteService routeService;
-    
+
     @RequestMapping("/register-route")
-    public String RegisterRoute (Model model){
-        model.addAttribute("route", new Route ());
+    public String RegisterRoute(Model model) {
+        model.addAttribute("route", new Route());
         return "register-route";
     }
-    
+
     @PostMapping("/register-route")
-    public String add (@ModelAttribute(value = "route") @Valid Route s,
-            BindingResult r){
-    if (r.hasErrors()) {
+    public String add(@ModelAttribute(value = "route") @Valid Route s,
+            BindingResult r) {
+        if (r.hasErrors()) {
             return "register-route";
-        }   
-        
-        if (this.routeService.addRoute(s) == true)
-            return "redirect:/register-bustrip";
-        
+        }
+
+        if (this.routeService.addRoute(s) == true) {
+            return "redirect:/register-trip";
+        }
+
         return "register-route";
     }
 }
