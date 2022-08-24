@@ -37,7 +37,7 @@
 
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                         <a href="<c:url value="/bustrip/${p.id}"/>">
-                            <div class="card">
+                            <div class="card w-100">
                                 <img src="${p.image}" class="card-img-top" alt="...">
                                 <div class="card-icon">
                                     <i class="fa-solid fa-bus"></i>

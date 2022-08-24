@@ -21,6 +21,16 @@
         <button type="button" class="nav-toggle"><i class="fa-solid fa-bars"></i></button>
         <nav class="nav-menu">
             <ul>
+                <sec:authorize access="isAuthenticated()">
+                    <li class="nav-item d-flex">
+                        <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
+                        <a class="nav-link text-info mb-0" href="<c:url value="/login" />">
+                            ${pageContext.session.getAttribute("currentUser").firstName}
+                            ${pageContext.session.getAttribute("currentUser").lastName}
+                            Chào, <sec:authentication property="principal.username" />
+                        </a>
+                    </li>
+                </sec:authorize>
                 <li class="active"><a href="${url}" class="scrollto">Home</a></li>
                 <li><a href="${url}register-station">Đăng kí nhà xe</a></li>
                 <li><a href="${url}register-bus">Đăng kí xe</a></li>
@@ -29,22 +39,15 @@
                 <li><a href="#">Mua vé</a></li>
                 <li><a href="#">Gửi hàng</a></li>
                 <li><a href="#Contact" class="scrollto">Liên hệ</a></li>
-                <sec:authorize access="!isAuthenticated()">
+                    <sec:authorize access="!isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link text-info" href="<c:url value="/login" />">Đăng nhập</a>
+                        <a href="<c:url value="/login" />">Đăng nhập</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-info" href="<c:url value="/" />">Đăng kí tài khoản</a>
+                        <a href="<c:url value="/register" />">Đăng ký</a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="<c:url value="/login" />">
-                            ${pageContext.session.getAttribute("currentUser").firstName}
-                            ${pageContext.session.getAttribute("currentUser").lastName}
-                            (<sec:authentication property="principal.username" />)
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-danger" href="<c:url value="/logout" />">Dang xuat</a>
                     </li>

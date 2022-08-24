@@ -7,6 +7,7 @@ package com.htn.service.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.htn.pojo.Bustrip;
+import com.htn.pojo.Comment;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,10 @@ public class BustripServiceImp implements BustripService{
             return false;
         }
        
+    }
+
+    @Override
+    public List<Comment> getComments(int bustripId) {
+        return this.bustripRepository.getComments(bustripId);
     }
 }

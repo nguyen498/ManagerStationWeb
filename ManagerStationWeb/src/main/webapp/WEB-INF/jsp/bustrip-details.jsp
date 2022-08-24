@@ -4,6 +4,7 @@
     Author     : admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <section id="hero">
     <div class="hero-container">
@@ -41,7 +42,43 @@
                         </div>
                     </div>
                 </div>
+            </div>   
+        </div>
+        <div class="card-footer py-3 border-0" >
+            <div class="d-flex flex-start w-100 mt-5">
+                <div class="mr-15">
+                    <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
+                </div>
+                <div class="form-outline w-100" style="border:1px solid">
+                    <textarea class="form-control" id="textAreaExample" rows="4"
+                              placeholder="Comment..."></textarea>
+                </div>
+            </div>
+            <div class="float-end mt-2 pt-1">
+                <button type="button" class="btn btn-primary btn-sm">Post comment</button>
+                <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
             </div>
         </div>
+        <div>
+            <c:forEach items="${comment}" var="c">
+            <div class="d-flex flex-start mt-5">
+                <div>
+                    <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
+                </div>
+            </div>
+            <div>
+                <h6 class="fw-bold mb-1">${c.userId.firstname} ${c.userId.lastname}</h6>
+                <div class="d-flex align-items-center mb-3">
+                    <p class="mb-0">
+                        ${c.createdDate}
+                    </p>
+                </div>
+                <p class="mb-0">
+                    ${c.content}
+                </p>
+            </div>
+            </c:forEach>
+        </div>
+        <hr class="my-0"/>
     </div>
 </main>

@@ -11,4 +11,5 @@ import com.htn.pojo.User;
  */
 public interface UserRepository {
     User getUserByUsername(String username);
+    boolean addUser (User user);
 }

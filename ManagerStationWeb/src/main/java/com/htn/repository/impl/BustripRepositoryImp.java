@@ -7,6 +7,7 @@ package com.htn.repository.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.htn.pojo.Bustrip;
+import com.htn.pojo.Comment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -100,6 +101,20 @@ public class BustripRepositoryImp implements BustripRepository{
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Comment> getComments(int bustripId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Comment> q = b.createQuery(Comment.class);
+        Root root = q.from(Comment.class);
+        q.select(root);
+        
+        q.where(b.equal(root.get("bustripId"), bustripId));
+        
+        Query query = session.createQuery(q);
+        return query.getResultList();
     }
     
 }

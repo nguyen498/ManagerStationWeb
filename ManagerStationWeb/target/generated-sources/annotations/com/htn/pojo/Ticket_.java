@@ -5,20 +5,19 @@ import com.htn.pojo.Receipt;
 import com.htn.pojo.Seat;
 import java.util.Date;
 import javax.annotation.Generated;
-import javax.persistence.metamodel.SetAttribute;
+import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-23T19:35:09")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-24T22:04:37")
 @StaticMetamodel(Ticket.class)
 public class Ticket_ { 
 
-    public static volatile SetAttribute<Ticket, Receipt> receiptSet;
     public static volatile SingularAttribute<Ticket, Long> giave;
     public static volatile SingularAttribute<Ticket, Bustrip> bustripId;
-    public static volatile SingularAttribute<Ticket, Integer> customerId;
+    public static volatile CollectionAttribute<Ticket, Seat> seatCollection;
     public static volatile SingularAttribute<Ticket, Integer> id;
+    public static volatile CollectionAttribute<Ticket, Receipt> receiptCollection;
     public static volatile SingularAttribute<Ticket, Date> ngayxuatve;
-    public static volatile SetAttribute<Ticket, Seat> seatSet;
 
 }

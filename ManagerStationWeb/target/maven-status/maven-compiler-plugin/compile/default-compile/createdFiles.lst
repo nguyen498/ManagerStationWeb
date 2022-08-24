@@ -28,6 +28,7 @@ com\htn\configs\SpringSecurityConfig.class
 com\htn\service\impl\RouteServiceImp.class
 com\htn\service\StationService.class
 com\htn\formatters\RouteFormatter.class
+com\htn\controller\UserController.class
 com\htn\pojo\User.class
 com\htn\service\impl\BustripServiceImp.class
 com\htn\controller\AdminController.class

@@ -37,6 +37,7 @@ public class HomeController {
             @PathVariable(value = "bustripId") int id){
         
         model.addAttribute("bustrip", this.bustripService.getBustripById(id));
+        model.addAttribute("comment", this.bustripService.getComments(id));
         
         return "bustrip-details";
     }

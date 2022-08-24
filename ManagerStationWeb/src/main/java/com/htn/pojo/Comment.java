@@ -5,6 +5,7 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
     @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
     @NamedQuery(name = "Comment.findByContent", query = "SELECT c FROM Comment c WHERE c.content = :content"),
+    @NamedQuery(name = "Comment.findByCreatedDate", query = "SELECT c FROM Comment c WHERE c.createdDate = :createdDate"),
     @NamedQuery(name = "Comment.findByLike", query = "SELECT c FROM Comment c WHERE c.like = :like")})
 public class Comment implements Serializable {
 
@@ -45,6 +49,9 @@ public class Comment implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "content")
     private String content;
+    @Column(name = "created_date")
+    @Temporal(TemporalType.DATE)
+    private Date createdDate;
     @Basic(optional = false)
     @NotNull
     @Column(name = "like")
@@ -52,9 +59,9 @@ public class Comment implements Serializable {
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bustrip bustripId;
-    @JoinColumn(name = "acount_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private User acountId;
+    private User userId;
 
     public Comment() {
     }
@@ -85,6 +92,14 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
     public int getLike() {
         return like;
     }
@@ -101,12 +116,12 @@ public class Comment implements Serializable {
         this.bustripId = bustripId;
     }
 
-    public User getAcountId() {
-        return acountId;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setAcountId(User acountId) {
-        this.acountId = acountId;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override

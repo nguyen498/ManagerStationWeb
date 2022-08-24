@@ -9,6 +9,7 @@ import com.htn.repository.UserRepository;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
@@ -38,5 +39,16 @@ public class UserRepositoryImpl implements UserRepository {
 
         Query query = session.createQuery(q);
         return (User) query.getSingleResult();
+    }
+
+    @Override
+    public boolean addUser(User user) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.save(user);
+        }catch(HibernateException ex){
+            System.err.println("===REGISTER===" + ex.getMessage());
+        }
+        return false;
     }
 }

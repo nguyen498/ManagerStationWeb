@@ -7,6 +7,7 @@ package com.htn.repository;
 import java.util.List;
 import java.util.Map;
 import com.htn.pojo.Bustrip;
+import com.htn.pojo.Comment;
 
 /**
  *
@@ -16,4 +17,5 @@ public interface BustripRepository {
     List<Bustrip> getBustrips (Map<String, String> params, int page);
     Bustrip getBustripById (int id);
     boolean addBustrip (Bustrip b);
+    List<Comment> getComments(int bustripId);
 }

@@ -37,8 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Ticket.findAll", query = "SELECT t FROM Ticket t"),
     @NamedQuery(name = "Ticket.findById", query = "SELECT t FROM Ticket t WHERE t.id = :id"),
     @NamedQuery(name = "Ticket.findByGiave", query = "SELECT t FROM Ticket t WHERE t.giave = :giave"),
-    @NamedQuery(name = "Ticket.findByNgayxuatve", query = "SELECT t FROM Ticket t WHERE t.ngayxuatve = :ngayxuatve"),
-    @NamedQuery(name = "Ticket.findByCustomerId", query = "SELECT t FROM Ticket t WHERE t.customerId = :customerId")})
+    @NamedQuery(name = "Ticket.findByNgayxuatve", query = "SELECT t FROM Ticket t WHERE t.ngayxuatve = :ngayxuatve")})
 public class Ticket implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,10 +55,6 @@ public class Ticket implements Serializable {
     @Column(name = "ngayxuatve")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngayxuatve;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "customer_id")
-    private int customerId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tichketId")
     private Set<Seat> seatSet;
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
@@ -75,11 +70,10 @@ public class Ticket implements Serializable {
         this.id = id;
     }
 
-    public Ticket(Integer id, long giave, Date ngayxuatve, int customerId) {
+    public Ticket(Integer id, long giave, Date ngayxuatve) {
         this.id = id;
         this.giave = giave;
         this.ngayxuatve = ngayxuatve;
-        this.customerId = customerId;
     }
 
     public Integer getId() {
@@ -104,14 +98,6 @@ public class Ticket implements Serializable {
 
     public void setNgayxuatve(Date ngayxuatve) {
         this.ngayxuatve = ngayxuatve;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
     }
 
     @XmlTransient
