@@ -4,6 +4,8 @@
  */
 package com.htn.configs;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,10 +26,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableWebSecurity
 @ComponentScan(basePackages = {
-    "com.dht.controllers",
-    "com.dht.repository",
-    "com.dht.service",
-    "com.dht.handlers",})
+    "com.htn.controllers",
+    "com.htn.repository",
+    "com.htn.service"})
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -42,6 +43,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().usernameParameter("username").passwordParameter("password");
         http.logout().logoutSuccessUrl("/login");
+        
+         http.authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers("/admin/**")
+                .access("hasRole('ROLE_ADMIN')");
+         
+         http.csrf().disable();
     }
 
     @Override
@@ -49,4 +56,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
+    
+    @Bean
+    public Cloudinary cloudinary() {
+        Cloudinary c = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "dgf4td2l4",
+                "api_key", "488799327823789",
+                "api_secret", "wnpC4rSF64hUbj6BWw8roSlIEVM",
+                "secure", true
+        ));
+        return c;
+    }
 }

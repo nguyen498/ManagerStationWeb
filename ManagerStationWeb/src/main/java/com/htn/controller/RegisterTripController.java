@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,10 +48,10 @@ public class RegisterTripController {
 
     @PostMapping("/register-trip")
     public String add(@ModelAttribute(value = "bustrip") @Valid Bustrip b,
-            BindingResult r,
-            @RequestPart("file") MultipartFile file) throws ParseException {
+            BindingResult r, @RequestPart("file") MultipartFile file
+            ) throws ParseException {
         
-//        System.out.println(b.getFile().toString());
+        System.out.println(file);
 //        System.out.println(b.getImage());
         
         if (this.bustripService.addBustrip(b) == true) {

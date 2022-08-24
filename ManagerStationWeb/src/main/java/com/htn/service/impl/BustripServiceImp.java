@@ -42,7 +42,9 @@ public class BustripServiceImp implements BustripService{
     @Override
     public boolean addBustrip(Bustrip b) {
         try{
-            Map r = this.cloudinary.uploader().upload(b.getFile(), ObjectUtils.asMap("resource_type", "auto"));
+            Map r = this.cloudinary.uploader().upload(b.getFile().getBytes(), 
+                    ObjectUtils.asMap("resource_type", "auto"));
+            
             b.setImage((String) r.get("secure_url"));
             
             return this.bustripRepository.addBustrip(b);
@@ -50,5 +52,6 @@ public class BustripServiceImp implements BustripService{
             System.err.println("=======ADD BUSTRIP====="+ ex.getMessage());
             return false;
         }
+       
     }
 }
