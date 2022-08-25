@@ -5,6 +5,7 @@
 package com.htn.pojo;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,10 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,30 +37,28 @@ public class Seat implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 3)
     @Column(name = "id")
-    private String id;
+    private Integer id;
     @Column(name = "active")
     private Boolean active;
     @JoinColumn(name = "bus_id", referencedColumnName = "biensoxe")
     @ManyToOne
     private Bus busId;
-    @JoinColumn(name = "tichket_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Ticket tichketId;
+    @OneToMany(mappedBy = "seatId")
+    private Set<Ticket> ticketSet;
 
     public Seat() {
     }
 
-    public Seat(String id) {
+    public Seat(Integer id) {
         this.id = id;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -78,12 +78,13 @@ public class Seat implements Serializable {
         this.busId = busId;
     }
 
-    public Ticket getTichketId() {
-        return tichketId;
+    @XmlTransient
+    public Set<Ticket> getTicketSet() {
+        return ticketSet;
     }
 
-    public void setTichketId(Ticket tichketId) {
-        this.tichketId = tichketId;
+    public void setTicketSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
     }
 
     @Override

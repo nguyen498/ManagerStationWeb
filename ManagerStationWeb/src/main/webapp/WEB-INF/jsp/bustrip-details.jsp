@@ -28,6 +28,7 @@
                                     <h5>Ngày khởi hành: ${bustrip.ngaykhoihanh}</h5>
                                     <h5>Thời gian hành: ${bustrip.thoigian}</h5>
                                     <h5>Biển số xe: ${bustrip.bus.biensoxe}</h5>
+                                    <h5>Giá vé: ${bustrip.giave} VNĐ</h5>
                                 </div>
                                 <p class="about">${bustrip.content}</p>
                                 <div class="d-flex">
@@ -43,42 +44,84 @@
                     </div>
                 </div>
             </div>   
-        </div>
+        </div>               
         <div class="card-footer py-3 border-0" >
             <div class="d-flex flex-start w-100 mt-5">
                 <div class="mr-15">
                     <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
                 </div>
                 <div class="form-outline w-100" style="border:1px solid">
-                    <textarea class="form-control" id="textAreaExample" rows="4"
+                    <textarea class="form-control" id="commentId" rows="4"
                               placeholder="Comment..."></textarea>
                 </div>
             </div>
             <div class="float-end mt-2 pt-1">
-                <button type="button" class="btn btn-primary btn-sm">Post comment</button>
-                <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+                <button type="button" onclick="addComment(${bustrip.id})" class="btn btn-primary btn-sm">Post comment</button>
             </div>
         </div>
-        <div>
+        <div id="commentArea">
             <c:forEach items="${comment}" var="c">
+                <div class="d-flex flex-start mt-5">
+                    <div>
+                        <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
+                    </div>
+                </div>
+                <div>
+                    <h6 class="fw-bold mb-1">${c.userId.firstname} ${c.userId.lastname}</h6>
+                    <div class="d-flex align-items-center mb-3">
+                        <p class="mb-0">
+                            ${c.createdDate}
+                        </p>
+                    </div>
+                    <p class="mb-0">
+                        ${c.content}
+                    </p>
+                </div>
+                <hr class="my-0"/>
+            </c:forEach>
+        </div>
+
+    </div>
+</main>
+<script>
+    function addComment(bustripId) {
+
+        fetch("/ManagerStationWeb/api/add-comment", {
+            method: 'post',
+            body: JSON.stringify({
+                "content": document.getElementById("commentId").value,
+                "bustripId": bustripId
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (res) {
+            console.info(res);
+
+            return res.json();
+        }).then(function (data) {
+            console.info(data);
+
+            let area = document.getElementById("commentArea");
+            area.innerHTML = `
             <div class="d-flex flex-start mt-5">
                 <div>
                     <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
                 </div>
             </div>
             <div>
-                <h6 class="fw-bold mb-1">${c.userId.firstname} ${c.userId.lastname}</h6>
+                <h6 class="fw-bold mb-1">${data.userId.firstname} ${data.userId.lastname}</h6>
                 <div class="d-flex align-items-center mb-3">
-                    <p class="mb-0">
-                        ${c.createdDate}
+                    <p class="mb-0 my-date">
+                        ${data.createdDate}
                     </p>
                 </div>
                 <p class="mb-0">
-                    ${c.content}
+                        ${data.content}
                 </p>
             </div>
-            </c:forEach>
-        </div>
-        <hr class="my-0"/>
-    </div>
-</main>
+                            <hr class="my-0"/>
+            ` + area.innerHTML;
+        });
+    }
+</script>

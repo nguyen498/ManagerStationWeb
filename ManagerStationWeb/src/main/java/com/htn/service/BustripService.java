@@ -18,4 +18,5 @@ public interface BustripService {
     Bustrip getBustripById (int id);
     boolean addBustrip (Bustrip b);
     List<Comment> getComments(int bustripId);
+    Comment addComment(String content, int bustripId);
 }

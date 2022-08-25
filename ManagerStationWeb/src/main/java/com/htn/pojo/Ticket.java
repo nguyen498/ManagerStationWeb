@@ -6,9 +6,7 @@ package com.htn.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,13 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,8 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Ticket.findAll", query = "SELECT t FROM Ticket t"),
     @NamedQuery(name = "Ticket.findById", query = "SELECT t FROM Ticket t WHERE t.id = :id"),
-    @NamedQuery(name = "Ticket.findByGiave", query = "SELECT t FROM Ticket t WHERE t.giave = :giave"),
-    @NamedQuery(name = "Ticket.findByNgayxuatve", query = "SELECT t FROM Ticket t WHERE t.ngayxuatve = :ngayxuatve")})
+    @NamedQuery(name = "Ticket.findByCreatedDate", query = "SELECT t FROM Ticket t WHERE t.createdDate = :createdDate"),
+    @NamedQuery(name = "Ticket.findByTotal", query = "SELECT t FROM Ticket t WHERE t.total = :total")})
 public class Ticket implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,20 +44,20 @@ public class Ticket implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "giave")
-    private long giave;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ngayxuatve")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date ngayxuatve;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tichketId")
-    private Set<Seat> seatSet;
+    @Column(name = "created_date")
+    @Temporal(TemporalType.DATE)
+    private Date createdDate;
+    @Column(name = "total")
+    private Long total;
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bustrip bustripId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ticketId")
-    private Set<Receipt> receiptSet;
+    @JoinColumn(name = "seat_id", referencedColumnName = "id")
+    @ManyToOne
+    private Seat seatId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    private User userId;
 
     public Ticket() {
     }
@@ -70,10 +66,9 @@ public class Ticket implements Serializable {
         this.id = id;
     }
 
-    public Ticket(Integer id, long giave, Date ngayxuatve) {
+    public Ticket(Integer id, Date createdDate) {
         this.id = id;
-        this.giave = giave;
-        this.ngayxuatve = ngayxuatve;
+        this.createdDate = createdDate;
     }
 
     public Integer getId() {
@@ -84,29 +79,20 @@ public class Ticket implements Serializable {
         this.id = id;
     }
 
-    public long getGiave() {
-        return giave;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setGiave(long giave) {
-        this.giave = giave;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Date getNgayxuatve() {
-        return ngayxuatve;
+    public Long getTotal() {
+        return total;
     }
 
-    public void setNgayxuatve(Date ngayxuatve) {
-        this.ngayxuatve = ngayxuatve;
-    }
-
-    @XmlTransient
-    public Set<Seat> getSeatSet() {
-        return seatSet;
-    }
-
-    public void setSeatSet(Set<Seat> seatSet) {
-        this.seatSet = seatSet;
+    public void setTotal(Long total) {
+        this.total = total;
     }
 
     public Bustrip getBustripId() {
@@ -117,13 +103,20 @@ public class Ticket implements Serializable {
         this.bustripId = bustripId;
     }
 
-    @XmlTransient
-    public Set<Receipt> getReceiptSet() {
-        return receiptSet;
+    public Seat getSeatId() {
+        return seatId;
     }
 
-    public void setReceiptSet(Set<Receipt> receiptSet) {
-        this.receiptSet = receiptSet;
+    public void setSeatId(Seat seatId) {
+        this.seatId = seatId;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override

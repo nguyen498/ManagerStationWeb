@@ -77,12 +77,12 @@ public class User implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "user_role")
     private String userRole;
+    @OneToMany(mappedBy = "userId")
+    private Set<Ticket> ticketSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<Goods> goodsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<Comment> commentSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Set<Receipt> receiptSet;
     
     @Transient
     private String confirmPassword;
@@ -167,6 +167,15 @@ public class User implements Serializable {
     }
 
     @XmlTransient
+    public Set<Ticket> getTicketSet() {
+        return ticketSet;
+    }
+
+    public void setTicketSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
+    }
+
+    @XmlTransient
     public Set<Goods> getGoodsSet() {
         return goodsSet;
     }
@@ -182,15 +191,6 @@ public class User implements Serializable {
 
     public void setCommentSet(Set<Comment> commentSet) {
         this.commentSet = commentSet;
-    }
-
-    @XmlTransient
-    public Set<Receipt> getReceiptSet() {
-        return receiptSet;
-    }
-
-    public void setReceiptSet(Set<Receipt> receiptSet) {
-        this.receiptSet = receiptSet;
     }
 
     @Override

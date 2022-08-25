@@ -39,7 +39,7 @@
                 <li><a href="#">Mua vé</a></li>
                 <li><a href="#">Gửi hàng</a></li>
                 <li><a href="#Contact" class="scrollto">Liên hệ</a></li>
-                    <sec:authorize access="!isAuthenticated()">
+                <sec:authorize access="!isAuthenticated()">
                     <li class="nav-item">
                         <a href="<c:url value="/login" />">Đăng nhập</a>
                     </li>

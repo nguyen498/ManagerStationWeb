@@ -37,6 +37,7 @@
                 </div>
                 <form:input style="width: 300px" path="ngaykhoihanh" type="date" name="ngaykhoihanh" class="form-control" id="ngaykhoihanh" min="" max="2030-12-31"/>
                 <form:input style="width: 300px" path="thoigian" name="thoigian" class="form-control mt-3" type="time" id="time" min="00:00" max="23:59"/>
+                <form:input style="width: 300px" path="giave" name="giave" class="form-control mt-3" type="number" id="giave"/>
                 <form:select path="bus" class="form-select mt-3" id="bus" name="bus" style="max-width: 500px">
                     <c:forEach items="${bus}" var="b">
                         <option value="${b.biensoxe}">${b.biensoxe}</option>

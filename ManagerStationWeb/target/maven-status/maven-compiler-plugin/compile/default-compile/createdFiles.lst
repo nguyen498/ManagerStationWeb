@@ -12,7 +12,6 @@ com\htn\configs\HibernateConfig.class
 com\htn\pojo\Seat.class
 com\htn\service\BustripService.class
 com\htn\service\UserService.class
-com\htn\pojo\Receipt.class
 com\htn\pojo\Bustrip.class
 com\htn\repository\BusRepository.class
 com\htn\repository\RouteRepository.class
@@ -26,6 +25,7 @@ com\htn\formatters\StationFormatter.class
 com\htn\repository\BustripRepository.class
 com\htn\configs\SpringSecurityConfig.class
 com\htn\service\impl\RouteServiceImp.class
+com\htn\controller\ApiCommentController.class
 com\htn\service\StationService.class
 com\htn\formatters\RouteFormatter.class
 com\htn\controller\UserController.class
@@ -46,7 +46,6 @@ com\htn\pojo\Bustrip_.class
 com\htn\pojo\Comment.class
 com\htn\configs\TilesConfig.class
 com\htn\pojo\Station_.class
-com\htn\pojo\Receipt_.class
 com\htn\pojo\Station.class
 com\htn\repository\impl\UserRepositoryImpl.class
 com\htn\configs\WebAppContextConfigs.class

@@ -1,23 +1,22 @@
 package com.htn.pojo;
 
 import com.htn.pojo.Bustrip;
-import com.htn.pojo.Receipt;
 import com.htn.pojo.Seat;
+import com.htn.pojo.User;
 import java.util.Date;
 import javax.annotation.Generated;
-import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-24T22:04:37")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-25T20:10:56")
 @StaticMetamodel(Ticket.class)
 public class Ticket_ { 
 
-    public static volatile SingularAttribute<Ticket, Long> giave;
+    public static volatile SingularAttribute<Ticket, Long> total;
     public static volatile SingularAttribute<Ticket, Bustrip> bustripId;
-    public static volatile CollectionAttribute<Ticket, Seat> seatCollection;
+    public static volatile SingularAttribute<Ticket, Date> createdDate;
+    public static volatile SingularAttribute<Ticket, Seat> seatId;
     public static volatile SingularAttribute<Ticket, Integer> id;
-    public static volatile CollectionAttribute<Ticket, Receipt> receiptCollection;
-    public static volatile SingularAttribute<Ticket, Date> ngayxuatve;
+    public static volatile SingularAttribute<Ticket, User> userId;
 
 }

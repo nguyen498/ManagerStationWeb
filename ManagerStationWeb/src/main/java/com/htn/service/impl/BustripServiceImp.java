@@ -60,4 +60,9 @@ public class BustripServiceImp implements BustripService{
     public List<Comment> getComments(int bustripId) {
         return this.bustripRepository.getComments(bustripId);
     }
+
+    @Override
+    public Comment addComment(String content, int bustripId) {
+        return this.bustripRepository.addComment(content, bustripId);
+    }
 }

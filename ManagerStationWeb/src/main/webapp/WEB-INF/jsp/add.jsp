@@ -4,9 +4,9 @@
     Author     : admin
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
 
 <div style="position: fixed;
      top: 3rem;
@@ -31,7 +31,73 @@
 
 <div class="container-fluid py-4">
     <div class="row">
-        <div/>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">Add Station</h6>
+                        </div>
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                        <form:form class="p-4" action="add-station" method="post" modelAttribute="station">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-static mb-4">
+                                        <label for="exampleFormControlSelect1" class="ms-0">Tên nhà xe: </label>
+                                        <form:input class="form-control" placeholder="Nhập tên nhà xe" path="tennhaxe" id="tennhaxe"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-static mb-4">
+                                        <label for="exampleFormControlSelect1" class="ms-0">Địa chỉ: </label>
+                                        <form:input class="form-control" placeholder="Nhập địa chỉ...." path="diachi" id="diachi"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info ml-auto">Submit</button>
+                        </form:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3">Add Bus</h6>
+                        </div>
+                    </div>
+                    <div class="card-body px-0 pb-2">
+                        <form:form class="p-4" action="add-bus" method="post" modelAttribute="bus">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-static mb-4">
+                                        <label for="exampleFormControlSelect1" class="ms-0">Biển số xe: </label>
+                                        <form:input class="form-control" placeholder="Nhập biển số xe" path="biensoxe" id="biensoxe"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-static mb-4">
+                                        <label for="exampleFormControlSelect1" class="ms-0">Nhà xe: </label>
+                                        <form:select path="manhaxe" class="form-control" id="mabenxe" name="mabenxe">
+                                            <c:forEach items="${listStation}" var="b">
+                                                <option value="${b.id}">${b.tennhaxe} (${b.diachi})</option>
+                                            </c:forEach>
+                                        </form:select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info ml-auto">Submit</button>
+                        </form:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="card my-4">
@@ -41,31 +107,23 @@
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
-                        <form class="p-4" action="route" method="post">
+                        <form:form class="p-4" action="add-route" method="post" modelAttribute="route">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static mb-4">
-                                        <label for="exampleFormControlSelect1" class="ms-0">Select Start Location</label>
-                                        <select name="start_location_id" class="form-control" id="exampleFormControlSelect1">
-                                            <option value="1">Mỹ Tho</option>
-                                            <option value="1">Tp Hồ Chí Minh</option>
-                                            <option value="1">Cujut</option>
-                                        </select>
+                                        <label for="exampleFormControlSelect1" class="ms-0">Tuyến bắt đầu: </label>
+                                        <form:input class="form-control" placeholder="Nhập tuyến bắt đầu" path="tuyenBD" id="tennhaxe"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static mb-4">
-                                        <label for="exampleFormControlSelect1" class="ms-0">Select End Location</label>
-                                        <select name="end_location_id" class="form-control" id="exampleFormControlSelect1">
-                                            <option value="1">Mỹ Tho</option>
-                                            <option value="1">Tp Hồ Chí Minh</option>
-                                            <option value="1">Cujut</option>
-                                        </select>
+                                        <label for="exampleFormControlSelect1" class="ms-0">Tuyến kết thúc: </label>
+                                        <form:input class="form-control" placeholder="Nhập tuyến kết thúc" path="tuyenKT" id="diachi"/>
                                     </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-info ml-auto">Submit</button>
-                        </form>
+                        </form:form>
                     </div>
                 </div>
             </div>
@@ -85,13 +143,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label>Depart Time</label>
+                                        <label>Ngày khởi hành: </label>
                                         <input name="depart_time" type="time" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label>Arrived Time</label>
+                                        <label>Thời gian: </label>
                                         <input name="depart_time" type="time" class="form-control">
                                     </div>
                                 </div>
@@ -110,12 +168,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static mb-4">
-                                        <label for="exampleFormControlSelect1" class="ms-0">Select Driver</label>
-                                        <select name="driver_id" class="form-control" id="exampleFormControlSelect1">
-                                            <option value="1">QuáiXế</option>
-                                            <option value="1">TàiXếDămBông</option>
-                                            <option value="1">Dono</option>
-                                        </select>
+                                        <label for="exampleFormControlSelect1">Giá vé: </label>
+                                        <input type="number" class="form-control" placeholder="Nhập giá vé...." id="giave"/>
                                     </div>
                                 </div>
                             </div>
@@ -140,13 +194,13 @@
                         <form class="p-4" action="ticket" method="post">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">Price</label>
-                                        <input name="price" type="number" class="form-control">
+                                    <div class="input-group input-group-static mb-4">
+                                        <label for="exampleFormControlSelect1">Giá vé: </label>
+                                        <input type="number" class="form-control" placeholder="Nhập giá vé...." id="giave"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="input-group input-group-static my-3">
+                                    <div class="input-group input-group-static mb-4">
                                         <label>Depart Date</label>
                                         <input name="depart_date" type="date" class="form-control">
                                     </div>

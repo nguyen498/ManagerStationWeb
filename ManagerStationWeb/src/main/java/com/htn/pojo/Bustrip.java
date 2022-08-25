@@ -43,6 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Bustrip.findById", query = "SELECT b FROM Bustrip b WHERE b.id = :id"),
     @NamedQuery(name = "Bustrip.findByNgaykhoihanh", query = "SELECT b FROM Bustrip b WHERE b.ngaykhoihanh = :ngaykhoihanh"),
     @NamedQuery(name = "Bustrip.findByThoigian", query = "SELECT b FROM Bustrip b WHERE b.thoigian = :thoigian"),
+    @NamedQuery(name = "Bustrip.findByGiave", query = "SELECT b FROM Bustrip b WHERE b.giave = :giave"),
     @NamedQuery(name = "Bustrip.findByImage", query = "SELECT b FROM Bustrip b WHERE b.image = :image")})
 public class Bustrip implements Serializable {
 
@@ -62,6 +63,8 @@ public class Bustrip implements Serializable {
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern = "HH:mm")
     private Date thoigian;
+    @Column(name = "giave")
+    private Long giave;
     @Size(max = 255)
     @Column(name = "image")
     private String image;
@@ -119,6 +122,14 @@ public class Bustrip implements Serializable {
 
     public void setThoigian(Date thoigian) {
         this.thoigian = thoigian;
+    }
+
+    public Long getGiave() {
+        return giave;
+    }
+
+    public void setGiave(Long giave) {
+        this.giave = giave;
     }
 
     public String getImage() {

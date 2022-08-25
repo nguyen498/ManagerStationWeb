@@ -34,8 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
     @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id"),
     @NamedQuery(name = "Comment.findByContent", query = "SELECT c FROM Comment c WHERE c.content = :content"),
-    @NamedQuery(name = "Comment.findByCreatedDate", query = "SELECT c FROM Comment c WHERE c.createdDate = :createdDate"),
-    @NamedQuery(name = "Comment.findByLike", query = "SELECT c FROM Comment c WHERE c.like = :like")})
+    @NamedQuery(name = "Comment.findByCreatedDate", query = "SELECT c FROM Comment c WHERE c.createdDate = :createdDate")})
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,10 +51,6 @@ public class Comment implements Serializable {
     @Column(name = "created_date")
     @Temporal(TemporalType.DATE)
     private Date createdDate;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "like")
-    private int like;
     @JoinColumn(name = "bustrip_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Bustrip bustripId;
@@ -70,10 +65,9 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public Comment(Integer id, String content, int like) {
+    public Comment(Integer id, String content) {
         this.id = id;
         this.content = content;
-        this.like = like;
     }
 
     public Integer getId() {
@@ -98,14 +92,6 @@ public class Comment implements Serializable {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public int getLike() {
-        return like;
-    }
-
-    public void setLike(int like) {
-        this.like = like;
     }
 
     public Bustrip getBustripId() {

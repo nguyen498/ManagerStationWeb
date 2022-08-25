@@ -3,7 +3,6 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%java.text.DateFormat df = new java.text.SimpleDateFormat("dd-MM-yyyy");%>
 
 <section id="hero">
     <div class="hero-container">

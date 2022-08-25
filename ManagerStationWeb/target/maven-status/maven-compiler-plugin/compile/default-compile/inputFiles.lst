@@ -18,7 +18,6 @@ D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\conf
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\repository\BusRepository.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\service\StationService.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\controller\AdminController.java
-D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\pojo\Receipt.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\service\impl\UserServiceImp.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\repository\StationRepository.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\configs\HibernateConfig.java
@@ -36,6 +35,7 @@ D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\cont
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\pojo\Comment.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\repository\impl\UserRepositoryImpl.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\controller\HomeController.java
+D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\controller\ApiCommentController.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\pojo\Seat.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\configs\SpringSecurityInit.java
 D:\WorkSpace\Java\ManagerStationWeb\ManagerStationWeb\src\main\java\com\htn\configs\TilesConfig.java
