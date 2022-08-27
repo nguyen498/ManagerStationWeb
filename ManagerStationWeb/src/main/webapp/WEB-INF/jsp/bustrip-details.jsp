@@ -84,6 +84,7 @@
     </div>
 </main>
 <script>
+    
     function addComment(bustripId) {
 
         fetch("/ManagerStationWeb/api/add-comment", {
@@ -93,7 +94,8 @@
                 "bustripId": bustripId
             }),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             }
         }).then(function (res) {
             console.info(res);
@@ -103,7 +105,7 @@
             console.info(data);
 
             let area = document.getElementById("commentArea");
-            area.innerHTML = `
+            area.innerHTML = area.innerHTML + `
             <div class="d-flex flex-start mt-5">
                 <div>
                     <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
@@ -121,7 +123,7 @@
                 </p>
             </div>
                             <hr class="my-0"/>
-            ` + area.innerHTML;
+            `;
         });
     }
 </script>

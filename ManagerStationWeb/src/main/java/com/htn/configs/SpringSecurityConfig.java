@@ -6,6 +6,8 @@ package com.htn.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.htn.handlers.LoginHandler;
+import com.htn.handlers.LogoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -28,9 +30,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {
     "com.htn.controllers",
     "com.htn.repository",
-    "com.htn.service"})
+    "com.htn.service",
+    "com.htn.handlers"})
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private LoginHandler loginHandler;
+    @Autowired
+    private LogoutHandler logoutHanlder;
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -42,11 +49,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/").failureUrl("/login?error");
+        http.formLogin().successHandler(this.loginHandler);
         
-        http.logout().logoutSuccessUrl("/login");
+        http.logout().logoutSuccessHandler(this.logoutHanlder);
         
-         http.authorizeRequests().antMatchers("/").permitAll()
+         http.authorizeRequests().antMatchers("/").permitAll()  
+                .antMatchers("/register-bus/**")
+                .access("hasAnyRole('ROLE_STATION, ROLE_ADMIN')")
+                .antMatchers("/register-route/**")
+                .access("hasAnyRole('ROLE_STATION, ROLE_ADMIN')")
+                .antMatchers("/register-bustrip/**")
+                .access("hasAnyRole('ROLE_STATION, ROLE_ADMIN')")
                 .antMatchers("/admin/**")
                 .access("hasRole('ROLE_ADMIN')");
          

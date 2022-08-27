@@ -23,13 +23,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class BusRepositoryImp implements BusRepository{
+public class BusRepositoryImp implements BusRepository {
 
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
-    
+
     @Override
-    public boolean addBus(Bus b) {  
+    public boolean addBus(Bus b) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         try {
             session.save(b);
@@ -48,8 +48,28 @@ public class BusRepositoryImp implements BusRepository{
         Root root = q.from(Bus.class);
         q.select(root);
         Query query = session.createQuery(q);
-        
+
         return query.getResultList();
     }
-    
+
+    @Override
+    public boolean deleteBus(String id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Bus b = session.get(Bus.class, id);
+            session.delete(b);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Bus getBusById(String id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        return session.get(Bus.class, id);
+    }
+
 }

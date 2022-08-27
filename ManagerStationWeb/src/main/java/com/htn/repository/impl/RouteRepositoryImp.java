@@ -23,8 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class RouteRepositoryImp implements RouteRepository{
-    
+public class RouteRepositoryImp implements RouteRepository {
+
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
 
@@ -48,8 +48,28 @@ public class RouteRepositoryImp implements RouteRepository{
         Root root = q.from(Route.class);
         q.select(root);
         Query query = session.createQuery(q);
-        
+
         return query.getResultList();
     }
-    
+
+    @Override
+    public boolean deleteRoutes(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Route r = session.get(Route.class, id);
+            session.delete(r);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Route getRouteById(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        return session.get(Route.class, id);
+    }
+
 }

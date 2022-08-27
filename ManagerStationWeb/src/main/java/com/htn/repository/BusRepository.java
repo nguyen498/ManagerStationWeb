@@ -13,4 +13,6 @@ import java.util.List;
 public interface BusRepository {
     List<Bus> getBus();
     boolean addBus (Bus b);
+    boolean deleteBus (String id);
+    Bus getBusById (String id);
 }

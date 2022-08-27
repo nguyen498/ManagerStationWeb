@@ -86,5 +86,20 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/list.jsp" />
     </definition>
+    <definition name="admin-update-station-details" extends="adminLayout">
+        <put-attribute name="title" value="Update Station" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin-update-station.jsp" />
+    </definition>
+    <definition name="admin-update-route-details" extends="adminLayout">
+        <put-attribute name="title" value="Update Route" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin-update-route.jsp" />
+    </definition>
+    <definition name="admin-update-bus-details" extends="adminLayout">
+        <put-attribute name="title" value="Update Bus" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin-update-bus.jsp" />
+    </definition>
     
 </tiles-definitions>

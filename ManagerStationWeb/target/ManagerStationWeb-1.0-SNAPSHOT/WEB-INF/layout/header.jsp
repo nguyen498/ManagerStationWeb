@@ -24,21 +24,24 @@
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item d-flex">
                         <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
-                        <a class="nav-link text-info mb-0" href="<c:url value="/login" />">
-                            ${pageContext.session.getAttribute("currentUser").firstName}
-                            ${pageContext.session.getAttribute("currentUser").lastName}
-                            Chào, <sec:authentication property="principal.username" />
+                        <a class="nav-link mb-0" href="<c:url value="/login" />">
+                            Chào, ${pageContext.session.getAttribute("currentUser").username}
                         </a>
                     </li>
                 </sec:authorize>
                 <li class="active"><a href="${url}" class="scrollto">Home</a></li>
                 <li><a href="${url}register-station">Đăng kí nhà xe</a></li>
-                <li><a href="${url}register-bus">Đăng kí xe</a></li>
-                <li><a href="${url}register-route">Tạo tuyến</a></li>
-                <li><a href="${url}register-trip">Đăng kí chuyến xe</a></li>
-                <li><a href="#">Mua vé</a></li>
-                <li><a href="#">Gửi hàng</a></li>
+                <sec:authorize access="hasAnyRole('ROLE_STATION, ROLE_ADMIN')">
+                    <li><a href="${url}register-bus">Đăng kí xe</a></li>
+                    <li><a href="${url}register-route">Tạo tuyến</a></li>
+                    <li><a href="${url}register-trip">Đăng kí chuyến xe</a></li>
+                </sec:authorize>
                 <li><a href="#Contact" class="scrollto">Liên hệ</a></li>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/admin/" />">Trang quản lí</a>
+                    </li>
+                </sec:authorize>
                 <sec:authorize access="!isAuthenticated()">
                     <li class="nav-item">
                         <a href="<c:url value="/login" />">Đăng nhập</a>
@@ -49,7 +52,7 @@
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
                     <li class="nav-item">
-                        <a class="nav-link text-danger" href="<c:url value="/logout" />">Dang xuat</a>
+                        <a class="nav-link" href="<c:url value="/logout" />">Đăng xuất</a>
                     </li>
                 </sec:authorize>
             </ul>

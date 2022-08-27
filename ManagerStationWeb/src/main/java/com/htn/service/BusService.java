@@ -14,4 +14,6 @@ import java.util.List;
 public interface BusService {
     boolean addBus (Bus b);
     List<Bus> getBus();
+    boolean deleteBus (String id);
+    Bus getBusById (String id);
 }

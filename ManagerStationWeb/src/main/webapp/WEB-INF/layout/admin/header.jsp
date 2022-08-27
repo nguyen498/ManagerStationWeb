@@ -35,7 +35,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white
                     <c:if test="${requestScope['javax.servlet.forward.servlet_path'] == '/admin/list'}">active bg-gradient-primary</c:if>"
-                        href="../admin/list">
+                    href="<c:url value="/admin/list"/>">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">table_view</i>
                         </div>

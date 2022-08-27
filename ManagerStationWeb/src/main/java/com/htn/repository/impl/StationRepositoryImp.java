@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class StationRepositoryImp implements StationRepository {
-    
+
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
 
@@ -49,8 +49,28 @@ public class StationRepositoryImp implements StationRepository {
         Root root = q.from(Station.class);
         q.select(root);
         Query query = session.createQuery(q);
-        
+
         return query.getResultList();
+    }
+
+    @Override
+    public Station getStationById(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+
+        return session.get(Station.class, id);
+    }
+
+    @Override
+    public boolean deleteStation(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Station p = session.get(Station.class, id);
+            session.delete(p);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
 }

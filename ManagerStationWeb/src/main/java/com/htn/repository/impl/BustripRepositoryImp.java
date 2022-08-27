@@ -6,7 +6,6 @@ package com.htn.repository.impl;
 
 import com.htn.pojo.Bustrip;
 import com.htn.pojo.Comment;
-import com.htn.pojo.User;
 import com.htn.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -129,9 +128,8 @@ public class BustripRepositoryImp implements BustripRepository {
         c.setContent(content);
         c.setBustripId(this.getBustripById(bustripId));
 
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        c.setUserId(this.userRepository.getUserByUsername(authentication.getName()));
-        c.setUserId(session.get(User.class, 1));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        c.setUserId(this.userRepository.getUserByUsername(authentication.getName()));
         c.setCreatedDate(new Date ());
 
         session.save(c);

@@ -53,8 +53,7 @@
                             <sec:authorize access="isAuthenticated()">
                                 <li class="nav-item d-flex align-items-center mb-0 ">
                                     <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
-                                    ${pageContext.session.getAttribute("currentUser").username}
-                                    <span class="d-sm-inline d-none">Chào, <sec:authentication property="principal.username" /></span>
+                                    <span class="d-sm-inline d-none">Chào, ${pageContext.session.getAttribute("currentUser").username}</span>
                                 </li>
                                 <li class="d-flex align-items-center p-lg-1">  |  </li>
                                 <li class="d-flex align-items-center">

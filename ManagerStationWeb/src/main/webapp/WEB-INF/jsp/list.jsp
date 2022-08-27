@@ -4,30 +4,15 @@
     Author     : admin
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!--
-=========================================================
-* Material Dashboard 2 - v3.0.4
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
-
-
-
 
 
 
 <div class="container-fluid py-4">
-    
+
     <div class="row">
         <div class="col-12">
             <div class="card my-4">
@@ -37,7 +22,7 @@
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
-                    <div class="table-responsive p-0">
+                    <div class="table-responsive p-0" style="max-height: 300px">
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
@@ -61,9 +46,12 @@
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">${s.diachi}</span>
                                         </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="btn btn-danger text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                        <td class="align-middle d-flex justify-content-center">
+                                            <a href="<c:url value="/admin/delete-station/${s.id}"/>" class="btn btn-danger text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                                 DELETE
+                                            </a>
+                                            <a href="<c:url value="/admin/update/station/${s.id}"/>" class="btn btn-info text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                UPDATE
                                             </a>
                                         </td>
                                     </tr>
@@ -75,7 +63,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-12">
             <div class="card my-4">
@@ -85,7 +73,7 @@
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
-                    <div class="table-responsive p-0">
+                    <div class="table-responsive p-0" style="max-height: 300px">
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
@@ -105,9 +93,12 @@
                                         <td >
                                             <span class="text-secondary text-xs font-weight-bold">${b.manhaxe.tennhaxe}</span>
                                         </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="text-white btn btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                        <td class="align-middle d-flex justify-content-center">
+                                            <a href="<c:url value="/admin/delete-bus/${b.biensoxe}"/>" class="text-white btn btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                                                 DELETE
+                                            </a>
+                                            <a href="<c:url value="/admin/update/bus/${b.biensoxe}"/>" class="btn btn-info text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                UPDATE
                                             </a>
                                         </td>
                                     </tr>
@@ -130,7 +121,7 @@
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
-                    <div class="table-responsive p-0">
+                    <div class="table-responsive p-0" style="max-height: 300px">
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
@@ -154,9 +145,12 @@
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">${r.tuyenKT}</span>
                                         </td>
-                                        <td class="align-middle">
-                                            <a href="javascript:;" class="btn btn-danger text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                        <td class="align-middle d-flex justify-content-center">
+                                            <a href="<c:url value="/admin/delete-route/${r.id}"/>" class="btn btn-danger text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
                                                 DELETE
+                                            </a>
+                                            <a href="<c:url value="/admin/update/route/${r.id}"/>" class="btn btn-info text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                UPDATE
                                             </a>
                                         </td>
                                     </tr>

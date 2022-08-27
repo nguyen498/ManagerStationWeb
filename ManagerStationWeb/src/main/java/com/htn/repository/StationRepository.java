@@ -14,4 +14,6 @@ import java.util.List;
 public interface StationRepository {
     boolean addStation (Station s);
     List<Station> getStations ();
+    Station getStationById (int id);
+    boolean deleteStation (int id);
 }

@@ -30,5 +30,15 @@ public class StationServiceImp implements StationService{
     public List<Station> getStations() {
         return this.stationRepository.getStations();
     }
+
+    @Override
+    public Station getStationById(int id) {
+        return this.stationRepository.getStationById(id);
+    }
+
+    @Override
+    public boolean deleteStation(int id) {
+        return this.stationRepository.deleteStation(id);
+    }
     
 }

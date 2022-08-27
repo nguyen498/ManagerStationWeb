@@ -52,23 +52,24 @@
                 <button type="submit" class="btn btn-primary">Xác nhận</button>
             </form:form>
         </div>
+    </div>
+</main>
+<script>
+    var curDate = new Date();
 
-        <script>
-            var curDate = new Date();
+    // Ngày hiện tại
+    var curDay = curDate.getDate();
 
-            // Ngày hiện tại
-            var curDay = curDate.getDate();
+    // Tháng hiện tại
+    var curMonth = curDate.getMonth() + 1;
 
-            // Tháng hiện tại
-            var curMonth = curDate.getMonth() + 1;
-
-            // Năm hiện tại
-            var curYear = curDate.getFullYear();
-            // Gán vào thẻ HTML
-            if (curMonth < 10) {
-                if (curDay < 10)
-                    document.getElementById('ngaykhoihanh').min = curYear + "-0" + curMonth + "-0" + curDay;
-                document.getElementById('ngaykhoihanh').min = curYear + "-0" + curMonth + "-" + curDay;
-            } else
-                document.getElementById('ngaykhoihanh').min = curYear + "-" + curMonth + "-" + curDay;
-        </script>
+    // Năm hiện tại
+    var curYear = curDate.getFullYear();
+    // Gán vào thẻ HTML
+    if (curMonth < 10) {
+        if (curDay < 10)
+            document.getElementById('ngaykhoihanh').min = curYear + "-0" + curMonth + "-0" + curDay;
+        document.getElementById('ngaykhoihanh').min = curYear + "-0" + curMonth + "-" + curDay;
+    } else
+        document.getElementById('ngaykhoihanh').min = curYear + "-" + curMonth + "-" + curDay;
+</script>

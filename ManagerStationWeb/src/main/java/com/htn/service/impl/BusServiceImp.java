@@ -30,5 +30,15 @@ public class BusServiceImp implements BusService{
     public List<Bus> getBus() {
         return this.busRepository.getBus();
     }
+
+    @Override
+    public boolean deleteBus(String i) {
+        return this.busRepository.deleteBus(i);
+    }
+
+    @Override
+    public Bus getBusById(String i) {
+        return this.busRepository.getBusById(i);
+    }
     
 }
