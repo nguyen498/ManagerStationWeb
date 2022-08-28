@@ -163,6 +163,73 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Route table</h6>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0" style="max-height: 300px">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ảnh </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày khởi hành </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Thời gian khởi hành </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá vé </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tuyến </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Bus</th>
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${bustrip}" var="bt">
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                ${bt.id}
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <img src="<c:url value="${bt.image}" />" class="avatar avatar-xl me-3 border-radius-lg" alt="user1">
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">${bt.ngaykhoihanh}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">${bt.thoigian}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">${bt.giave}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">${bt.routeId.tuyenBD} => ${bt.routeId.tuyenKT}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary text-xs font-weight-bold">${bt.bus.biensoxe}</span>
+                                        </td>
+                                        <td class="align-middle d-flex justify-content-center">
+                                            <a href="<c:url value="/admin/delete-bustrip/${bt.id}"/>" class="btn btn-danger text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
+                                                DELETE
+                                            </a>
+                                            <a href="<c:url value="/admin/update/bustrip/${bt.id}"/>" class="btn btn-info text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                UPDATE
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

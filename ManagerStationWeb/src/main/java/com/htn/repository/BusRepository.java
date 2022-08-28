@@ -14,5 +14,6 @@ public interface BusRepository {
     List<Bus> getBus();
     boolean addBus (Bus b);
     boolean deleteBus (String id);
+    boolean updateBus (Bus b);
     Bus getBusById (String id);
 }

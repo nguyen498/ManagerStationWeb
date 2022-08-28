@@ -17,4 +17,5 @@ public interface RouteRepository {
     List<Route> getRoute ();
     boolean deleteRoutes (int id);
     Route getRouteById (int id);
+    boolean updateRoute (Route s);
 }

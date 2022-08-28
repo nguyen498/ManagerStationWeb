@@ -23,10 +23,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class BustripServiceImp implements BustripService{
+public class BustripServiceImp implements BustripService {
+
     @Autowired
     private Cloudinary cloudinary;
-    
+
     @Autowired
     private BustripRepository bustripRepository;
 
@@ -42,18 +43,18 @@ public class BustripServiceImp implements BustripService{
 
     @Override
     public boolean addBustrip(Bustrip b) {
-        try{
-            Map r = this.cloudinary.uploader().upload(b.getFile().getBytes(), 
+        try {
+            Map r = this.cloudinary.uploader().upload(b.getFile().getBytes(),
                     ObjectUtils.asMap("resource_type", "auto"));
-            
+
             b.setImage((String) r.get("secure_url"));
-            
+
             return this.bustripRepository.addBustrip(b);
-        } catch(IOException ex){
-            System.err.println("=======ADD BUSTRIP====="+ ex.getMessage());
+        } catch (IOException ex) {
+            System.err.println("=======ADD BUSTRIP=====" + ex.getMessage());
             return false;
         }
-       
+
     }
 
     @Override
@@ -64,5 +65,29 @@ public class BustripServiceImp implements BustripService{
     @Override
     public Comment addComment(String content, int bustripId) {
         return this.bustripRepository.addComment(content, bustripId);
+    }
+
+    @Override
+    public boolean deleteBustrip(int i) {
+        return this.bustripRepository.deleteBustrip(i);
+    }
+
+    @Override
+    public boolean updateBustrip(Bustrip bstrp) {
+        try {
+            if (bstrp.getImage() != null) {
+                Map r = this.cloudinary.uploader().upload(bstrp.getFile().getBytes(),
+                        ObjectUtils.asMap("resource_type", "auto"));
+
+                bstrp.setImage((String) r.get("secure_url"));
+            }else {
+                bstrp.setImage("https://res.cloudinary.com/dgf4td2l4/image/upload/v1661519668/ulnkmmyul0dohz9ydijb.jpg");
+            }
+
+            return this.bustripRepository.updateBustrip(bstrp);
+        } catch (IOException ex) {
+            System.err.println("=======ADD BUSTRIP=====" + ex.getMessage());
+            return false;
+        }
     }
 }

@@ -136,4 +136,29 @@ public class BustripRepositoryImp implements BustripRepository {
 
         return c;
     }
+
+    @Override
+    public boolean deleteBustrip(int id) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            Bustrip b = session.get(Bustrip.class, id);
+            session.delete(b);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateBustrip(Bustrip bstrp) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.update(bstrp);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }

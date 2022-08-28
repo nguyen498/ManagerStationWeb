@@ -72,4 +72,16 @@ public class RouteRepositoryImp implements RouteRepository {
         return session.get(Route.class, id);
     }
 
+    @Override
+    public boolean updateRoute(Route s) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.update(s);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 }

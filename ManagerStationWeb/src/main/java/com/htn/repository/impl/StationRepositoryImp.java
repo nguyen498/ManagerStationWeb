@@ -73,4 +73,16 @@ public class StationRepositoryImp implements StationRepository {
         }
     }
 
+    @Override
+    public boolean updateStation(Station s) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.update(s);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 }

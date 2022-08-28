@@ -40,5 +40,10 @@ public class StationServiceImp implements StationService{
     public boolean deleteStation(int id) {
         return this.stationRepository.deleteStation(id);
     }
+
+    @Override
+    public boolean updateStation(Station stn) {
+        return this.stationRepository.updateStation(stn);
+    }
     
 }

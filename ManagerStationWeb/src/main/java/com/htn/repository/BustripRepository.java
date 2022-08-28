@@ -19,4 +19,6 @@ public interface BustripRepository {
     boolean addBustrip (Bustrip b);
     List<Comment> getComments(int bustripId);
     Comment addComment(String content, int bustripId);
+    boolean deleteBustrip (int id);
+    boolean updateBustrip (Bustrip b);
 }

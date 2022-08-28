@@ -40,5 +40,10 @@ public class RouteServiceImp implements RouteService{
     public Route getRouteById(int id) {
         return this.routeRepository.getRouteById(id);
     }
+
+    @Override
+    public boolean updateRoute(Route route) {
+        return this.routeRepository.updateRoute(route);
+    }
     
 }

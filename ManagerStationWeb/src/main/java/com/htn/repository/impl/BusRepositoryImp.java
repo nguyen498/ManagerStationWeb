@@ -72,4 +72,16 @@ public class BusRepositoryImp implements BusRepository {
         return session.get(Bus.class, id);
     }
 
+    @Override
+    public boolean updateBus(Bus b) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try {
+            session.update(b);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 }

@@ -101,5 +101,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/admin-update-bus.jsp" />
     </definition>
+    <definition name="admin-update-bustrip-details" extends="adminLayout">
+        <put-attribute name="title" value="Update Bustrip" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/admin-update-bustrip.jsp" />
+    </definition>
     
 </tiles-definitions>

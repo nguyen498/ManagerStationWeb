@@ -16,4 +16,5 @@ public interface BusService {
     List<Bus> getBus();
     boolean deleteBus (String id);
     Bus getBusById (String id);
+    boolean updateBus (Bus b);
 }

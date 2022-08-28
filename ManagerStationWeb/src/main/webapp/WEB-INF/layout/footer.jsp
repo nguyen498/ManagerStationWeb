@@ -35,7 +35,7 @@
 
                 <div class="social-links">
                     <a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://fb.com/nguyen.20501" class="facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></i></a>
                     <a href="#" class="linkedin"><i class="fab fa-linkedin"></i></a>
                 </div>

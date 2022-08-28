@@ -212,63 +212,6 @@
             </div>
         </div
 
-
-        <div class="row">
-            <div class="col-12">
-                <div class="card my-4">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                            <h6 class="text-white text-capitalize ps-3">Add Ticket</h6>
-                        </div>
-                    </div>
-                    <div class="card-body px-0 pb-2">
-                        <form class="p-4" action="ticket" method="post">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static mb-4">
-                                        <label for="exampleFormControlSelect1">Giá vé: </label>
-                                        <input type="number" class="form-control" placeholder="Nhập giá vé...." id="giave"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static mb-4">
-                                        <label>Depart Date</label>
-                                        <input name="depart_date" type="date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static mb-4">
-                                        <label for="exampleFormControlSelect1" class="ms-0">Select Route</label>
-                                        <select name="route_id" class="form-control">
-                                            <option value="1">Mỹ Tho -> Sài Gòn</option>
-                                            <option value="1">Cujut -> Sài Gòn</option>
-                                            <option value="1">Doremon -> Cà Mau</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static mb-4">
-                                        <label for="exampleFormControlSelect1" class="ms-0">Select Bustrip</label>
-                                        <select name="bustrip_id" class="form-control" id="exampleFormControlSelect1">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-info ml-auto">Submit</button>
-                        </form>
-                    </div
-
-                </div>
-            </div>
-        </div>
-
-
-
     </div>
 </div>
 <script>

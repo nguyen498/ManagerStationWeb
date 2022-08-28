@@ -81,7 +81,7 @@ public class AdminController {
         return "add";
     }
     
-    @PostMapping("/add/add-station")
+    @PostMapping("/add-station")
     public String addStation(@ModelAttribute(value = "station") @Valid Station s, BindingResult rs){
         if (rs.hasErrors()) {
             return "add";
@@ -111,6 +111,7 @@ public class AdminController {
         model.addAttribute("route", this.routeService.getRoute());
         model.addAttribute("bus", this.busService.getBus());
         model.addAttribute("station", this.stationService.getStations());
+        model.addAttribute("bustrip", this.bustripService.getBustrips(null, 0));
         return "list";
     }
     
@@ -127,7 +128,7 @@ public class AdminController {
             return "admin-update-station-details";
         }
 
-        if (this.stationService.addStation(s) == true) {
+        if (this.stationService.updateStation(s) == true) {
             return "redirect:/admin/list";
         }
         return "admin-update-station-details";
@@ -155,7 +156,7 @@ public class AdminController {
             return "admin-update-route-details";
         }
 
-        if (this.routeService.addRoute(r) == true) {
+        if (this.routeService.updateRoute(r) == true) {
             return "redirect:/admin/list";
         }
         return "admin-update-route-details";
@@ -183,7 +184,7 @@ public class AdminController {
             return "admin-update-bus-details";
         }
 
-        if (this.busService.addBus(b) == true) {
+        if (this.busService.updateBus(b) == true) {
             return "redirect:/admin/list";
         }
         return "admin-update-bus-details";
@@ -193,6 +194,35 @@ public class AdminController {
     private String deleteBus (@PathVariable(value = "busId") String id){
 
         if (this.busService.deleteBus(id) == true) {
+            return "redirect:/admin/list";
+        }
+        return "list";
+    }
+    
+     @GetMapping("/update/bustrip/{bustripId}")
+    private String updateBustripView(Model model,  @PathVariable(value = "bustripId") int id){
+        model.addAttribute("listBus", this.busService.getBus());
+        model.addAttribute("listRoute", this.routeService.getRoute());
+        model.addAttribute("bustrip", this.bustripService.getBustripById(id));
+        return "admin-update-bustrip-details";
+    }
+    
+    @PostMapping("/update/bustrip/{bustripId}")
+    private String updateBus (@ModelAttribute(value = "bustripId") @Valid Bustrip b, BindingResult rs){
+        if (rs.hasErrors()) {
+            return "admin-update-bustrip-details";
+        }
+
+        if (this.bustripService.updateBustrip(b) == true) {
+            return "redirect:/admin/list";
+        }
+        return "admin-update-bustrip-details";
+    }
+    
+    @GetMapping("/delete-bustrip/{bustripId}")
+    private String deleteBustrip (@PathVariable(value = "bustripId") int id){
+
+        if (this.bustripService.deleteBustrip(id) == true) {
             return "redirect:/admin/list";
         }
         return "list";

@@ -16,4 +16,5 @@ public interface StationRepository {
     List<Station> getStations ();
     Station getStationById (int id);
     boolean deleteStation (int id);
+    boolean updateStation (Station s);
 }
