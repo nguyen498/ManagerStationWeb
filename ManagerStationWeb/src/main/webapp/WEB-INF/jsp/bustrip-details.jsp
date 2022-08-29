@@ -33,7 +33,7 @@
                                 <p class="about">${bustrip.content}</p>
                                 <div class="d-flex">
                                     <div class="cart mt-4 align-items-center"> 
-                                        <button class="btn btn-danger text-uppercase mr-2 px-4">Mua vé</button>
+                                        <a href="<c:url value="/bustrip/${bustrip.id}/buy-ticket"/>"><button class="btn btn-danger text-uppercase mr-2 px-4">Mua vé</button></a>
                                     </div>
                                     <div class="ml-15 cart mt-4 align-items-center"> 
                                         <button class="btn btn-secondary text-uppercase mr-2 px-4">Gủi hàng</button>

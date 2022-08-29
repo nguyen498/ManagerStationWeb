@@ -84,7 +84,7 @@ public class Bustrip implements Serializable {
     private Set<Goods> goodsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
     private Set<Comment> commentSet;
-    
+
     @Transient
     private MultipartFile file;
 
@@ -229,5 +229,5 @@ public class Bustrip implements Serializable {
     public void setFile(MultipartFile file) {
         this.file = file;
     }
-    
+
 }

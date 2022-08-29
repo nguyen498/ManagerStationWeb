@@ -227,4 +227,10 @@ public class AdminController {
         }
         return "list";
     }
+    
+    @GetMapping("/stats")
+    private String stats (Model model){
+        model.addAttribute("stationStats", this.bustripService.countTripsByStation());
+        return "admin-stats";
+    }
 }

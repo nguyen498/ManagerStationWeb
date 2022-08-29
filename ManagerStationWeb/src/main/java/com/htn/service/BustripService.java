@@ -21,4 +21,5 @@ public interface BustripService {
     Comment addComment(String content, int bustripId);
     boolean deleteBustrip(int id);
     boolean updateBustrip (Bustrip b);
+    List<Object[]> countTripsByStation();
 }

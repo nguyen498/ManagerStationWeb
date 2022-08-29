@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="d-flex" style="margin: auto; margin-bottom: 10px">
                                     <div class="cart mt-4 align-items-center"> 
-                                        <button class="btn btn-danger text-uppercase mr-2 px-4">Mua vé</button>
+                                        <a href="<c:url value="/bustrip/${p.id}/buy-ticket"/>"><button class="btn btn-danger text-uppercase mr-2 px-4">Mua vé</button></a>
                                     </div>
                                     <div class="ml-15 cart mt-4 align-items-center"> 
                                         <button class="btn btn-secondary text-uppercase mr-2 px-4">Gủi hàng</button>

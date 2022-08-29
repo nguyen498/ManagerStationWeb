@@ -138,5 +138,5 @@ public class Comment implements Serializable {
     public String toString() {
         return "com.htn.pojo.Comment[ id=" + id + " ]";
     }
-    
+
 }

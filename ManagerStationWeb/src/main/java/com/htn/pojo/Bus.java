@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -38,10 +39,10 @@ public class Bus implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 10, message = "bus.biensoxe.err")
     @Column(name = "biensoxe")
     private String biensoxe;
-    @OneToMany(mappedBy = "busId")
+    @OneToMany(mappedBy = "busId", fetch = FetchType.EAGER)
     private Set<Seat> seatSet;
     @JoinColumn(name = "manhaxe", referencedColumnName = "id")
     @ManyToOne(optional = false)

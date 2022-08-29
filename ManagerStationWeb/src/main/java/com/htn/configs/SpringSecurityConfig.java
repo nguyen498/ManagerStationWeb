@@ -50,10 +50,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password");
         http.formLogin().successHandler(this.loginHandler);
-        
+
         http.logout().logoutSuccessHandler(this.logoutHanlder);
-        
-         http.authorizeRequests().antMatchers("/").permitAll()  
+
+        http.authorizeRequests().antMatchers("/").permitAll()
+                .antMatchers("/**/buy-ticket")
+                .access("hasAnyRole('ROLE_STATION, ROLE_ADMIN, ROLE_USER')")
                 .antMatchers("/register-bus/**")
                 .access("hasAnyRole('ROLE_STATION, ROLE_ADMIN')")
                 .antMatchers("/register-route/**")
@@ -62,8 +64,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .access("hasAnyRole('ROLE_STATION, ROLE_ADMIN')")
                 .antMatchers("/admin/**")
                 .access("hasRole('ROLE_ADMIN')");
-         
-         http.csrf().disable();
+
+        http.csrf().disable();
     }
 
     @Override
@@ -71,7 +73,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
-    
     @Bean
     public Cloudinary cloudinary() {
         Cloudinary c = new Cloudinary(ObjectUtils.asMap(

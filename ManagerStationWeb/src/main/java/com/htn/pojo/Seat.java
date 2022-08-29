@@ -16,7 +16,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -30,7 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Seat.findAll", query = "SELECT s FROM Seat s"),
     @NamedQuery(name = "Seat.findById", query = "SELECT s FROM Seat s WHERE s.id = :id"),
-    @NamedQuery(name = "Seat.findByActive", query = "SELECT s FROM Seat s WHERE s.active = :active")})
+    @NamedQuery(name = "Seat.findByActive", query = "SELECT s FROM Seat s WHERE s.active = :active"),
+    @NamedQuery(name = "Seat.findByAlias", query = "SELECT s FROM Seat s WHERE s.alias = :alias")})
 public class Seat implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,11 +44,17 @@ public class Seat implements Serializable {
     private Integer id;
     @Column(name = "active")
     private Boolean active;
+    @Size(max = 3)
+    @Column(name = "alias")
+    private String alias;
     @JoinColumn(name = "bus_id", referencedColumnName = "biensoxe")
     @ManyToOne
     private Bus busId;
     @OneToMany(mappedBy = "seatId")
     private Set<Ticket> ticketSet;
+    
+    @Transient
+    private boolean isBooked;
 
     public Seat() {
     }
@@ -68,6 +77,14 @@ public class Seat implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public Bus getBusId() {
@@ -110,6 +127,20 @@ public class Seat implements Serializable {
     @Override
     public String toString() {
         return "com.htn.pojo.Seat[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the isBooked
+     */
+    public boolean isIsBooked() {
+        return isBooked;
+    }
+
+    /**
+     * @param isBooked the isBooked to set
+     */
+    public void setIsBooked(boolean isBooked) {
+        this.isBooked = isBooked;
     }
     
 }

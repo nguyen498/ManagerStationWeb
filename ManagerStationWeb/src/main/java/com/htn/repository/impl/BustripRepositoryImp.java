@@ -6,6 +6,8 @@ package com.htn.repository.impl;
 
 import com.htn.pojo.Bustrip;
 import com.htn.pojo.Comment;
+import com.htn.pojo.Bus;
+import com.htn.pojo.Station;
 import com.htn.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -160,5 +162,26 @@ public class BustripRepositoryImp implements BustripRepository {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Object[]> countTripsByStation() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        
+        Root rBustrip = q.from(Bustrip.class);
+        Root rBus = q.from(Bus.class);
+        Root rStation = q.from(Station.class);
+        
+        q.where(b.equal(rBustrip.get("bus"), rBus.get("biensoxe")), 
+                b.equal(rBus.get("manhaxe"), rStation.get("id")));
+        
+        q.multiselect(rStation.get("id"), rStation.get("tennhaxe"), b.count(rBustrip.get("id")));
+        
+        q.groupBy(rStation.get("id"));
+        
+        Query query = session.createQuery(q);
+        return query.getResultList();
     }
 }

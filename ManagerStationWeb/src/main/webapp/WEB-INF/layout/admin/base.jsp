@@ -34,7 +34,7 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
             />
-
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body class="g-sidenav-show bg-gray-200">
 
@@ -48,29 +48,29 @@
                     </nav>
                     <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                            
-                        <ul class="navbar-nav  justify-content-end">
-                            <sec:authorize access="isAuthenticated()">
-                                <li class="nav-item d-flex align-items-center mb-0 ">
-                                    <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
-                                    <span class="d-sm-inline d-none">Chào, ${pageContext.session.getAttribute("currentUser").username}</span>
-                                </li>
-                                <li class="d-flex align-items-center p-lg-1">  |  </li>
-                                <li class="d-flex align-items-center">
-                                    <a class="text-body " href="<c:url value="/logout" />">
-                                        <span class="d-sm-inline d-none">Đăng xuất</span>
-                                    </a>
-                                </li>
-                            </sec:authorize>
-                            <sec:authorize access="!isAuthenticated()">
-                            <li class="nav-item d-flex align-items-center">
-                                <a href="<c:url value="/login"/>" class="nav-link text-body font-weight-bold px-0">
-                                    <i class="fa fa-user me-sm-1"></i>
-                                    <span class="d-sm-inline d-none">Sign In</span>
-                                </a>
-                            </li>
-                            </sec:authorize>
-                        </ul>
+
+                            <ul class="navbar-nav  justify-content-end">
+                                <sec:authorize access="isAuthenticated()">
+                                    <li class="nav-item d-flex align-items-center mb-0 ">
+                                        <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
+                                        <span class="d-sm-inline d-none">Chào, ${pageContext.session.getAttribute("currentUser").username}</span>
+                                    </li>
+                                    <li class="d-flex align-items-center p-lg-1">  |  </li>
+                                    <li class="d-flex align-items-center">
+                                        <a class="text-body " href="<c:url value="/logout" />">
+                                            <span class="d-sm-inline d-none">Đăng xuất</span>
+                                        </a>
+                                    </li>
+                                </sec:authorize>
+                                <sec:authorize access="!isAuthenticated()">
+                                    <li class="nav-item d-flex align-items-center">
+                                        <a href="<c:url value="/login"/>" class="nav-link text-body font-weight-bold px-0">
+                                            <i class="fa fa-user me-sm-1"></i>
+                                            <span class="d-sm-inline d-none">Sign In</span>
+                                        </a>
+                                    </li>
+                                </sec:authorize>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,6 @@
     <!--Custom Scripts-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="<c:url value="/js/apiServices.js" />"></script>
-
 
 
 </body>
