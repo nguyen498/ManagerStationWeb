@@ -38,8 +38,8 @@ public class Bus implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10, message = "bus.biensoxe.err")
+    @NotNull(message = "{bus.biensoxe.err}")
+    @Size(min = 1, max = 10, message = "{bus.biensoxe.err}")
     @Column(name = "biensoxe")
     private String biensoxe;
     @OneToMany(mappedBy = "busId", fetch = FetchType.EAGER)

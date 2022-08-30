@@ -54,7 +54,7 @@ public class Bustrip implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "{bustrip.ngaykhoihanh.err}")
     @Column(name = "ngaykhoihanh")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -65,7 +65,7 @@ public class Bustrip implements Serializable {
     private Date thoigian;
     @Column(name = "giave")
     private Long giave;
-    @Size(max = 255)
+    @Size(max = 255, message = "{bustrip.image.err}")
     @Column(name = "image")
     private String image;
     @Lob
@@ -84,7 +84,7 @@ public class Bustrip implements Serializable {
     private Set<Goods> goodsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bustripId")
     private Set<Comment> commentSet;
-
+    
     @Transient
     private MultipartFile file;
 
@@ -229,5 +229,5 @@ public class Bustrip implements Serializable {
     public void setFile(MultipartFile file) {
         this.file = file;
     }
-
+    
 }

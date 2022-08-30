@@ -45,5 +45,10 @@ public class BusServiceImp implements BusService{
     public boolean updateBus(Bus bus) {
         return this.busRepository.updateBus(bus);
     }
+
+    @Override
+    public List<Object[]> getBusByStation() {
+        return this.busRepository.getBusByStation();
+    }
     
 }

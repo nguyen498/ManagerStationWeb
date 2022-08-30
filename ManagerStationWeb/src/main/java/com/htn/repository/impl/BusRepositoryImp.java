@@ -5,6 +5,7 @@
 package com.htn.repository.impl;
 
 import com.htn.pojo.Bus;
+import com.htn.pojo.Station;
 import com.htn.repository.BusRepository;
 import java.util.List;
 import javax.persistence.Query;
@@ -82,6 +83,25 @@ public class BusRepositoryImp implements BusRepository {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Object[]> getBusByStation() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        
+        Root rBus = q.from(Bus.class);
+        Root rStation = q.from(Station.class);
+        
+        q.where(b.equal(rBus.get("manhaxe"), rStation.get("id")));
+        
+        q.multiselect(rStation.get("id"), rStation.get("tennhaxe"), b.count(rBus.get("biensoxe")));
+        
+        q.groupBy(rStation.get("id"));
+        
+        Query query = session.createQuery(q);
+        return query.getResultList();
     }
 
 }

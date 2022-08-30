@@ -43,13 +43,13 @@ public class Station implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45, message = "station.name.err")
+    @NotNull(message = "{station.name.err}")
+    @Size(min = 1, max = 45, message = "{station.name.err}")
     @Column(name = "tennhaxe")
     private String tennhaxe;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100, message = "station.address.err")
+    @NotNull(message = "{station.address.err}")
+    @Size(min = 1, max = 100, message = "{station.address.err}")
     @Column(name = "diachi")
     private String diachi;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manhaxe")

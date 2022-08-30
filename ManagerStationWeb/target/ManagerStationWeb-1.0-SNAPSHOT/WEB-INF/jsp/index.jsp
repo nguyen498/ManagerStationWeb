@@ -52,7 +52,7 @@
                                         <a href="<c:url value="/bustrip/${p.id}/buy-ticket"/>"><button class="btn btn-danger text-uppercase mr-2 px-4">Mua vé</button></a>
                                     </div>
                                     <div class="ml-15 cart mt-4 align-items-center"> 
-                                        <button class="btn btn-secondary text-uppercase mr-2 px-4">Gủi hàng</button>
+                                        <a href="<c:url value="/bustrip/${p.id}/ship-goods"/>"><button class="btn btn-secondary text-uppercase mr-2 px-4">Gủi hàng</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -66,23 +66,24 @@
     <!-- ======= Contact Us Section ======= -->
 
     <div id="current-time"></div>
-    <script>
-        var curDate = new Date();
+</main>
+<script>
+    var curDate = new Date();
 
-        // Ngày hiện tại
-        var curDay = curDate.getDate();
+    // Ngày hiện tại
+    var curDay = curDate.getDate();
 
-        // Tháng hiện tại
-        var curMonth = curDate.getMonth() + 1;
+    // Tháng hiện tại
+    var curMonth = curDate.getMonth() + 1;
 
-        // Năm hiện tại
-        var curYear = curDate.getFullYear();
-        // Gán vào thẻ HTML
-        if (curMonth < 10) {
-            if (curDay < 10)
-                document.getElementById('date').min = curYear + "-0" + curMonth + "-0" + curDay;
-            document.getElementById('date').min = curYear + "-0" + curMonth + "-" + curDay;
-        } else
-            document.getElementById('date').min = curYear + "-" + curMonth + "-" + curDay;
-    </script>
+    // Năm hiện tại
+    var curYear = curDate.getFullYear();
+    // Gán vào thẻ HTML
+    if (curMonth < 10) {
+        if (curDay < 10)
+            document.getElementById('date').min = curYear + "-0" + curMonth + "-0" + curDay;
+        document.getElementById('date').min = curYear + "-0" + curMonth + "-" + curDay;
+    } else
+        document.getElementById('date').min = curYear + "-" + curMonth + "-" + curDay;
+</script>
 </main><!-- End #main -->

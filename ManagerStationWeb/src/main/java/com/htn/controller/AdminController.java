@@ -10,8 +10,11 @@ import com.htn.pojo.Bustrip;
 import com.htn.pojo.Station;
 import com.htn.service.BusService;
 import com.htn.service.BustripService;
+import com.htn.service.GoodsService;
 import com.htn.service.RouteService;
 import com.htn.service.StationService;
+import com.htn.service.TicketService;
+import com.htn.service.UserService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,9 +42,16 @@ public class AdminController {
     private BusService busService;
     @Autowired
     private BustripService bustripService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private TicketService ticketService;
+    @Autowired
+    private GoodsService goodsService;
     
     @GetMapping("/")
-    public String admin() {
+    public String admin(Model model) {
+        model.addAttribute("users", this.userService.getUsers());
         return "admin";
     }
     
@@ -112,6 +122,8 @@ public class AdminController {
         model.addAttribute("bus", this.busService.getBus());
         model.addAttribute("station", this.stationService.getStations());
         model.addAttribute("bustrip", this.bustripService.getBustrips(null, 0));
+        model.addAttribute("tickets", this.ticketService.getTickets());
+        model.addAttribute("goods", this.goodsService.getGoods());
         return "list";
     }
     
@@ -231,6 +243,8 @@ public class AdminController {
     @GetMapping("/stats")
     private String stats (Model model){
         model.addAttribute("stationStats", this.bustripService.countTripsByStation());
+        model.addAttribute("busStats", this.busService.getBusByStation());
+        model.addAttribute("salesStats", this.bustripService.revenueStats());
         return "admin-stats";
     }
 }

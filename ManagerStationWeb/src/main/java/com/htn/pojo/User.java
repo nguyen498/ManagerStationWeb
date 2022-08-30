@@ -87,7 +87,7 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
     private Set<Comment> commentSet;
-
+    
     @Transient
     private String confirmPassword;
 
@@ -235,5 +235,5 @@ public class User implements Serializable {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-
+    
 }

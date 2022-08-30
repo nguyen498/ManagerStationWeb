@@ -6,6 +6,7 @@ package com.htn.repository.impl;
 
 import com.htn.pojo.User;
 import com.htn.repository.UserRepository;
+import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -50,5 +51,17 @@ public class UserRepositoryImpl implements UserRepository {
             System.err.println("===REGISTER===" + ex.getMessage());
         }
         return false;
+    }
+
+    @Override
+    public List<User> getUsers() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<User> q = b.createQuery(User.class);
+        Root root = q.from(User.class);
+        q.select(root);
+        Query query = session.createQuery(q);
+
+        return query.getResultList();
     }
 }

@@ -7,7 +7,8 @@ package com.htn.service;
 import com.htn.pojo.Bustrip;
 import com.htn.pojo.User;
 import com.htn.pojo.Seat;
-import java.util.Date;
+import com.htn.pojo.Ticket;
+import java.util.List;
 /**
  *
  * @author admin
@@ -15,4 +16,5 @@ import java.util.Date;
 public interface TicketService {
     boolean checkBookedSeat(int id, int bustripId);
     boolean addTicket(long price, Bustrip bustrip, User user, Seat seat);
+    List<Ticket> getTickets ();
 }

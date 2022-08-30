@@ -8,6 +8,7 @@ import com.htn.pojo.Bustrip;
 import com.htn.pojo.Comment;
 import com.htn.pojo.Bus;
 import com.htn.pojo.Station;
+import com.htn.pojo.Ticket;
 import com.htn.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -178,6 +179,29 @@ public class BustripRepositoryImp implements BustripRepository {
                 b.equal(rBus.get("manhaxe"), rStation.get("id")));
         
         q.multiselect(rStation.get("id"), rStation.get("tennhaxe"), b.count(rBustrip.get("id")));
+        
+        q.groupBy(rStation.get("id"));
+        
+        Query query = session.createQuery(q);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Object[]> revenueStats() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        
+        Root rBustrip = q.from(Bustrip.class);
+        Root rBus = q.from(Bus.class);
+        Root rStation = q.from(Station.class);
+        Root rTicket = q.from(Ticket.class);
+        
+        q.where(b.equal(rBustrip.get("bus"), rBus.get("biensoxe")), 
+                b.equal(rBus.get("manhaxe"), rStation.get("id")),
+                b.equal(rBustrip.get("id"), rTicket.get("bustripId")));
+        
+        q.multiselect(rStation.get("id"), rStation.get("tennhaxe"), b.sum(rTicket.get("total")));
         
         q.groupBy(rStation.get("id"));
         

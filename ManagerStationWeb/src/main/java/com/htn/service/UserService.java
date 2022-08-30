@@ -5,6 +5,7 @@
 package com.htn.service;
 
 import com.htn.pojo.User;
+import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
 /**
  *
@@ -13,4 +14,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface UserService extends UserDetailsService {
      User getUserByUsername(String username);
      boolean addUser(User user);
+     List<User> getUsers();
 }

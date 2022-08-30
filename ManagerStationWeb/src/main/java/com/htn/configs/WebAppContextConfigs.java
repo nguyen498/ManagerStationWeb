@@ -6,6 +6,7 @@ package com.htn.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.htn.formatters.BustripFormatter;
 import com.htn.formatters.RouteFormatter;
 import com.htn.formatters.StationFormatter;
 import org.springframework.context.MessageSource;
@@ -64,6 +65,7 @@ public class WebAppContextConfigs implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry r) {
         r.addFormatter(new StationFormatter());
         r.addFormatter(new RouteFormatter());
+        r.addFormatter(new BustripFormatter());
     }
 
     @Bean

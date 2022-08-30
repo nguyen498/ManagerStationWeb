@@ -10,8 +10,8 @@ import com.htn.pojo.Ticket;
 import com.htn.pojo.User;
 import com.htn.repository.TicketRepository;
 import com.htn.service.TicketService;
-import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +42,11 @@ public class TicketServiceImp implements TicketService {
 
             return this.ticketRepository.addTicket(ticket);
 
+    }
+
+    @Override
+    public List<Ticket> getTickets() {
+        return this.ticketRepository.getTickets();
     }
 
 }

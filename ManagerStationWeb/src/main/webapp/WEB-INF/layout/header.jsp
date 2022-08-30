@@ -30,8 +30,8 @@
                     </li>
                 </sec:authorize>
                 <li class="active"><a href="${url}" class="scrollto">Home</a></li>
-                <li><a href="${url}register-station">Đăng kí nhà xe</a></li>
                 <sec:authorize access="hasAnyRole('ROLE_STATION, ROLE_ADMIN')">
+                    <li><a href="${url}register-station">Đăng kí nhà xe</a></li>
                     <li><a href="${url}register-bus">Đăng kí xe</a></li>
                     <li><a href="${url}register-route">Tạo tuyến</a></li>
                     <li><a href="${url}register-trip">Đăng kí chuyến xe</a></li>

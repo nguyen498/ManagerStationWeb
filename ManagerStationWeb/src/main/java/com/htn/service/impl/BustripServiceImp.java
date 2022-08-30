@@ -95,4 +95,9 @@ public class BustripServiceImp implements BustripService {
     public List<Object[]> countTripsByStation() {
          return this.bustripRepository.countTripsByStation();
     }
+
+    @Override
+    public List<Object[]> revenueStats() {
+        return this.bustripRepository.revenueStats();
+    }
 }

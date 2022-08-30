@@ -6,6 +6,7 @@ package com.htn.controller;
 
 import com.htn.pojo.Seat;
 import com.htn.pojo.Bustrip;
+import com.htn.pojo.Goods;
 import com.htn.pojo.User;
 import com.htn.repository.UserRepository;
 import java.util.Map;
@@ -15,13 +16,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.htn.service.BustripService;
+import com.htn.service.GoodsService;
 import com.htn.service.SeatService;
 import com.htn.service.TicketService;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -40,6 +45,8 @@ public class HomeController {
     private SeatService seatService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private GoodsService goodsService;
 
     @RequestMapping("/")
     public String home(Model model,
@@ -116,5 +123,30 @@ public class HomeController {
         }
 
         return "redirect:/";
+    }
+    
+    @GetMapping("/bustrip/{bustripId}/ship-goods")
+    private String shipGoods(Model model){
+        model.addAttribute("good", new Goods());
+        return "ship-goods";
+    }
+    
+    @PostMapping("/bustrip/{bustripId}/ship-goods")
+    private String addShipGoods (Model model,
+            @PathVariable(value = "bustripId") int id,
+            @ModelAttribute(value = "good") @Valid Goods g,
+            BindingResult r){
+        
+        model.addAttribute("bustrip", this.bustripService.getBustripById(id));
+        
+        if (r.hasErrors()) {
+            return "ship-goods";
+        }
+        
+        if (this.goodsService.addGoods(g) == true) {
+            return "redirect:/";
+        }
+        
+        return "ship-goods";
     }
 }

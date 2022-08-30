@@ -5,6 +5,7 @@
 package com.htn.repository;
 
 import com.htn.pojo.Ticket;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.htn.pojo.Ticket;
 public interface TicketRepository {
     boolean checkBookedSeat(int id, int bustripId);
     boolean addTicket(Ticket ticket);
+    List<Ticket> getTickets ();
 }

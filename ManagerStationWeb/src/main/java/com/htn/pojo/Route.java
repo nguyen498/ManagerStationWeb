@@ -43,13 +43,13 @@ public class Route implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50, message = "route.tuyenBD.err")
+    @NotNull(message = "{route.tuyenBD.err}")
+    @Size(min = 1, max = 50, message = "{route.tuyenBD.err}")
     @Column(name = "tuyenBD")
     private String tuyenBD;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50, message = "route.tuyenKT.err")
+    @NotNull(message = "{route.tuyenKT.err}")
+    @Size(min = 1, max = 50, message = "{route.tuyenKT.err}")
     @Column(name = "tuyenKT")
     private String tuyenKT;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "routeId")

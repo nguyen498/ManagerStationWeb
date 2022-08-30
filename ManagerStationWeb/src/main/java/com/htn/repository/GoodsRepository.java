@@ -4,17 +4,13 @@
  */
 package com.htn.repository;
 
-import com.htn.pojo.Bus;
+import com.htn.pojo.Goods;
 import java.util.List;
 /**
  *
  * @author admin
  */
-public interface BusRepository {
-    List<Bus> getBus();
-    boolean addBus (Bus b);
-    boolean deleteBus (String id);
-    boolean updateBus (Bus b);
-    Bus getBusById (String id);
-    List<Object[]> getBusByStation ();
+public interface GoodsRepository {
+    boolean addGoods (Goods g);
+    List<Goods> getGoods ();
 }

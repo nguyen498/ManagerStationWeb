@@ -8,6 +8,7 @@ import com.htn.pojo.User;
 import com.htn.repository.UserRepository;
 import com.htn.service.UserService;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -53,6 +54,11 @@ public class UserServiceImp implements UserService{
         user.setUserRole("ROLE_USER");
         user.setActive(Boolean.TRUE);
         return this.userRepository.addUser(user);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        return this.userRepository.getUsers();
     }
     
 }

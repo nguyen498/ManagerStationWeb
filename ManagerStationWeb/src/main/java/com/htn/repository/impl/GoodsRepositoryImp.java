@@ -4,13 +4,10 @@
  */
 package com.htn.repository.impl;
 
-import com.htn.pojo.Ticket;
-import com.htn.repository.TicketRepository;
-import java.math.BigInteger;
-import java.util.Date;
+import com.htn.pojo.Goods;
+import com.htn.repository.GoodsRepository;
+import com.htn.repository.UserRepository;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -18,6 +15,8 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,33 +26,20 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class TicketRepositoryImp implements TicketRepository{
+public class GoodsRepositoryImp implements GoodsRepository {
+
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
-    
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
-    public boolean checkBookedSeat(int id, int bustripId) {
-        Query query = (Query) entityManager.createNativeQuery(
-                "SELECT count(*) FROM ticket\n" +
-                "where seat_id = ?\n" +
-                "and bustrip_id = ?\n")
-                .setParameter(1, id)
-                .setParameter(2, bustripId);
-
-        BigInteger isBooked = (BigInteger) query.getSingleResult();
-
-        return isBooked.intValue() > 0;
-    }
-
-    @Override
-    public boolean addTicket(Ticket ticket) {
+    public boolean addGoods(Goods g) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
-        
         try {
-            session.save(ticket);
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            g.setUserId(this.userRepository.getUserByUsername(authentication.getName()));
+            session.save(g);
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -62,14 +48,15 @@ public class TicketRepositoryImp implements TicketRepository{
     }
 
     @Override
-    public List<Ticket> getTickets() {
+    public List<Goods> getGoods() {
         Session session = this.sessionFactory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Ticket> q = b.createQuery(Ticket.class);
-        Root root = q.from(Ticket.class);
+        CriteriaQuery<Goods> q = b.createQuery(Goods.class);
+        Root root = q.from(Goods.class);
         q.select(root);
         Query query = session.createQuery(q);
 
         return query.getResultList();
     }
+
 }

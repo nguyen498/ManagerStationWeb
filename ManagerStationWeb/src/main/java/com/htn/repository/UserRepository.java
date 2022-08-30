@@ -5,6 +5,7 @@
 package com.htn.repository;
 
 import com.htn.pojo.User;
+import java.util.List;
 /**
  *
  * @author admin
@@ -12,4 +13,5 @@ import com.htn.pojo.User;
 public interface UserRepository {
     User getUserByUsername(String username);
     boolean addUser (User user);
+    List<User> getUsers();
 }

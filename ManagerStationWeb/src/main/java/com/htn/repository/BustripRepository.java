@@ -22,4 +22,5 @@ public interface BustripRepository {
     boolean deleteBustrip (int id);
     boolean updateBustrip (Bustrip b);
     List<Object[]> countTripsByStation();
+    List<Object[]> revenueStats();
 }

@@ -23,7 +23,7 @@
 
                     <div class="email">
                         <i class="bx bx-envelope"></i>
-                        <p>benxeonline@gamil.com</p>
+                        <p>benxeonline@gmail.com</p>
                     </div>
 
                     <div class="phone">
