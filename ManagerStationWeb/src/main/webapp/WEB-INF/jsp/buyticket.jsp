@@ -23,7 +23,7 @@
                 <div class="row p-4">
                     <c:forEach items="${seats}" var="seat" varStatus="loop">
                         <div class="col-4 d-flex mt-15" >
-                            <input onchange="handleSeatChange()" class="btn-check" <c:if test="${seat.isBooked == true}">disabled</c:if> type="checkbox" name="seatIds" value="${seat.id}" id="btncheck-${bustrip.getId()}-${seat.id}" autocomplete="off">
+                            <input onchange="handleSeatChange(event)" class="btn-check checked" <c:if test="${seat.isBooked == true}">disabled</c:if> type="checkbox" name="seatIds" value="${seat.id}" id="btncheck-${bustrip.getId()}-${seat.id}" autocomplete="off">
                             <label class="btn btn-outline-primary" for="btncheck-${bustrip.getId()}-${seat.id}">Ghế ${seat.alias}</label>
                         </div>
                     </c:forEach>
@@ -51,8 +51,16 @@
     let p = document.getElementById("price");
     let total = document.getElementById("total");
     let s = 0;
-    function handleSeatChange() {
-        s += parseInt(p.value);
-        total.innerHTML = s;
+    
+    function handleSeatChange(e) {
+        let check = e.target.checked;
+        if (check) {
+            s += parseInt(p.value);
+            total.innerHTML = s;
+        }
+        else {
+            s -= parseInt(p.value);
+            total.innerHTML = s;
+        }
     }
 </script>

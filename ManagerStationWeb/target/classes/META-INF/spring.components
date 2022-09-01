@@ -46,5 +46,3 @@ com.htn.service.impl.SeatServiceImp=org.springframework.stereotype.Component
 com.htn.service.impl.StationServiceImp=org.springframework.stereotype.Component
 com.htn.service.impl.TicketServiceImp=org.springframework.stereotype.Component
 com.htn.service.impl.UserServiceImp=org.springframework.stereotype.Component
-com.htn.validator.StationAllValidator=org.springframework.stereotype.Component
-com.htn.validator.StationValidator=org.springframework.stereotype.Component

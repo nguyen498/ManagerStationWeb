@@ -1,7 +1,6 @@
 com\htn\pojo\Goods.class
 com\htn\repository\impl\StationRepositoryImp.class
 com\htn\pojo\Bus.class
-com\htn\validator\StationValidator.class
 META-INF\spring.components
 com\htn\service\impl\BusServiceImp.class
 com\htn\formatters\BustripFormatter.class
@@ -30,7 +29,6 @@ com\htn\service\BusService.class
 com\htn\formatters\StationFormatter.class
 com\htn\repository\BustripRepository.class
 com\htn\handlers\LogoutHandler.class
-com\htn\validator\StationAllValidator.class
 com\htn\configs\SpringSecurityConfig.class
 com\htn\service\impl\RouteServiceImp.class
 com\htn\controller\ApiCommentController.class
