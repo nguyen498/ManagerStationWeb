@@ -45,5 +45,10 @@ public class StationServiceImp implements StationService{
     public boolean updateStation(Station stn) {
         return this.stationRepository.updateStation(stn);
     }
+
+    @Override
+    public Station getStationByName(String name) {
+        return this.stationRepository.getStationByName(name);
+    }
     
 }

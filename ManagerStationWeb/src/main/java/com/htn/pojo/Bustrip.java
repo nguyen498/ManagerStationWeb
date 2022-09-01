@@ -24,6 +24,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -64,6 +65,7 @@ public class Bustrip implements Serializable {
     @DateTimeFormat(pattern = "HH:mm")
     private Date thoigian;
     @Column(name = "giave")
+    @NotBlank(message = "{notblank.err}")
     private Long giave;
     @Size(max = 255, message = "{bustrip.image.err}")
     @Column(name = "image")

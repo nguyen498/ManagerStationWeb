@@ -42,6 +42,7 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <form:form class="p-4" action="add-station" method="post" modelAttribute="station">
+                            <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static mb-4">
@@ -73,6 +74,7 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <form:form class="p-4" action="add-bus" method="post" modelAttribute="bus">
+                            <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static mb-4">
@@ -108,6 +110,7 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <form:form class="p-4" action="add-route" method="post" modelAttribute="route">
+                            <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
                             <form:hidden path="id"/>
                             <div class="row">
                                 <div class="col-md-6">
@@ -141,6 +144,7 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <form:form class="p-4" action="add-bustrip" method="post" modelAttribute="bustrip" enctype="multipart/form-data">
+                            <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
                             <form:hidden path="id"/>
                             <div class="row">
                                 <div class="col-md-6">

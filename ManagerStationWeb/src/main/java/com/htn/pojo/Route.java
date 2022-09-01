@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,11 +47,13 @@ public class Route implements Serializable {
     @NotNull(message = "{route.tuyenBD.err}")
     @Size(min = 1, max = 50, message = "{route.tuyenBD.err}")
     @Column(name = "tuyenBD")
+    @NotBlank(message = "{notblank.err}")
     private String tuyenBD;
     @Basic(optional = false)
     @NotNull(message = "{route.tuyenKT.err}")
     @Size(min = 1, max = 50, message = "{route.tuyenKT.err}")
     @Column(name = "tuyenKT")
+    @NotBlank(message = "{notblank.err}")
     private String tuyenKT;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "routeId")
     private Set<Bustrip> bustripSet;

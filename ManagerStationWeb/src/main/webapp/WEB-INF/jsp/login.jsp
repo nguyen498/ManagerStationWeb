@@ -38,18 +38,18 @@
 
         <!-- Pills content -->
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+            <div class="tab-pane fade show active">
                 <form method="post" action="${action}">
                     <!-- Email input -->
-                    <div class="form-outline mb-4">
+                    <div class=" mb-4">
                         <label class="form-label" for="username"> Username:</label>
-                        <input type="text" id="username" class="form-control" name="username" style="border:1px solid" placeholder="Username"/>
+                        <input type="text" id="username" class="form-control" name="username" placeholder="Username"/>
                     </div>
 
                     <!-- Password input -->
-                    <div class="form-outline mb-4">
+                    <div class="mb-4">
                         <label class="form-label" for="password">Password</label>
-                        <input type="password" id="password" class="form-control" name="password" style="border:1px solid" placeholder="Password"/>
+                        <input type="password" id="password" class="form-control" name="password"  placeholder="Password"/>
                     </div>
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>

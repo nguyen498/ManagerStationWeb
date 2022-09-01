@@ -31,6 +31,7 @@
     </div>
     <div class="tab-content">
             <form:form method="post" action="${action}" modelAttribute="user">
+                <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
                 <!-- Name input -->
                 <div class="form-outline mb-4" >
                     <label class="form-label" for="firstname">First Name:</label>

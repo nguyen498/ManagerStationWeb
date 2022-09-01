@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <section id="hero">
     <div class="hero-container">
         <h1>Chi tiết chuyến xe</h1>  
@@ -44,47 +45,49 @@
                     </div>
                 </div>
             </div>   
-        </div>               
-        <div class="card-footer py-3 border-0" >
-            <div class="d-flex flex-start w-100 mt-5">
-                <div class="mr-15">
-                    <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
-                </div>
-                <div class="form-outline w-100" style="border:1px solid">
-                    <textarea class="form-control" id="commentId" rows="4"
-                              placeholder="Comment..."></textarea>
-                </div>
-            </div>
-            <div class="float-end mt-2 pt-1">
-                <button type="button" onclick="addComment(${bustrip.id})" class="btn btn-primary btn-sm">Post comment</button>
-            </div>
         </div>
-        <div id="commentArea">
-            <c:forEach items="${comment}" var="c">
-                <div class="d-flex flex-start mt-5">
-                    <div>
+        <sec:authorize access="isAuthenticated()">
+            <div class="py-3 border-0" >
+                <div class="d-flex w-100 mt-5">
+                    <div class="mr-15">
                         <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
                     </div>
+                    <div class="w-100">
+                        <textarea class="form-control" id="commentId" rows="4"
+                                  placeholder="Comment..."></textarea>
+                    </div>
                 </div>
+                <div class="float-end mt-2 pt-1">
+                    <button type="button" onclick="addComment(${bustrip.id})" class="btn btn-primary btn-sm">Post comment</button>
+                </div>
+            </div>
+        </sec:authorize>
+        <div id="commentArea">
+            <c:forEach items="${comment}" var="c">
                 <div>
-                    <h6 class="fw-bold mb-1">${c.userId.firstname} ${c.userId.lastname}</h6>
-                    <div class="d-flex align-items-center mb-3">
+                    <div class="d-flex mt-5">
+                        <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-1">${c.userId.firstname} ${c.userId.lastname}</h6>
+                        <div class="d-flex  mb-3">
+                            <p class="mb-0 commentDate">
+                                ${c.createdDate}
+                            </p>
+                        </div>
                         <p class="mb-0">
-                            ${c.createdDate}
+                            ${c.content}
                         </p>
                     </div>
-                    <p class="mb-0">
-                        ${c.content}
-                    </p>
+                    <hr class="my-0"/>
                 </div>
-                <hr class="my-0"/>
             </c:forEach>
         </div>
 
     </div>
 </main>
 <script>
-    
+
     function addComment(bustripId) {
 
         fetch("/ManagerStationWeb/api/add-comment", {
@@ -105,25 +108,27 @@
             console.info(data);
 
             let area = document.getElementById("commentArea");
-            area.innerHTML = area.innerHTML + `
-            <div class="d-flex flex-start mt-5">
+            area.innerHTML = `
+            <div>
+            <div class="d-flex mt-5">
                 <div>
                     <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
                 </div>
             </div>
             <div>
                 <h6 class="fw-bold mb-1">${data.userId.firstname} ${data.userId.lastname}</h6>
-                <div class="d-flex align-items-center mb-3">
+                <div class="d-flex mb-3">
                     <p class="mb-0 my-date">
-                        ${data.createdDate}
+    ${data.createdDate}
                     </p>
                 </div>
                 <p class="mb-0">
-                        ${data.content}
+    ${data.content}
                 </p>
             </div>
                             <hr class="my-0"/>
-            `;
+                </div>
+            ` + area.innerHTML;
         });
     }
 </script>

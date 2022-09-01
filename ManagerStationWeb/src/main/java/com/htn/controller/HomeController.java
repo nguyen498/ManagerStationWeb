@@ -51,8 +51,9 @@ public class HomeController {
     @RequestMapping("/")
     public String home(Model model,
             @RequestParam Map<String, String> params) {
-//        int page = Integer.parseInt(params.getOrDefault("page", "1"));
-        model.addAttribute("bustrips", this.bustripService.getBustrips(params, 0));
+        int page = Integer.parseInt(params.getOrDefault("page", "1"));
+        model.addAttribute("bustrips", this.bustripService.getBustrips(params, page));
+        model.addAttribute("counter",this.bustripService.countBustrip());
         return "index";
     }
 

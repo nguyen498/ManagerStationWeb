@@ -21,6 +21,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -49,6 +50,7 @@ public class Comment implements Serializable {
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "content")
+    @NotBlank(message = "{notblank.err}")
     private String content;
     @Column(name = "created_date")
     @Temporal(TemporalType.DATE)

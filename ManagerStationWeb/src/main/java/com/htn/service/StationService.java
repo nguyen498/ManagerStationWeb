@@ -17,4 +17,5 @@ public interface StationService {
     Station getStationById (int id);
     boolean deleteStation (int id);
     boolean updateStation (Station s);
+    Station getStationByName (String name);
 }

@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,11 +47,13 @@ public class Station implements Serializable {
     @NotNull(message = "{station.name.err}")
     @Size(min = 1, max = 45, message = "{station.name.err}")
     @Column(name = "tennhaxe")
+    @NotBlank(message = "{notblank.err}")
     private String tennhaxe;
     @Basic(optional = false)
     @NotNull(message = "{station.address.err}")
     @Size(min = 1, max = 100, message = "{station.address.err}")
     @Column(name = "diachi")
+    @NotBlank(message = "{notblank.err}")
     private String diachi;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manhaxe")
     private Set<Bus> busSet;

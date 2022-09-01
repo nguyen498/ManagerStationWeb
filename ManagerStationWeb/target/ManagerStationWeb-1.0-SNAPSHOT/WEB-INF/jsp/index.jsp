@@ -27,6 +27,11 @@
     </div>
 </section><!-- #hero -->
 <main id="main">
+    <c:if test="${bustrips.size() == 0}">
+        <div class="section-bg"">
+            <p class="mb-0"><em>KHONG CO CHUEN XE NAO!!!</em></p>
+        </div>
+    </c:if>
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us section-bg">
         <div class="container">
@@ -59,6 +64,16 @@
                         </a>
                     </div>
                 </c:forEach>
+                <c:if test="${Math.ceil(counter/6) > 1}">
+                    <nav aria-label="Page navigation example" class="justify-content-center d-flex">
+                        <ul class="pagination">
+                            <c:forEach begin="1" end="${Math.ceil(counter/6)}" var="i">
+                                <li class="page-item"><a class="page-link" href="<c:url value="/"/>?page=${i}">${i}</a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </nav>
+                </c:if>
             </div>
 
         </div>

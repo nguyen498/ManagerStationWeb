@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,6 +42,7 @@ public class Bus implements Serializable {
     @NotNull(message = "{bus.biensoxe.err}")
     @Size(min = 1, max = 10, message = "{bus.biensoxe.err}")
     @Column(name = "biensoxe")
+    @NotBlank(message = "{notblank.err}")
     private String biensoxe;
     @OneToMany(mappedBy = "busId", fetch = FetchType.EAGER)
     private Set<Seat> seatSet;

@@ -20,6 +20,7 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <form:form class="p-4" method="put" modelAttribute="bustrip" enctype="multipart/form-data">
+                            <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
                             <form:hidden path="id"/>
                             <div class="row">
                                 <div class="col-md-6">

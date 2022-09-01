@@ -85,4 +85,18 @@ public class StationRepositoryImp implements StationRepository {
         }
     }
 
+    @Override
+    public Station getStationByName(String string) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Station> q = b.createQuery(Station.class);
+        Root root = q.from(Station.class);
+        q.select(root);
+        
+        q = q.where(b.equal(root.get("tennhaxe").as(String.class), string));
+        Query query = session.createQuery(q);
+        
+        return (Station) query.getSingleResult();
+    }
+
 }

@@ -10,7 +10,7 @@
 
 <div class="container-fluid py-4">
     <div class="row">
-        
+
         <div class="row">
             <div class="col-12">
                 <div class="card my-4">
@@ -21,6 +21,7 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <form:form class="p-4" method="put" modelAttribute="bus">
+                            <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static mb-4">
@@ -31,7 +32,7 @@
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static mb-4">
                                         <label for="manhaxe" class="ms-0">Nhà xe: </label>
-                                            <form:select path="manhaxe" class="form-control" id="manhaxe" name="manhaxe">
+                                        <form:select path="manhaxe" class="form-control" id="manhaxe" name="manhaxe">
                                             <c:forEach items="${listStation}" var="b">
                                                 <option value="${b.id}">${b.tennhaxe} (${b.diachi})</option>
                                             </c:forEach>

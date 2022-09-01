@@ -23,4 +23,5 @@ public interface BustripRepository {
     boolean updateBustrip (Bustrip b);
     List<Object[]> countTripsByStation();
     List<Object[]> revenueStats();
+    int countBustrip();
 }

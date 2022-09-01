@@ -10,7 +10,7 @@
 
 <div class="container-fluid py-4">
     <div class="row">
-        
+
         <div class="row">
             <div class="col-12">
                 <div class="card my-4">
@@ -21,6 +21,7 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <form:form class="p-4" method="put" modelAttribute="station">
+                            <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
                             <form:hidden path="id" name="id"/>
                             <div class="row">
                                 <div class="col-md-6">

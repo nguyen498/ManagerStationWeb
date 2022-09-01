@@ -208,4 +208,12 @@ public class BustripRepositoryImp implements BustripRepository {
         Query query = session.createQuery(q);
         return query.getResultList();
     }
+
+    @Override
+    public int countBustrip() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        Query query = session.createQuery("Select Count(*) from Bustrip");
+        
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
 }
