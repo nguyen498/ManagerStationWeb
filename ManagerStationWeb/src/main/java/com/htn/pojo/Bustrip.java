@@ -65,7 +65,6 @@ public class Bustrip implements Serializable {
     @DateTimeFormat(pattern = "HH:mm")
     private Date thoigian;
     @Column(name = "giave")
-    @NotBlank(message = "{notblank.err}")
     private Long giave;
     @Size(max = 255, message = "{bustrip.image.err}")
     @Column(name = "image")

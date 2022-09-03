@@ -64,16 +64,15 @@
                         </a>
                     </div>
                 </c:forEach>
-                <c:if test="${Math.ceil(counter/6) > 1}">
-                    <nav aria-label="Page navigation example" class="justify-content-center d-flex">
-                        <ul class="pagination">
-                            <c:forEach begin="1" end="${Math.ceil(counter/6)}" var="i">
-                                <li class="page-item"><a class="page-link" href="<c:url value="/"/>?page=${i}">${i}</a>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </nav>
-                </c:if>
+                <nav aria-label="Page navigation example" class="justify-content-center d-flex">
+                    <ul class="pagination">
+                        <c:forEach begin="1" end="${Math.ceil(counter/6)}" var="i">
+                            <li class="page-item"><a class="page-link" href="<c:url value="/"/>?page=${i}">${i}</a>
+                            </li>
+                        </c:forEach>
+
+                    </ul>
+                </nav>
             </div>
 
         </div>

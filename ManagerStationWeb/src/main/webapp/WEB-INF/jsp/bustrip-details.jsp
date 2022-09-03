@@ -64,7 +64,6 @@
         </sec:authorize>
         <div id="commentArea">
             <c:forEach items="${comment}" var="c">
-                <div>
                     <div class="d-flex mt-5">
                         <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
                     </div>
@@ -80,7 +79,6 @@
                         </p>
                     </div>
                     <hr class="my-0"/>
-                </div>
             </c:forEach>
         </div>
 
@@ -109,11 +107,8 @@
 
             let area = document.getElementById("commentArea");
             area.innerHTML = `
-            <div>
             <div class="d-flex mt-5">
-                <div>
                     <img src="https://res.cloudinary.com/dgf4td2l4/image/upload/v1661332497/avatar_kwqbgk.jpg" class="rounded-circle ml-15" style="width: 50px;" alt="Avatar" />
-                </div>
             </div>
             <div>
                 <h6 class="fw-bold mb-1">${data.userId.firstname} ${data.userId.lastname}</h6>
@@ -127,7 +122,6 @@
                 </p>
             </div>
                             <hr class="my-0"/>
-                </div>
             ` + area.innerHTML;
         });
     }

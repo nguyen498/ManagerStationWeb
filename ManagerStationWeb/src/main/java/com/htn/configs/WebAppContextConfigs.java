@@ -9,12 +9,15 @@ import com.cloudinary.utils.ObjectUtils;
 import com.htn.formatters.BustripFormatter;
 import com.htn.formatters.RouteFormatter;
 import com.htn.formatters.StationFormatter;
+import java.util.Properties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -36,7 +39,8 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = {
     "com.htn.controller",
     "com.htn.repository",
-    "com.htn.service"
+    "com.htn.service",
+//    "com.htn.email"
 })
 public class WebAppContextConfigs implements WebMvcConfigurer {
 
@@ -97,7 +101,7 @@ public class WebAppContextConfigs implements WebMvcConfigurer {
         ));
         return c;
     }
-    
+
     @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
@@ -106,4 +110,21 @@ public class WebAppContextConfigs implements WebMvcConfigurer {
         return resolver;
     }
 
+    @Bean
+    public JavaMailSender getMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername("nh77442@gmail.com");
+        mailSender.setPassword("3670106Aa");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
+    }
 }

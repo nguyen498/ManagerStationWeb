@@ -48,6 +48,7 @@ public class HomeController {
     @Autowired
     private GoodsService goodsService;
 
+
     @RequestMapping("/")
     public String home(Model model,
             @RequestParam Map<String, String> params) {
