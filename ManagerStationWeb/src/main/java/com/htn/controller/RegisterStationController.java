@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 
 /**
  *
@@ -43,7 +41,7 @@ public class RegisterStationController {
         }
         
         if (this.stationService.addStation(s) == true)
-            return "redirect:/register-bus";
+            return "redirect:/";
         
         return "register-station";
     }

@@ -4,8 +4,10 @@
  */
 package com.htn.repository.impl;
 
+import com.htn.pojo.Bus;
 import com.htn.pojo.Bustrip;
 import com.htn.pojo.Station;
+import com.htn.pojo.Ticket;
 import com.htn.repository.StationRepository;
 import java.util.List;
 import javax.persistence.Query;
@@ -97,6 +99,30 @@ public class StationRepositoryImp implements StationRepository {
         Query query = session.createQuery(q);
         
         return (Station) query.getSingleResult();
+    }
+
+    @Override
+    public List<Object[]> revenueStats(int userId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+
+        Root rBustrip = q.from(Bustrip.class);
+        Root rBus = q.from(Bus.class);
+        Root rStation = q.from(Station.class);
+        Root rTicket = q.from(Ticket.class);
+
+         q.where(b.equal(rBustrip.get("bus"), rBus.get("biensoxe")), 
+                b.equal(rBus.get("manhaxe"), rStation.get("id")),
+                b.equal(rStation.get("userId"), userId),
+                b.equal(rBustrip.get("id"), rTicket.get("bustripId")));
+        
+        q.multiselect(rStation.get("id"), rStation.get("tennhaxe"), b.sum(rTicket.get("total")),  b.count(rTicket.get("total")));
+        
+        q.groupBy(rStation.get("id"));
+        
+        Query query = session.createQuery(q);
+        return query.getResultList();
     }
 
 }

@@ -18,4 +18,5 @@ public interface StationRepository {
     boolean deleteStation (int id);
     boolean updateStation (Station s);
     Station getStationByName (String name);
+    List<Object[]> revenueStats(int userId);
 }

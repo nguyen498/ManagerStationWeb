@@ -23,6 +23,7 @@
                         <form:form class="p-4" method="put" modelAttribute="station">
                             <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
                             <form:hidden path="id" name="id"/>
+                            <form:hidden path="userId" name="userId"/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static mb-4">

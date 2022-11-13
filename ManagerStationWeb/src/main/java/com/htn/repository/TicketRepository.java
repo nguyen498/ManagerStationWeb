@@ -15,4 +15,5 @@ public interface TicketRepository {
     boolean checkBookedSeat(int id, int bustripId);
     boolean addTicket(Ticket ticket);
     List<Ticket> getTickets ();
+    List<Ticket> getTicketsByUser (int id);
 }

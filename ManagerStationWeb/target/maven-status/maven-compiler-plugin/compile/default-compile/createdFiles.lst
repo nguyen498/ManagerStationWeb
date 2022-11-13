@@ -4,6 +4,7 @@ com\htn\pojo\Bus.class
 META-INF\spring.components
 com\htn\service\impl\BusServiceImp.class
 com\htn\formatters\BustripFormatter.class
+com\htn\formatters\UserFortmatter.class
 com\htn\repository\impl\RouteRepositoryImp.class
 com\htn\service\impl\UserServiceImp.class
 com\htn\pojo\Bus_.class

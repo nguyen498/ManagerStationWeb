@@ -17,6 +17,28 @@
         <meta content="" name="description">
         <meta content="" name="keywords">
 
+        
+        <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="/img/favicon.png">
+
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+        <!-- Nucleo Icons -->
+        <link href="<c:url value="/css/nucleo-icons.css" />" rel="stylesheet" />
+        <link href="<c:url value="/css/nucleo-svg.css" />" rel="stylesheet" />
+        <!-- Font Awesome Icons -->
+        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+        <!-- CSS Files -->
+        <link id="pagestyle" href="<c:url value="/css/material-dashboard.css?v=3.0.4" />" rel="stylesheet" />
+        <!-- Include Choices CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+            />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
         <!-- Favicons -->
         <link href="<c:url value="/img/favicon.png" />" rel="icon">
 
@@ -57,6 +79,8 @@
         * Author: BootstrapMade.com
         * License: https://bootstrapmade.com/license/
         ======================================================== -->
+        
+        
     </head>
 
     <body>

@@ -9,10 +9,13 @@ import com.htn.pojo.Seat;
 import com.htn.pojo.Ticket;
 import com.htn.pojo.User;
 import com.htn.repository.TicketRepository;
+import com.htn.repository.UserRepository;
 import com.htn.service.TicketService;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,6 +27,8 @@ public class TicketServiceImp implements TicketService {
 
     @Autowired
     private TicketRepository ticketRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public boolean checkBookedSeat(int id, int bustripId) {
@@ -47,6 +52,14 @@ public class TicketServiceImp implements TicketService {
     @Override
     public List<Ticket> getTickets() {
         return this.ticketRepository.getTickets();
+    }
+
+    @Override
+    public List<Ticket> getTicketsByUser(int i) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = this.userRepository.getUserByUsername(authentication.getName());
+        
+        return this.ticketRepository.getTicketsByUser(user.getId());
     }
 
 }

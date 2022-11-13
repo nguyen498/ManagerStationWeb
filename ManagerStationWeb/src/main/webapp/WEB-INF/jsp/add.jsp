@@ -32,37 +32,39 @@
 <div class="container-fluid py-4">
     <div class="row">
 
+        <%--        
         <div class="row">
-            <div class="col-12">
-                <div class="card my-4">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                            <h6 class="text-white text-capitalize ps-3">Add Station</h6>
-                        </div>
-                    </div>
-                    <div class="card-body px-0 pb-2">
-                        <form:form class="p-4" action="add-station" method="post" modelAttribute="station">
-                            <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static mb-4">
-                                        <label for="tennhaxe" class="ms-0">Tên nhà xe: </label>
-                                        <form:input class="form-control" placeholder="Nhập tên nhà xe" path="tennhaxe" id="tennhaxe" name="tennhaxe"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static mb-4">
-                                        <label for="diachi" class="ms-0">Địa chỉ: </label>
-                                        <form:input class="form-control" placeholder="Nhập địa chỉ...." path="diachi" id="diachi" name="diachi"/>
-                                    </div>
+                    <div class="col-12">
+                        <div class="card my-4">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                                    <h6 class="text-white text-capitalize ps-3">Add Station</h6>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-info ml-auto">Submit</button>
-                        </form:form>
+                            <div class="card-body px-0 pb-2">
+                                <form:form class="p-4" action="add-station" method="post" modelAttribute="station">
+                                    <form:errors path="*" element="div" cssClass="alert alert-danger mt-3"/>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group input-group-static mb-4">
+                                                <label for="tennhaxe" class="ms-0">Tên nhà xe: </label>
+                                                <form:input class="form-control" placeholder="Nhập tên nhà xe" path="tennhaxe" id="tennhaxe" name="tennhaxe"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group input-group-static mb-4">
+                                                <label for="diachi" class="ms-0">Địa chỉ: </label>
+                                                <form:input class="form-control" placeholder="Nhập địa chỉ...." path="diachi" id="diachi" name="diachi"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-info ml-auto">Submit</button>
+                                </form:form>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
+        </div> 
+        --%>
 
         <div class="row">
             <div class="col-12">

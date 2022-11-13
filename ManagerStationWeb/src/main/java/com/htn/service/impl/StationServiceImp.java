@@ -5,11 +5,16 @@
 package com.htn.service.impl;
 
 import com.htn.pojo.Station;
+import com.htn.pojo.User;
 import com.htn.repository.StationRepository;
+import com.htn.repository.UserRepository;
 import com.htn.service.StationService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -20,9 +25,15 @@ public class StationServiceImp implements StationService{
     
     @Autowired
     private StationRepository stationRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
+    @Transactional
     public boolean addStation(Station s) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        s.setUserId(this.userRepository.getUserByUsername(authentication.getName()));
+        this.userRepository.getUserByUsername(authentication.getName()).setUserRole("ROLE_STATION");
         return this.stationRepository.addStation(s);
     }
 
@@ -49,6 +60,11 @@ public class StationServiceImp implements StationService{
     @Override
     public Station getStationByName(String name) {
         return this.stationRepository.getStationByName(name);
+    }
+
+    @Override
+    public List<Object[]> revenueStats(int userId) {
+        return this.stationRepository.revenueStats(userId);
     }
     
 }

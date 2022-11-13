@@ -17,4 +17,5 @@ public interface TicketService {
     boolean checkBookedSeat(int id, int bustripId);
     boolean addTicket(long price, Bustrip bustrip, User user, Seat seat);
     List<Ticket> getTickets ();
+    List<Ticket> getTicketsByUser (int id);
 }

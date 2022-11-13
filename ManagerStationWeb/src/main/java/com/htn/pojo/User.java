@@ -4,7 +4,6 @@
  */
 package com.htn.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -20,7 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -50,26 +48,26 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 50, message = "{user.firstname.err}")
+    @Size(max = 50)
     @Column(name = "firstname")
     private String firstname;
-    @Size(max = 100, message = "{user.lastname.err}")
+    @Size(max = 100)
     @Column(name = "lastname")
     private String lastname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50, message = "{user.username.err}")
+    @Size(min = 1, max = 50)
     @Column(name = "username")
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255, message = "{user.password.err}")
+    @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
-    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100, message = "{user.email.err}")
+    @Size(min = 1, max = 100)
     @Column(name = "email")
     private String email;
     @Column(name = "active")
@@ -80,18 +78,17 @@ public class User implements Serializable {
     @Column(name = "user_role")
     private String userRole;
     @OneToMany(mappedBy = "userId")
-    @JsonIgnore
     private Set<Ticket> ticketSet;
+    @OneToMany(mappedBy = "userId")
+    private Set<Station> stationSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    @JsonIgnore
     private Set<Goods> goodsSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    @JsonIgnore
     private Set<Comment> commentSet;
-    
-    @Transient
-    private String confirmPassword;
 
+     @Transient
+    private String confirmPassword;
+    
     public User() {
     }
 
@@ -178,6 +175,15 @@ public class User implements Serializable {
 
     public void setTicketSet(Set<Ticket> ticketSet) {
         this.ticketSet = ticketSet;
+    }
+
+    @XmlTransient
+    public Set<Station> getStationSet() {
+        return stationSet;
+    }
+
+    public void setStationSet(Set<Station> stationSet) {
+        this.stationSet = stationSet;
     }
 
     @XmlTransient

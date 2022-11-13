@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -57,6 +59,9 @@ public class Station implements Serializable {
     private String diachi;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "manhaxe")
     private Set<Bus> busSet;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    private User userId;
 
     public Station() {
     }
@@ -102,6 +107,14 @@ public class Station implements Serializable {
 
     public void setBusSet(Set<Bus> busSet) {
         this.busSet = busSet;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override

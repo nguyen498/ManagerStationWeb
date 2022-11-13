@@ -7,7 +7,6 @@ package com.htn.repository.impl;
 import com.htn.pojo.Ticket;
 import com.htn.repository.TicketRepository;
 import java.math.BigInteger;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -72,4 +71,18 @@ public class TicketRepositoryImp implements TicketRepository{
 
         return query.getResultList();
     }
+
+    @Override
+    public List<Ticket> getTicketsByUser(int userId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Ticket> q = b.createQuery(Ticket.class);
+        Root root = q.from(Ticket.class);
+        q.select(root);
+        q.where(b.equal(root.get("userId"), userId));
+        Query query = session.createQuery(q);
+
+        return query.getResultList();
+    }
+    
 }

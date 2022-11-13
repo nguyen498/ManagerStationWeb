@@ -29,6 +29,7 @@
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên nhà xe </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Địa chỉ</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                             </thead>
@@ -45,6 +46,9 @@
                                         </td>
                                         <td class="align-middle text-center">
                                             <span class="text-secondary text-xs font-weight-bold">${s.diachi}</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary text-xs font-weight-bold">${s.userId.username}</span>
                                         </td>
                                         <td class="align-middle d-flex justify-content-center">
                                             <a href="<c:url value="/admin/delete-station/${s.id}"/>" class="btn btn-danger text-white font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">

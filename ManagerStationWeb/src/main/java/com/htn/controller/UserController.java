@@ -49,6 +49,6 @@ public class UserController {
             msg = "Mật khẩu không trùng khớp";
         }
         model.addAttribute("ERROR", msg);
-        return "register";
+        return "index";
     }
 }

@@ -65,6 +65,16 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/ship-goods.jsp" />
     </definition>
+    <definition name="station-stats" extends="baseLayout">
+        <put-attribute name="title" value="Thống kê" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/station-stats.jsp" />
+    </definition>
+    <definition name="list-ticket" extends="baseLayout">
+        <put-attribute name="title" value="Mua vé" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/list-ticket.jsp" />
+    </definition>
     
     <!--admin page -->
     <definition name="adminLayout"

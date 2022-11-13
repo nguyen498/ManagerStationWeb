@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.htn.service.BustripService;
 import com.htn.service.GoodsService;
 import com.htn.service.SeatService;
+import com.htn.service.StationService;
 import com.htn.service.TicketService;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +48,8 @@ public class HomeController {
     private UserRepository userRepository;
     @Autowired
     private GoodsService goodsService;
+    @Autowired
+    private StationService stationService;
 
 
     @RequestMapping("/")
@@ -150,5 +153,23 @@ public class HomeController {
         }
         
         return "ship-goods";
+    }
+    
+    @GetMapping("/station-stats")
+    private String getStationStats(Model model){
+        
+        User user = this.userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        model.addAttribute("stats", this.stationService.revenueStats(user.getId()));
+        
+        return "station-stats";
+    }
+    
+    @GetMapping("/list-ticket")
+    private String getTicketByUser(Model model){
+        
+        User user = this.userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        model.addAttribute("ticket", this.ticketService.getTicketsByUser(user.getId()));
+        
+        return "list-ticket";
     }
 }
