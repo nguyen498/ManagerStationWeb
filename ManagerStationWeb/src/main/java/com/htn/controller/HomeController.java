@@ -160,6 +160,7 @@ public class HomeController {
         
         User user = this.userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("stats", this.stationService.revenueStats(user.getId()));
+        model.addAttribute("bus", this.stationService.getBusByStation(user.getId()));
         
         return "station-stats";
     }

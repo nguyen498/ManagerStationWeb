@@ -4,6 +4,7 @@
  */
 package com.htn.repository;
 
+import com.htn.pojo.Bus;
 import com.htn.pojo.Station;
 import java.util.List;
 
@@ -19,4 +20,5 @@ public interface StationRepository {
     boolean updateStation (Station s);
     Station getStationByName (String name);
     List<Object[]> revenueStats(int userId);
+    List<Bus> getBusByStation (int userId); 
 }

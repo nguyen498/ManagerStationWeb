@@ -4,6 +4,7 @@
  */
 package com.htn.service.impl;
 
+import com.htn.pojo.Bus;
 import com.htn.pojo.Station;
 import com.htn.pojo.User;
 import com.htn.repository.StationRepository;
@@ -65,6 +66,11 @@ public class StationServiceImp implements StationService{
     @Override
     public List<Object[]> revenueStats(int userId) {
         return this.stationRepository.revenueStats(userId);
+    }
+
+    @Override
+    public List<Bus> getBusByStation(int userId) {
+        return this.stationRepository.getBusByStation(userId);
     }
     
 }

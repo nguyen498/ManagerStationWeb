@@ -55,6 +55,7 @@ com\htn\service\impl\TicketServiceImp.class
 com\htn\utils\Utils.class
 com\htn\repository\StationRepository.class
 com\htn\pojo\Comment_.class
+com\htn\formatters\BusFortmatter.class
 com\htn\pojo\Bustrip_.class
 com\htn\pojo\Comment.class
 com\htn\repository\SeatRepository.class

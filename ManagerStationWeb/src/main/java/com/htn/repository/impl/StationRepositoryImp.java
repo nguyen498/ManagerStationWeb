@@ -117,11 +117,29 @@ public class StationRepositoryImp implements StationRepository {
                 b.equal(rStation.get("userId"), userId),
                 b.equal(rBustrip.get("id"), rTicket.get("bustripId")));
         
-        q.multiselect(rStation.get("id"), rStation.get("tennhaxe"), b.sum(rTicket.get("total")),  b.count(rTicket.get("total")));
+        q.multiselect(rBustrip.get("id"), rBus.get("biensoxe") ,rBustrip.get("routeId"),rStation.get("tennhaxe"), b.sum(rTicket.get("total")),  b.count(rTicket.get("total")));
         
-        q.groupBy(rStation.get("id"));
+        q.groupBy(rBustrip.get("id"));
         
         Query query = session.createQuery(q);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Bus> getBusByStation(int userId) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Station> q = b.createQuery(Station.class);
+        
+        Root rStation = q.from(Station.class);
+        Root rBus = q.from(Bus.class);
+        
+        q.where(b.equal(rBus.get("manhaxe"), rStation.get("id")),
+                b.equal(rStation.get("userId"), userId));
+        
+        q.select(rBus);
+        Query query = session.createQuery(q);
+
         return query.getResultList();
     }
 
